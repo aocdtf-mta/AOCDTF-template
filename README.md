@@ -1,3 +1,3 @@
 # Canevas graphique
 
-Canevas graphique pour la création de contenus pédagogiques alimentant les formations octroyées par l'AOCDTF
+Clean LaTeX template for AOCDTF's educational content to highly qualified craftsmen

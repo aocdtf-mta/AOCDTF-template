@@ -8,7 +8,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 
 | Page de couverture  | Page de titre | Page de titre du diaporama |
 | :------------------: | :------------------: | :------------------: |
-| ![Page de couverture](fichiers_github/page_couverture_pied_page.png) | ![Page de titre](fichiers_github/page_titre.png) |![Page de titre du diaporama](fichiers_github/page_titre_diaporama.png) |
+| ![Page de couverture](fichiers_github/page_couverture.png) | ![Page de titre](fichiers_github/page_titre.png) |![Page de titre du diaporama](fichiers_github/page_titre_diaporama.png) |
 
 ## Pré-requis
 

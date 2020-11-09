@@ -15,9 +15,9 @@
 %données du document
 %--------------------------------------
 
-\title{Matière} %inscrire le nom de la matière ici
+\title{La matière} %inscrire le nom de la matière ici
 
-\subtitle{Cours} %inscrire le nom du cours ici
+\subtitle{Le cours} %inscrire le nom du cours ici
 
 \date{
 \begin{minipage}{0.49\textwidth}
@@ -25,28 +25,39 @@
 \end{minipage}
 \hfill
 \begin{minipage}{0.49\textwidth}
-\raggedleft{\footnotesize{Prénom1 \textsc{Nom1}}} %inscrire le nom de l'auteur ici
+\raggedleft{\footnotesize{Prénom \textsc{Nom}}} %inscrire le nom de l'auteur ici
 \end{minipage}}
 
 \institute{
 \begin{center}
 \begin{large}
-\textsc{BTS \'Electrotechnique} %inscrire le nom de la formation ici
+\textsc{La formation} %inscrire le nom de la formation ici
 \end{large}
 \end{center}
-\vspace{0.3cm}
-\flushleft{Association Ouvrière des Compagnons du Devoir et du tour de France}
-\flushright{Métiers des technologies associées}}
+\vspace{0.7cm}
+\begin{minipage}{0.65\textwidth}
+Association Ouvrière des Compagnons du Devoir et du tour de France
+\end{minipage}
+\hfill
+\begin{minipage}{0.3\textwidth}
+	\begin{flushright}
+\includegraphics[height=0.7cm]{logo_compagnons}
+\end{flushright}
+\end{minipage}
 
-\titlegraphic{
-\begin{tikzpicture}[overlay, remember picture]
-		\begin{scope}[shift={(current page.south east)}]
-			\draw (-1,2.6) node [above left] {\includegraphics[height=0.7cm]{logo_compagnons}};
-		\end{scope}
-		\begin{scope}[shift={(current page.south west)}]
-			\draw (1,1.9) node [above right] {\includegraphics[height=0.7cm]{logo_metier}};
-		\end{scope}
-\end{tikzpicture}}
+\vspace{0.7cm}
+
+\begin{minipage}{0.3\textwidth}
+	\begin{flushleft}
+\includegraphics[height=0.7cm]{blason_MTA}
+\end{flushleft}
+\end{minipage}
+\hfill
+\begin{minipage}{0.65\textwidth}
+\begin{flushright}
+Le corps de métier %inscrire le corps de métier ici
+\end{flushright}
+\end{minipage}}
 
 %--------------------------------------
 %corps du document
@@ -59,6 +70,284 @@
 \begin{frame}{Table des matières}
   \setbeamertemplate{section in toc}[sections numbered]
   \tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Une première section}
+
+\begin{frame}[fragile]{Titre de la diapositive 1}
+    \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+    \begin{itemize}[<+(1)- | alert@+(1)>] %liste avec une slide qui met en évidence chaque terme de la liste (apparait à la deuxième slide)
+		\item Un premier truc \alert<5>{\only<5>{ (truc en évidence à la cinquième slide)}}  
+		\item Un deuxième truc
+		\item Un troisième truc
+    \end{itemize}
+\onslide+<5->{ %partie qui apparait à la cinquième slide sans effacer ce qui apparait sur les slides précédentes         
+    \metroset{block=fill}
+    \begin{block}{Titre du bloc}
+Contenu du bloc
+     \end{block}}  
+\end{frame}
+
+\begin{frame}[fragile]{Titre de la diapositive 2}
+    \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+    \begin{itemize}[<+(1)- | alert@+(1)>] %liste avec une slide qui met en évidence chaque terme de la liste (apparait à la deuxième slide)
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+    \end{itemize}
+    \end{block}
+\onslide+<5->
+    \metroset{block=fill}
+    \begin{block}{Titre du bloc}
+    \begin{itemize}[<+(2)- | alert@+(2)>] %liste avec une slide qui met en évidence chaque terme de la liste (apparait à la sixième slide)
+      	\item Un premier truc
+		\item Un deuxième truc
+    \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}[fragile]{Titre de la diapositive 3} %grosse prise de tête pour inclure du code dans une diapositive
+Texte en haut de la diapositive 3
+\begin{verbnobox}[\tiny]
+\begin{frame}[fragile]{Titre de la diapositive 3}
+Texte en haut de la diapositive 3
+\begin{Verbnobox}[\tiny]
+\begin{frame}[fragile]{Titre de la diapositive 3}
+Texte en haut de la diapositive 3
+\end{frame}\end{Verbnobox}
+\end{frame}\end{verbnobox}
+\end{frame}
+
+
+\begin{frame}[fragile]{Titre de la diapositive 4}
+\begin{center}
+\copyrightbox[b]{\includegraphics[scale=0.3]{infinite_mirror.jpg}}{\scriptsize{http://lightenergystudio.com/RGBinfinitymirror.html}} %une image avec son copyright
+\end{center}
+\end{frame}
+
+
+\begin{frame}[fragile]{Titre de la diapositive 5} %diapositive avec GANTT
+\onslide+<1->
+\setcounter{myWeekNum}{40}
+\ganttset{calendar week text={\myWeek{}}}	
+\begin{ganttchart}[
+	expand chart=\textwidth,
+	vgrid={*{6}{draw=none}, dotted},
+	y unit chart=0.7cm,
+ 	title/.append style={fill=black!10},
+	bar height=.2,
+	title label font=\tiny,
+	group label font=\bfseries\tiny,
+	bar label font=\tiny,
+	time slot format=isodate,
+	]{2020-10-01}{2021-03-31}
+
+\ganttset{calendar week text={\myWeek{}}}	
+\gantttitlecalendar{month=name, week=41 day} \\
+
+\onslide+<2->
+
+\ganttgroup{Un premier groupe de tâches}{2020-10-01}{2021-02-17} \\
+
+\ganttbar{tâche 1}{2020-10-01}{2020-12-12} \\
+
+\ganttbar{tâche 2}{2020-12-12}{2021-02-17} \\
+
+\onslide+<3->
+\ganttgroup{Un deuxième groupe de tâches}{2021-02-18}{2021-03-14} \\
+
+\ganttbar{tâche 1}{2021-02-18}{2021-03-03} \\
+
+\ganttbar{tâche 2}{2021-03-03}{2021-03-14} \\
+
+\onslide+<4>
+\ganttgroup{Un troisième groupe de tâches}{2021-03-15}{2021-03-31} \\
+
+\end{ganttchart}
+
+\end{frame}
+
+\section{Une deuxième section}
+
+\begin{frame}{Titre de la diapositive 6}
+\onslide+<1->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\onslide+<2->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+\onslide+<3->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\onslide+<4->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Titre de la diapositive 7}
+    
+\onslide+<1->
+
+\metroset{block=fill}
+    \begin{block}{Titre du bloc}
+\begin{itemize}[<+- | alert@+>]
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+\end{itemize}
+    \end{block}
+    
+\onslide+<4->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+    
+    \onslide+<5->
+
+\metroset{block=fill}
+    \begin{block}{Titre du bloc}
+\begin{itemize}[<+(1)- | alert@+(1)>]
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+\end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Titre de la diapositive 8}
+    \begin{itemize}[<+- | alert@+>]
+      	\item Un premier truc
+		\item Un deuxième truc
+    \end{itemize}
+\end{frame}
+
+\section{Une troisième section}
+
+\begin{frame}{Titre de la diapositive 9}
+\onslide+<1->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\onslide+<3->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+\onslide+<4->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\onslide+<5->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+
+\end{frame}
+
+\begin{frame}{Titre de la diapositive 10}
+    
+\onslide+<1->
+
+\metroset{block=fill}
+    \begin{block}{Titre du bloc}
+\begin{itemize}[<+- | alert@+>]
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+\end{itemize}
+    \end{block}
+    
+\onslide+<4->
+
+ \metroset{block=fill} %bloc rempli
+    \begin{block}{Titre du bloc}
+        Contenu du bloc
+    \end{block}
+    \onslide+<5->
+
+\metroset{block=fill}
+    \begin{block}{Titre du bloc}
+\begin{itemize}[<+(1)- | alert@+(1)>]
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+\end{itemize}
+    \end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]{Titre de la diapositive 11}
+\begin{itemize}[<+- | alert@+>]
+      	\item Un premier truc
+		\item Un deuxième truc
+		\item Un troisième truc
+\end{itemize}
+    	\onslide+<3->
+    \begin{center}
+            \copyrightbox[b]{\includegraphics[scale=0.05]{platine_lumiere.jpeg}}{Image détenue par l'auteur}
+	\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{Titre de la diapositive 13}
+Texte haut de diapositive
+\begin{itemize}
+	\onslide+<2->{\item un premier truc} %sur la slide deux
+	\onslide+<3->{\item un deuxième truc} %sur la slide trois
+\end{itemize}
+	\vspace{0.5cm}
+	\onslide+<2->{\copyrightbox[b]{\includegraphics[height=3.6cm]{adoption.jpeg}}{Image détenue par l'auteur}} %sur la slide deux
+	\hfill
+	\onslide+<3->{\copyrightbox[b]{\includegraphics[height=3.6cm]{eclairage_mariage}}{Image détenue par l'auteur}} %sur la slide trois
+\end{frame} 
+
+\begin{frame}{Titre de la diapositive 14} %diapositive avec vidéo à départ automatique
+\begin{center}
+\movie[
+	autostart,
+	width=\linewidth,
+	height=0.75\linewidth]
+	{\includegraphics[height=0.75\linewidth]{LED_pirate.png}}{LED_pirate.mp4}
+\end{center}
+\end{frame}
+
+\section{Une conclusion}
+
+\begin{frame}[fragile]{Titre de la diapositive 15}
+      \begin{itemize}[<+- | alert@+>]
+      \item Un premier truc
+      \item Un deuxième truc
+      \end{itemize}
 \end{frame}
 
 \section{Introduction}

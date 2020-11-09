@@ -17,7 +17,6 @@
 %--------------------------------------
 
 \begin{document} %corps du document
-	\openleft %début de chapitre à gauche
 
 \end{comment}
 
@@ -44,11 +43,11 @@
 %--------------------------------------
 
 \begin{flushleft}
-	\HUGE\sffamily\textbf{Matière}\\
+	\HUGE\sffamily\textbf{\showmatiere}\\
 \end{flushleft}
 \HRule
 \begin{flushright}
-	\huge\sffamily\textbf{Cours}\\[0.4cm]
+	\huge\sffamily\textbf{\showcours}\\[0.4cm]
 \end{flushright}
 ~\\[2cm]
 
@@ -58,23 +57,24 @@
 
 \begin{minipage}{0.3\textwidth}
  \noindent\large
-		\rmfamily Prénom1 \textsc{Nom1}
+ 		\showauteura
 		\\
-		\rmfamily Prénom2 \textsc{Nom2}
+		\showauteurb
 \end{minipage}
 \hfill
 \begin{minipage}{0.3\textwidth}
-	\centering
-	\includegraphics[scale=0.25]{logo_metier.png}
+	\begin{flushright}
+\includegraphics[width=3cm]{choix_blason.png}
+	\end{flushright}
 \end{minipage}
 
 \begin{comment}
 \hfill
 \begin{minipage}{0.3\textwidth}
 	\begin{flushright} \large
-		\rmfamily Prénom3 \textsc{Nom3} %auteur supplémentaires à rajouter en mettant en commentaire l'environnement comment
+ 		\showauteurc
 		\\
- 		\rmfamily Prénom4 \textsc{Nom4}
+		\showauteurd
 	\end{flushright}
 \end{minipage}
 \end{comment}
@@ -82,8 +82,6 @@
 \vfill
 \begin{flushleft}
 	\sffamily\bfseries\large\ Édition \the\year.\the\month
-	\\
-	~v\version
 \end{flushleft}
 \vfill
 

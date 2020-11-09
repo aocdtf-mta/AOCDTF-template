@@ -8,7 +8,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 
 | Page de couverture  | Page de titre | Page de titre du diaporama |
 | :------------------: | :------------------: | :------------------: |
-| ![Page de couverture](parametres/github/page_couverture_pied_page.png) | ![Page de titre](parametres/github/page_titre.png) |![Page de titre du diaporama](parametres/github/page_titre_diaporama.png) |
+| ![Page de couverture](github/page_couverture_pied_page.png) | ![Page de titre](github/page_titre.png) |![Page de titre du diaporama](github/page_titre_diaporama.png) |
 
 ## Pré-requis
 
@@ -17,21 +17,14 @@ Divers documents de tutoriel pour tous les niveaux sont disponibles dans la base
     - `base_de_donnees/latex/masson-fiches_latex/...`
     - `base_de_donnees/latex/goulet-redaction_latex.pdf`
     
-1. Installer 
- 	- LaTeX avec la distribution [TexLive](https://www.tug.org/texlive/)
- 	- Editeur [Texmaker](https://www.xm1math.net/texmaker/index_fr.html)
- 	- Programme de gestion des bibliographie [Biber](http://biblatex-biber.sourceforge.net)
- 	- Editeur d'image en format vectoriel [Inkscape](https://inkscape.org/fr/)
- 	- Extracteur de données issues de graphiques [WebPlotDigitzer](https://automeris.io/WebPlotDigitizer/)
- 	- Logiciel de géométrie [Geogebra](https://www.geogebra.org/?lang=fr)
- 	- S'inscrire sur le site d'éditeur de dessin Tikz (code de dessin LaTeX) [Mathcha](https://www.mathcha.io/editor)
+1. Se référer au dépôt [AOCDTF-package](https://github.com/aocdtf-mta/AOCDTF-package) pour l'installation de tous les packages et logiciels permettant d'initialiser sans accroc la compilation du canevas.
 
 2. Bien paramétrer l'éditeur Texmaker :
 
 <p float="left">
-  <img src="parametres/github/set1.png" width="200" />
-  <img src="parametres/github/set2.png" width="200" /> 
-  <img src="parametres/github/set3.png" width="200" />
+  <img src="github/set1.png" width="200" />
+  <img src="github/set2.png" width="200" /> 
+  <img src="github/set3.png" width="200" />
 </p>
 
 3. Cloner le dépôt BTS-ElectroTeXnique à l'aide de l'application Github Desktop au préalablement installée, importer le dépôt et créer une nouvelle branche nommée "Branche-votrenom".

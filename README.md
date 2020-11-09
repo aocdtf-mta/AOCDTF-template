@@ -8,7 +8,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 
 | Page de couverture  | Page de titre | Page de titre du diaporama |
 | :------------------: | :------------------: | :------------------: |
-| ![Page de couverture](github/page_couverture_pied_page.png) | ![Page de titre](github/page_titre.png) |![Page de titre du diaporama](github/page_titre_diaporama.png) |
+| ![Page de couverture](fichiers_github/page_couverture_pied_page.png) | ![Page de titre](fichiers_github/page_titre.png) |![Page de titre du diaporama](fichiers_github/page_titre_diaporama.png) |
 
 ## Pré-requis
 
@@ -22,9 +22,9 @@ Divers documents de tutoriel pour tous les niveaux sont disponibles dans la base
 2. Bien paramétrer l'éditeur Texmaker :
 
 <p float="left">
-  <img src="github/set1.png" width="200" />
-  <img src="github/set2.png" width="200" /> 
-  <img src="github/set3.png" width="200" />
+  <img src="fichiers_github/set1.png" width="200" />
+  <img src="fichiers_github/set2.png" width="200" /> 
+  <img src="fichiers_github/set3.png" width="200" />
 </p>
 
 3. Cloner le dépôt BTS-ElectroTeXnique à l'aide de l'application Github Desktop au préalablement installée, importer le dépôt et créer une nouvelle branche nommée "Branche-votrenom".

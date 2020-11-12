@@ -1,0 +1,42 @@
+%--------------------------------------
+%CANEVAS
+%--------------------------------------
+
+%--------------------------------------
+%appel de la classe de document et de ses options
+%--------------------------------------
+\PassOptionsToPackage{french}{translator}
+
+\documentclass[10pt]{beamer}
+
+\usepackage{AOCDTF_diaporama}
+
+%--------------------------------------
+%données du document
+%--------------------------------------
+
+\corpsdemetier{Corps de métier}
+\acronymemetier{choix}
+
+\formation{Formation}
+\matiere{Matière}
+\cours{Cours}
+
+\auteura{Nom}{Prénom}
+\auteurb{Nom}{Prénom}
+\auteurc{Nom}{Prénom}
+\auteurd{Nom}{Prénom}
+
+\usepackage{AOCDTF_diaporamatitre}
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document}
+
+\maketitle
+
+\include{sec_premiere_section}
+
+\end{document}

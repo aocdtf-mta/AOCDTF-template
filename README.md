@@ -1,11 +1,11 @@
-## Canevas graphique <img src="fichiers_github/logo_compagnons.png" align="right" height="45"/>
+## Charte graphique AOCDTF <img src="fichiers_github/logo_compagnons.png" align="right" height="45"/>
 
-Clean LaTeX template for AOCDTF's educational content to highly qualified craftsmen
+Clean LaTeX template for AOCDTF's educational content intended to highly qualified craftsmen
 
 Canevas de rédaction et support de cours destiné au (gros) chantier de création de contenus pédagogiques pour les formations octroyées à l'AOCDTF. Des directives de rédactions seront ajoutées au fur et à mesure de l'avancement du projet, pour standariser les contenus au mieux et permettre de produire des documents de qualités.
 **Pour respecter au mieux la charte graphique, prendre le temps de bien décrypter les instructions ci-dessous est indispensable.**
 
-## Pré-requis
+# Pré-requis
 
 0. Maitriser les bases de la programmation sous l'environnement LaTeX. Pour cela, prendre le temps de décrypter les codes **commentés avec soin** des cours déjà produits.
 Divers documents de tutoriel pour tous les niveaux sont disponibles dans la base de données, avec entre autre : 
@@ -22,11 +22,9 @@ Divers documents de tutoriel pour tous les niveaux sont disponibles dans la base
   <img src="fichiers_github/set3.png" width="200" />
 </p>
 
-3. Cloner le dépôt BTS-ElectroTeXnique à l'aide de l'application Github Desktop au préalablement installée, importer le dépôt et créer une nouvelle branche nommée "Branche-votrenom".
+3. Cloner ce dépôt à l'aide de l'application GitKraken au préalablement installée, importer le dépôt et créer une nouvelle branche nommée "Branche-votrenom".
 
-4. Ajouter le package "AOCDTF" et les autres packages du dossier `/BTS-ElectroTeXnique/parametres/packages_manquants` dans le dossier contenant les packages `texlive/2020/texmf-dist/tex/latex` avec les docs correspondantes, se référer au tutoriel présent dans le même dossier "tutoriel_ajout_packages.pdf" (ne pas oublier de rafraichir la database).
-
-## Initialisation de la programmation d'un nouveau cours
+# Initialisation de la programmation d'un nouveau cours
 
 1. Copier/coller le dossier `/parametres/canevas` pour créer un nouveau cours dans les dossiers /matieres/cours/... en renommant le dossier au nom du cours (matiere > cours > chapitre > sous-chapitre...).
 
@@ -107,7 +105,7 @@ Rédiger les équations pour les exemples, détails de calcul, dans l'environnem
 
 9. Ne pas oublier de référencer les sources à l'aide de la bibliographie que l'on alimente au fur et à mesure de la rédaction et d'inclure des liens de références internes à l'aide des labels.
 
-10. Vérifier dans package "AOCDTF.sty" toutes les macros qui ont pu y être ajoutées (bien souvent précédées d'une instruction type `\newcommand{nouvelleinstruction}{cequecette instructionexecute}`.
+10. Vérifier le dans package "AOCDTF.sty" toutes les macros qui ont pu y être ajoutées (bien souvent précédées d'une instruction type `\newcommand{nouvelleinstruction}{cequecette instructionexecute}`.
 
 11. Une fois la rédaction de la sous-programmation effectuée, l'appeler dans sa programmation maitre en suivant bien les consignes en début de programmation avec le `\package{comment}` qui permet de mettre en commentaire toute la portion de code se situant dans cet environnement et l'instruction `%` qui aura le même effet sur une ligne.
 
@@ -134,11 +132,9 @@ table[/pgf/number format/read comma as period]{donneesdugraphique.txt};
 
 ## Diaporama
 
-1. Installer le thème du diaporama Metropolis "mtheme" en respectant l'arborescence des fichiers dans le dossier `texlive/2020/texmf-dist/tex/latex`.
+1. Se référer au receuil de programmation du diaporama pour analyser les différentes diapositives possibles, présent dans le dépôt [AOCDTF-package](https://github.com/aocdtf-mta/AOCDTF-package).
 
-2. Se référer au canevas du diaporama pour analyser les différentes diapositives possibles.
-
-3. Construire le diaporama de manière similaire au cours format A4 mais compiler le code avec LuaLaTeX plutôt que PDFLaTeX.
+2. Construire le diaporama de manière similaire au cours format A4 mais compiler le code avec LuaLaTeX plutôt que PDFLaTeX.
 
 **Affaire à suivre...**
 

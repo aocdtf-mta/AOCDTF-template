@@ -26,22 +26,11 @@ Divers documents de tutoriel pour tous les niveaux sont disponibles dans la base
 
 # Initialisation de la programmation d'un nouveau cours
 
-1. Copier/coller le dossier `/parametres/canevas` pour créer un nouveau cours dans les dossiers /matieres/cours/... en renommant le dossier au nom du cours (matiere > cours > chapitre > sous-chapitre...).
+1. Copier/coller initialement le template pour initialiser la création les supports de cours d'une formation en le renommant à cette formation et en l'important en nouveau dépôt sur Github.
 
-
-2. Ne pas renommer les fichiers copiés pour le nouveau cours mais indiquer en tête de chaque programmation pour repérer facilement le nouveaux cours :
-
-``` bash
-%--------------------------------------
-%INTITULE DU COURS 
-%--------------------------------------
-```
+2. Initialiser la programmation d'une nouvelle matière et d'un nouveau cours en se référant à l'arborescence de fichiers issues du template
 
 3. Ajouter les informations relatives au cours en question dans les page de titre, couverture et autres informations.
-
-4. **Rectifier l'arborescence des fichiers.bib (en s'aide du fichier `INDICATEUR_ARBORESCENCE.tex`) car celle du canevas n'est pas la même que celle pour les cours !**
-
-5. Si des modifications sont à ajouter au package AOCDTF ou au canevas, **consulter** l'équipe pour qu'on exporter ajouter ces modifications.
 
 ## Rédaction de la programmation d'un nouveau cours
 

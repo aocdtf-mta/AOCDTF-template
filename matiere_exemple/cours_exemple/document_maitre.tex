@@ -12,6 +12,8 @@
 %données du document
 %--------------------------------------
 
+\formationtrue
+
 \corpsdemetier{Corps de métier}
 \acronymemetier{choix}
 
@@ -20,13 +22,15 @@
 \cours{Cours}
 
 \auteura{Prénom}{Nom}
-\acronymemetierauteura{choix}
+\acronymemetierauteura{choix} 
 \auteurb{Prénom}{Nom}
 \acronymemetierauteurb{choix}
 \auteurc{Prénom}{Nom}
-\acronymemetierauteurc{nul}
+\acronymemetierauteurc{choix}
 \auteurd{Prénom}{Nom}
-\acronymemetierauteurd{nul}
+\acronymemetierauteurd{choix}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
 
 \decoupagechapitre{5} %espacement des marqueurs entre les différents chapitres (à régler en fin de rédaction) (5cm vaut un espacement équivalement à la hauteur du marqueur, une page ne peut en contenir que 5 avec cet espacement-la mais il est le plus équilibré)
 
@@ -52,8 +56,12 @@
 \pagetitre
 \marqueurchapitre
 
+\media{\thetypemedia}{}{
+	\makeatletter
+	\setboolean{@twoside}{false}
+	\makeatother}
+	
 	\pagestyle{plain} %style de page avec en-tête et pied-de-page
-	\pagenumbering{roman}
 	\openany
 	
 	%--------------------------------------
@@ -65,11 +73,11 @@
 	{\hypersetup{linkcolor=black}\listoftables*} %liste des tableaux en noir
 	\newpage
 	{\hypersetup{linkcolor=black}\listoffigures*} %liste des figures en noir
-	{\hypersetup{linkcolor=black}\listtheoremname\listtheorems{formule}} %liste des équations en noir
-	{\hypersetup{linkcolor=black}\listdefinitionname\listtheorems{definition}} %liste des définitions en noir
-	{\hypersetup{linkcolor=black}\listexemplename\listtheorems{exemple}} %liste des définitions en noir
+	{\hypersetup{linkcolor=black}\tcblistof[\chapter*]{frm}{Liste des formules}} %liste des équations en noir
+	{\hypersetup{linkcolor=black}\tcblistof[\chapter*]{dfn}{Liste des définitions}} %liste des définitions en noir
+	{\hypersetup{linkcolor=black}\tcblistof[\chapter*]{xmpl}{Liste des exemples}} %liste des définitions en noir
 
-	\openright %début de chapitre à "droite" mais comme demarrage de la numérotation inversé avec la page de titre, ça décale l'ouverture des chapitre à gauche
+	\media{\thetypemedia}{\openright}{} %début de chapitre à "droite" mais comme demarrage de la numérotation inversé avec la page de titre, ça décale l'ouverture des chapitre à gauche
 
 	%--------------------------------------
 	%chapitre d'introduction
@@ -110,7 +118,6 @@
 	\input{ann_premiere_annexe}
 	
 	\input{ann_deuxieme_annexe}
-
 
 %--------------------------------------
 %conclusion, bibliographie

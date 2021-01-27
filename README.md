@@ -40,7 +40,9 @@ LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traiteme
 Cela offre diverses fonctions indispensables pour construire une base de données conséquente et _collaborative_ de supports pédagogiques comme cela doit être le cas à l'AOCDTF.
 Produire des documents de la sorte -- WhatYouSeeIsWhatYouMean -- est moins aisé, surtout concernant la production d'un petit nombre de document de faible volume. Toutefois, la courbe apprentissage/vitesse de rédaction de documents tourne relativement rapidement à l'avantage de LaTeX (entre autres logiciels de _programmation_ de texte WYSIWYM) quand il s'agit de rédiger en quantité des documents de plus gros volume :
 
-[](fichiers_github/courbe_word_latex.png)
+<p>
+  <img src="fichiers_github/courbe_word_latex.png" width="400" />
+</p>
 
 Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ à l'AOCDTF, utiliser LaTeX plutôt que des logiciels de traitements de texte WYSIWYG offre divers avantages :
 - uniformité graphique et de mise en page sur **tous** les documents, incluant également **tous** les graphiques et schémas

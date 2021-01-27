@@ -45,3 +45,5 @@ Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ �
 - respect de la norme qualité ISO9001
 - mise à jour de la charte graphique simplifiée
 - possibilité d'éditer des livres de références
+- récupération des cours produits pour Aquis@v utilisant la même structure logicielle
+

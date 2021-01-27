@@ -23,7 +23,6 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 	- format présentation (présentation en mot-clés, structure claire et sobre...) sous forme de support projeté de cours
 - conservation des images, figures, fichiers multimédias... en pleine qualité
 - évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jour
-- récupération des cours produits pour Aquis@v utilisant la même structure logicielle
 - gratuité de l'environnement de programmation
 - collaboration aisée sur le code
 - pérennité et robustesse du format .tex, documentation très fournie

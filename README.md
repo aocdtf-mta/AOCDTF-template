@@ -3,7 +3,7 @@
 Clean LaTeX template for AOCDTF's educational content intended to highly qualified craftsmen
 
 Canevas de rédaction et support de cours destiné au (gros) chantier de création de contenus pédagogiques pour les formations octroyées à l'AOCDTF. Des directives de rédactions seront ajoutées au fur et à mesure de l'avancement du projet, pour standariser les contenus au mieux et permettre de produire des documents de qualités.
-**Pour respecter au mieux la charte graphique, prendre le temps de bien décrypter les instructions dans le _wiki_ est indispensable.**
+**Pour respecter au mieux la charte graphique, prendre le temps de bien décrypter les instructions dans le [wiki](https://github.com/aocdtf-mta/AOCDTF-template/wiki) est indispensable.**
 
 | Page de couverture  | Page de titre | Page de titre du diaporama |
 | :------------------: | :------------------: | :------------------: |

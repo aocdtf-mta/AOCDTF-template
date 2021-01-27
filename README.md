@@ -15,7 +15,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 - mise en page normalisée et harmonisée
 - structuration du texte et du document automatique et optimale
 - référencement intra/hyperlien et navigation aisée dans le document
-- bibliographie type universitaire, création d'index et liste d'environnements spécifiques (définition, formules physiques, exemple...)
+- bibliographie type universitaire, création d'index et d'environnements spécifiques listés (définition, formule physique, exemple...)
 - intégration encapsulée dans le document de :
 	- images haute qualité
 	- vidéos
@@ -26,10 +26,10 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
 	- format présentation (présentation en mot-clés, structure claire et sobre...) sous forme de support projeté de cours
 - conservation des images, figures, fichiers multimédias... en pleine qualité
-- évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jours
+- évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jour
 - récupération des cours produits pour Aquis@v utilisant la même structure logicielle
 - gratuité de l'environnement de programmation
-- collaboration possible sur le code
+- collaboration aisée sur le code
 - pérennité et robustesse du format .tex, documentation très fournie
 - langage multiplateforme et intégration avec d'autres langages de programmation et de rédaction
 

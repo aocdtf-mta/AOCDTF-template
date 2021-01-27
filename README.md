@@ -9,7 +9,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 | :------------------: | :------------------: | :------------------: |
 | ![Page de couverture](fichiers_github/AOCDTF_page_couverture.png) | ![Page de titre](fichiers_github/AOCDTF_page_titre.png) |![Page de titre du diaporama](fichiers_github/AOCDTF_diaporama_page_titre.png) |
 
-## _Template's features_
+## Template's features
 
 - système documentaire uniformisé
 - mise en page normalisée et harmonisée
@@ -33,7 +33,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 - pérennité et robustesse du format .tex, documentation très fournie
 - langage multiplateforme et intégration avec d'autres langages de programmation et de rédaction
 
-## _Pourquoi LaTeX ?_
+## Pourquoi LaTeX ?
 
 LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traitement de texte _WhatYouSeeIsWhatYouGet_) permet la rédaction de document en séparant le format de diffusion (principalement en .PDF) du format de rédaction (principalement en .tex). 
 

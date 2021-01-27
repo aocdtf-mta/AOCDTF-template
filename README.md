@@ -12,31 +12,39 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 ## _Template's features_
 
 - système documentaire uniformisé
-- mise en page normalisée
+- mise en page normalisée et harmonisée
 - structuration du texte et du document automatique et optimale
 - référencement intra/hyperlien et navigation aisée dans le document
-- bibliographie universitaire, création d'index et liste d'environnements spécifiques (définition, formules physiques, exemple...)
+- bibliographie type universitaire, création d'index et liste d'environnements spécifiques (définition, formules physiques, exemple...)
 - intégration encapsulée dans le document de :
 	- images haute qualité
 	- vidéos
 	- vues 3D
 	- schémas statiques et animés, graphiques et figures codées, uniformes et _propriétaires_
 - support pédagogique en trois déclinaisons :
-	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés 
-	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF visionnables sur ordinateurs et sur tablettes tactiles
-	- format présentation (présentation en mot-clés, structure claire...) sous forme de support projeté de cours
+	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés très légers
+	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
+	- format présentation (présentation en mot-clés, structure claire et sobre...) sous forme de support projeté de cours
 - conservation des images, figures, fichiers multimédias... en pleine qualité
 - évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jours
 - récupération des cours produits pour Aquis@v utilisant la même structure logicielle
 - gratuité de l'environnement de programmation
 - collaboration possible sur le code
-- pérennité du format .tex et documentation fournie
+- pérennité et robustesse du format .tex, documentation très fournie
+- langage multiplateforme et intégration avec d'autres langages de programmation et de rédaction
 
-## _Template's features_
+## _Pourquoi LaTeX ?_
 
-LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traitement de texte _WhatYouSeeIsWhatYouGet_) permet la rédaction de document en séparant le format de diffusion (principalement en .PDF) du format de production (principalement en .tex). 
+LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traitement de texte _WhatYouSeeIsWhatYouGet_) permet la rédaction de document en séparant le format de diffusion (principalement en .PDF) du format de rédaction (principalement en .tex). 
 
 Cela offre diverses fonctions indispensables pour construire une base de données conséquente et _collaborative_ de supports pédagogiques comme cela doit être le cas à l'AOCDTF.
 Produire des documents de la sorte -- WhatYouSeeIsWhatYouMean -- est moins aisé, surtout concernant la production d'un petit nombre de document de faible volume. Toutefois, la courbe apprentissage/vitesse de rédaction de documents tourne relativement rapidement à l'avantage de LaTeX (entre autres logiciels de _programmation_ de texte WYSIWYM) quand il s'agit de rédiger en quantité des documents de plus gros volume :
 
-| ![Courbe d'apprentissage](fichiers_github/courbe_word_latex.png) |
+[](fichiers_github/courbe_word_latex.png)
+
+Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ à l'AOCDTF, utiliser LaTeX plutôt que des logiciels de traitements de texte WYSIWYG offre divers avantages :
+- uniformité graphique et de mise en page sur **tous** les documents, incluant également **tous** les graphiques et schémas
+- interactivité des documents pour le référencement dans une base de donnée adéquate avec suivi des mises à jours
+- respect de la norme qualité ISO9001
+- mise à jour de la charte graphique simplifiée
+- possibilité d'éditer des livres de références

@@ -43,9 +43,9 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 
 ## Pourquoi LaTeX ?
 
-LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traitement de texte _WhatYouSeeIsWhatYouGet_) permet la rédaction de document en séparant le format de diffusion (principalement en .PDF) du format de rédaction (principalement en .tex). 
+LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traitement de texte _WhatYouSeeIsWhatYouGet_) permet la rédaction de document en séparant le format de diffusion (principalement en .PDF) du format de rédaction (principalement du code en .tex). 
 
-Cela offre diverses fonctions indispensables pour construire une base de données conséquente et _collaborative_ de supports pédagogiques comme cela doit être le cas à l'AOCDTF.
+Cette caractéristique principale offre diverses fonctionnalités indispensables pour construire une base de données conséquente et _collaborative_ de supports pédagogiques comme cela doit être le cas à l'AOCDTF.
 Produire des documents de la sorte - WhatYouSeeIsWhatYouMean - est moins aisé, surtout concernant la production d'un petit nombre de document de faible volume. Toutefois, la courbe apprentissage/vitesse de rédaction de documents tourne relativement rapidement à l'avantage de LaTeX (entre autres logiciels de _programmation_ de texte WYSIWYM) quand il s'agit de rédiger en quantité des documents de plus gros volume :
 
 <p align="center">

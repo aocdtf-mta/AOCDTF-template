@@ -25,7 +25,7 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 - structuration du texte et du document automatique et optimale
 - référencement intra/hyperlien et navigation aisée dans le document
 - bibliographie type universitaire, création d'index et d'environnements spécifiques listés (définition, formule physique, exemple...)
-- intégration encapsulée dans le document de :
+- intégration _encapsulée_ (tout en conservant les fichiers d'origine) dans les documents de :
 	- images haute qualité
 	- vidéos
 	- vues 3D
@@ -33,7 +33,7 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 - support pédagogique en trois déclinaisons :
 	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés très légers
 	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
-	- format présentation (présentation en mot-clés, structure claire et sobre...) sous forme de support projeté de cours
+	- format présentation (présentation en mot-clés, structure claire et sobre, éléments multimédia...) sous forme de supports projetés de cours (type Powerpoint mais sous format PDF)
 - conservation des images, figures, fichiers multimédias... en pleine qualité
 - évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jour
 - gratuité de l'environnement de programmation

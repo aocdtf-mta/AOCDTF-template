@@ -16,7 +16,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 	- images haute qualité
 	- vidéos
 	- vues 3D
-	- schémas statiques et animés, graphiques et figures codées, uniformes et _propriétaires_
+	- schémas statiques et animés, graphiques et figures codées, _uniformes et propriétaires_
 - support pédagogique en trois déclinaisons :
 	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés très légers
 	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
@@ -26,7 +26,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 - gratuité de l'environnement de programmation
 - collaboration aisée sur le code
 - pérennité et robustesse du format .tex, documentation très fournie
-- langage multiplateforme et intégration avec d'autres langages de programmation et de rédaction
+- langage multiplateforme et intégration avec d'autres langages de programmation et de rédaction (type plateforme d'enseignement en ligne, site internet, formulaire...)
 
 ## Pourquoi LaTeX ?
 

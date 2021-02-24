@@ -1,3 +1,4 @@
+<p style="text-align:justify;">
 # Charte graphique AOCDTF <img src="fichiers_github/logo_compagnons.png" align="right" height="45"/>
 
 Clean LaTeX template for AOCDTF's educational content intended to highly qualified craftsmen
@@ -13,9 +14,9 @@ Vous avez déjà dû croiser un document typé enseignement à la présentation 
 	<img src="fichiers_github/exemple_programmation.png" width="600" />
 </p>
 
-<div align="center">
+<center>
 	*Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
-</div>
+</center>
 
 Si oui, vous êtes tombés sur un document rédigé en LaTeX, un environnement de programmation destiné à la rédaction de documents uniformisés et normalisés.
 
@@ -60,4 +61,4 @@ Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ �
 - mise à jour de la charte graphique simplifiée
 - possibilité d'éditer des livres de références
 - récupération des cours produits pour Aquis@v utilisant la même structure logicielle
-
+</p>

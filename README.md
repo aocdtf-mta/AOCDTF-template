@@ -16,7 +16,7 @@ Vous avez déjà dû croiser un document typé enseignement à la présentation 
 *Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
 
 
-Si oui, vous êtes tombés sur un document rédigé en LaTeX, un environnement de programmation destiné à la rédaction de documents uniformisés et normalisés.
+Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement de programmation destiné à la rédaction de documents uniformisés et normalisés.
 
 ## Template's features
 

@@ -31,8 +31,8 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 	- vues 3D
 	- schémas, graphiques et figures codés, statiques et/ou animés, _uniformes et propriétaires_
 - support pédagogique en trois déclinaisons :
-	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés très légers
-	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
+	- format imprimable (disposition des chapitre et pages, pas d'éléments multimédias...) sous forme de polycopiés au format PDF très légers
+	- format électronique (fichiers multimédias, hyperliens...) sous forme de documents au format PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles
 	- format présentation (présentation en mot-clés, structure claire et sobre, éléments multimédia...) sous forme de supports projetés de cours (type Powerpoint mais sous format PDF)
 - conservation des images, figures, fichiers multimédias... en pleine qualité
 - évolutivité de la charte graphique et de la mise en page applicable à tous les documents en une seule mise à jour

@@ -9,7 +9,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 
 ## LaTeX en deux mots
 
-Vous avez déjà dû croiser un document typé enseignement à la présentation irréprochable, similaire à d'autre de ce type :
+Vous avez déjà dû croiser un document typé enseignement à la présentation irréprochable, similaire à d'autres selon les canons graphiques suivants :
 
 <p align="center">
 	<img src="fichiers_github/exemple_programmation.png" width="600" />

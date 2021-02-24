@@ -9,11 +9,13 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 
 Vous avez déjà dû croiser un document typé enseignement à la présentation irréprochable, similaire à d'autre de ce type :
 
-<p>
-  <img src="fichiers_github/exemple_programmation.png" width="600" />
+<p align="center">
+	<img src="fichiers_github/exemple_programmation.png" width="600" />
 </p>
 
-*Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
+<div align="center">
+	*Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
+</div>
 
 Si oui, vous êtes tombés sur un document rédigé en LaTeX, un environnement de programmation destiné à la rédaction de documents uniformisés et normalisés.
 
@@ -47,12 +49,12 @@ LaTeX, le grand concurrent de Microsoft Word (entre autres logiciels de traiteme
 Cela offre diverses fonctions indispensables pour construire une base de données conséquente et _collaborative_ de supports pédagogiques comme cela doit être le cas à l'AOCDTF.
 Produire des documents de la sorte - WhatYouSeeIsWhatYouMean - est moins aisé, surtout concernant la production d'un petit nombre de document de faible volume. Toutefois, la courbe apprentissage/vitesse de rédaction de documents tourne relativement rapidement à l'avantage de LaTeX (entre autres logiciels de _programmation_ de texte WYSIWYM) quand il s'agit de rédiger en quantité des documents de plus gros volume :
 
-<p>
-  <img src="fichiers_github/courbe_word_latex.png" width="400" />
+<p align="center">
+	<img src="fichiers_github/courbe_word_latex.png" width="400" />
 </p>
 
 Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ à l'AOCDTF, utiliser LaTeX plutôt que des logiciels de traitements de texte WYSIWYG offre divers avantages :
-- uniformité graphique et de mise en page sur **tous** les documents, incluant également **tous** les graphiques et schémas
+- uniformité graphique et de mise en page sur **tous** les documents, incluant également **tous** les éléments graphiques, schémas, tableaux...
 - interactivité des documents pour le référencement dans une base de donnée adéquate avec suivi des mises à jours
 - respect de la norme qualité ISO9001
 - mise à jour de la charte graphique simplifiée

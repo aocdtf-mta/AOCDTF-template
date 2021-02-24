@@ -10,7 +10,7 @@ Canevas de rédaction et support de cours destiné au (gros) chantier de créati
 Vous avez déjà dû croiser un document typé enseignement à la présentation irréprochable, similaire à d'autre de ce type :
 
 <p>
-  <img src="fichiers_github/exemple_programmation.png" width="400" />
+  <img src="fichiers_github/exemple_programmation.png" width="600" />
 </p>
 
 *Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*

@@ -1,10 +1,11 @@
-<p style="text-align:justify;">
 # Charte graphique AOCDTF <img src="fichiers_github/logo_compagnons.png" align="right" height="45"/>
 
+<p style="text-align:justify;">
 Clean LaTeX template for AOCDTF's educational content intended to highly qualified craftsmen
 
 Canevas de rédaction et support de cours destiné au (gros) chantier de création de contenus pédagogiques pour les formations octroyées à l'AOCDTF. Des directives de rédactions seront ajoutées au fur et à mesure de l'avancement du projet, pour standariser les contenus au mieux et permettre de produire des documents de qualités.
 **Pour respecter au mieux la charte graphique, prendre le temps de bien décrypter les instructions dans le [wiki](https://github.com/aocdtf-mta/AOCDTF-template/wiki) est indispensable. Toutes les informations et instructions y sont regroupées.**
+</p>
 
 ## LaTeX en deux mots
 
@@ -14,9 +15,8 @@ Vous avez déjà dû croiser un document typé enseignement à la présentation 
 	<img src="fichiers_github/exemple_programmation.png" width="600" />
 </p>
 
-<center>
-	*Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
-</center>
+*Exemple de programmation d'un document LaTeX, code source sur ce [site](https://perso.imt-mines-albi.fr/~vanouden/LaTeX/presentation.html)*
+
 
 Si oui, vous êtes tombés sur un document rédigé en LaTeX, un environnement de programmation destiné à la rédaction de documents uniformisés et normalisés.
 
@@ -61,4 +61,4 @@ Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ �
 - mise à jour de la charte graphique simplifiée
 - possibilité d'éditer des livres de références
 - récupération des cours produits pour Aquis@v utilisant la même structure logicielle
-</p>
+

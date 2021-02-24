@@ -29,7 +29,7 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 	- images haute qualité
 	- vidéos
 	- vues 3D
-	- schémas, graphiques et figures codées, statiques et/ou animés, _uniformes et propriétaires_
+	- schémas, graphiques et figures codés, statiques et/ou animés, _uniformes et propriétaires_
 - support pédagogique en trois déclinaisons :
 	- format imprimable (disposition des chapitre, pas d'éléments multimédias...) sous forme de polycopiés très légers
 	- format électronique (fichiers multimédias, hyperliens...) sous forme de PDF interactifs visionnables sur ordinateurs et sur tablettes tactiles

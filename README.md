@@ -52,6 +52,8 @@ Produire des documents de la sorte - WhatYouSeeIsWhatYouMean - est moins aisé, 
 	<img src="fichiers_github/courbe_word_latex.png" width="400" />
 </p>
 
+Cela se manifeste très clairement dans la gestion de la position des images sur le document. Cette fonctionnalité somme toute assez basique est bien mieux géré sur LaTeX que sur Microsoft Word. En effet, dans MS Word, l'intégration d'images dans un document relativement long peut vite tourner à la prise de tête pour un utilisateur lambda.
+
 Dans le cadre de l'élaboration d'une base de donnée de cours _par formation_ à l'AOCDTF, utiliser LaTeX plutôt que des logiciels de traitements de texte WYSIWYG offre divers avantages :
 - uniformité graphique et de mise en page sur **tous** les documents, incluant également **tous** les éléments graphiques, schémas, tableaux...
 - interactivité des documents pour le référencement dans une base de donnée adéquate avec suivi des mises à jours

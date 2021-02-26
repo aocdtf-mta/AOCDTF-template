@@ -35,6 +35,9 @@
 
 \decoupagechapitre{5} %espacement des marqueurs entre les différents chapitres (à régler en fin de rédaction) (5cm vaut un espacement équivalement à la hauteur du marqueur, une page ne peut en contenir que 5 avec cet espacement-la mais il est le plus équilibré)
 
+\makeindex %création d'index classique
+\makeindex[name=theme_X,title=Index des noms du thème X] %création d'index sur une thématique particulière
+
 %--------------------------------------
 %corps du document
 %--------------------------------------
@@ -136,6 +139,9 @@
 	%bibliographie
 	%--------------------------------------
 
+	\printindex
+	\printindex[theme_X]
+	
 	\nocite{AuteurAnnee, Organisme:Numeronorme-Annee, Site:abreviation}
 	
 	\printbibliography %ajout des références bibliographiques

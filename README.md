@@ -25,7 +25,7 @@ Si oui, vous êtes tombés sur un document rédigé avec LaTeX, un environnement
 - structuration du texte et du document automatique et optimale
 - automatisation du processus de rédaction et d'intégration
 - référencement intra/hyperlien et navigation aisée dans le document
-- bibliographie type universitaire, création d'index et d'environnements spécifiques listés (définition, formule physique, exemple...)
+- bibliographie type universitaire, création d'index et d'environnements spécifiques _listés et référencés_ (définition, formule physique, exemple...)
 - intégration _encapsulée_ dans les documents de :
 	- images haute qualité
 	- vidéos

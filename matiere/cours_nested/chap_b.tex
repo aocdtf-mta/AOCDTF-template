@@ -1,0 +1,114 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{acronym_entry}
+\input{glossary_entry}
+
+\typemedia{screen} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\usepackage{tokcycle}
+\newif\ifmacro
+\newcommand\altdetokenize[1]{\begingroup\stripgroupingtrue\macrofalse
+  \stripimplicitgroupingcase{-1}%
+  \tokcycle
+    {\ifmacro\def\tmp{##1}\ifcat\tmp A\else\unskip\allowbreak\fi\macrofalse\fi
+     \detokenize{##1}\ifx##1\bgroup\unskip\fi\ifx##1\egroup\unskip\fi}
+    {\ifmacro\unskip\macrofalse\fi\{\processtoks{##1}\ifmacro\unskip\fi\}\allowbreak}
+    {\tctestifx{\\##1}{\\}{\ifmacro\unskip\allowbreak\fi
+     \allowbreak\detokenize{##1}\macrotrue}}
+    { \hspace{0pt plus 3em minus .3ex}}
+    {#1}%
+  \unskip
+\endgroup}
+
+\makeatletter
+\renewrobustcmd{\mintinline}[2][]{%
+  \begingroup
+  \setboolean{minted@isinline}{true}%
+  \minted@configlang{{#2}%
+  \setkeys{minted@opt@cmd}{#1}%
+  \minted@fvset
+  \begingroup
+  \let\do\@makeother\dospecials
+  \catcode`\{=1
+  \catcode`\}=2
+  \catcode`\^^I=\active
+  \@ifnextchar\bgroup
+    {\minted@inline@iii}%
+    {\catcode`\{=12\catcode`\}=12
+      \minted@inline@i}}
+\def\minted@inline@i#1{%
+  \endgroup
+  \def\minted@inline@ii##1#1{%
+    \minted@inline@iii{##1}}%
+  \begingroup
+  \let\do\@makeother\dospecials
+  \catcode`\^^I=\active
+  \minted@inline@ii}
+\ifthenelse{\boolean{minted@draft}}%
+  {\renewcommand{\minted@inline@iii}[1]{%
+    \endgroup
+    \begingroup
+    \minted@defwhitespace@retok
+    \everyeof{\noexpand}%
+    \endlinechar-1\relax
+    \let\do\@makeother\dospecials
+    \catcode`\ =\active
+    \catcode`\^^I=\active
+    \xdef\minted@tmp{\scantokens{#1}}%
+    \endgroup
+    \let\FV@Line\minted@tmp
+    \def\FV@SV@minted@tmp{%
+      \FV@Gobble
+      \expandafter\FV@ProcessLine\expandafter{\FV@Line}}%
+    \ifthenelse{\equal{\minted@get@opt{breaklines}{false}}{true}}%
+     {\let\FV@BeginVBox\relax
+      \let\FV@EndVBox\relax
+      \def\FV@BProcessLine##1{\FancyVerbFormatLine{##1}}%
+      \BUseVerbatim{minted@tmp}}%
+     {\BUseVerbatim{minted@tmp}}%
+    \endgroup}}%
+  {\renewcommand{\minted@inline@iii}[1]{%
+    \endgroup
+    \minted@writecmdcode{#1}%
+    \RecustomVerbatimEnvironment{Verbatim}{BVerbatim}{}%
+    \setcounter{minted@FancyVerbLineTemp}{\value{FancyVerbLine}}%
+	\ifx\@footnotetext\TX@trial@ftn
+	\detokenize{\altdetokenize{\minted@pygmentize{\minted@lang}}}
+	\else
+	\minted@pygmentize{\minted@lang}
+	\fi
+    \setcounter{FancyVerbLine}{\value{minted@FancyVerbLineTemp}}%
+    \endgroup}}
+\makeatother
+  
+\begin{document}
+
+\begin{minted}{latex}
+\media{\thetypemedia}
+{Code destiné à un usage papier comme par exemple une capture d'écran tirée d'une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code  \texttt{master.tex} .}
+{Code destiné à un usage interactif comme par exemple une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code \texttt{master.tex} .}
+\end{minted}
+
+ \mintinline{latex}{\mathit{\Gamma}}
+ 
+ \altdetokenize{\latex\latex}
+ 
+\begin{longtableau}[t]{\textwidth}{r@{ : }X r@{ : }X r@{ : }X r@{ : }X}{8}{Alphabet grec}
+{\multicolumn{4}{c}{\thead{Caractère romain}} 	& \multicolumn{4}{c}{\thead{Caractère italique}} \\}
+A						&	\mintinline{latex}{A}							&	\(\alphaup\)					&	\mintinline{latex}{\alphaup}		&	\textit{A}						& \mintinline{latex}{\textit{A}}							& \(\alpha\)		& \mintinline{latex}{\alpha} \\
+\end{longtableau}
+
+\end{document}

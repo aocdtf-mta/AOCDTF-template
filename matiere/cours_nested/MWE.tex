@@ -1,0 +1,49 @@
+\makeatletter %instruction conditionnelle pour automatiser la compilation selon que l'on compile le code master.tex ou des sous-programmations (énorme gain de temps et de confort)
+\@ifundefined{ifmaster}
+	{\expandafter\newif\csname ifmaster\endcsname
+	\masterfalse}
+  	{\mastertrue}
+\makeatother
+
+\ifmaster
+\begin{comment}
+\else
+\fi
+
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+\marqueurchapitre
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+\ifmaster
+\end{comment}
+\else
+\fi
+
+	%--------------------------------------
+	%espace de rédaction du document
+	%--------------------------------------
+	
+
+\ifmaster
+\else
+\end{document}
+\fi
+

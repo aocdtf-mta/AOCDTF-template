@@ -5,12 +5,15 @@
 \documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
 
 \usepackage{AOCDTF}
-
-\addbibresource{../../bibliographies/exemple.bib}
+	
+\addbibresource{../../bibliographies/entrees_types.bib}
+\addbibresource{../../bibliographies/exemples.bib}
 
 %--------------------------------------
 %données du document
 %--------------------------------------
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
 
 \formationtrue %si \formationfalse alors l'intitulé de la formation n'apparait pas sur la page de titre
 
@@ -31,12 +34,15 @@
 \auteurd{Prénom}{Nom}
 \siglemetierauteurd{choix}
 
-\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+\decoupagechapitre{5} %espacement en cm des marqueurs entre les différents chapitres (à régler en fin de rédaction) (5cm vaut un espacement équivalement à la hauteur du marqueur, une page ne peut en contenir que 5 avec cet espacement-la mais il est le plus équilibré)
 
-\decoupagechapitre{5} %espacement des marqueurs entre les différents chapitres (à régler en fin de rédaction) (5cm vaut un espacement équivalement à la hauteur du marqueur, une page ne peut en contenir que 5 avec cet espacement-la mais il est le plus équilibré)
+\makenoidxglossaries
 
-\makeindex %création d'index classique
-\makeindex[name=theme_X,title=Index des noms du thème X] %création d'index sur une thématique particulière
+\makeindex[program=makeindex, columns=3,intoc=true, options={-s index_style.ist}] %création d'index classique
+\makeindex[program=makeindex, columns=3,intoc=true, options={-s index_style.ist}, name=exemple,title=Index des termes du thème exemple] %création d'index sur une thématique particulière
+
+\input{glossary_entry}
+\input{acronym_entry}
 
 %--------------------------------------
 %corps du document
@@ -56,26 +62,18 @@
 	%page de couverture et de titre
 	%--------------------------------------
 
-\pagecouverture
-\pagetitre
-\marqueurchapitre
-
-\media{\thetypemedia}{}{
-	\makeatletter
-	\setboolean{@twoside}{false}
-	\makeatother}
-	
+	\media{\thetypemedia}{\pagecouverture}{}
+	\pagetitre
+	\marqueurchapitre
 	\pagestyle{plain} %style de page avec en-tête et pied-de-page
 	\openany
 	
 	%--------------------------------------
 	%listes de contenus
 	%--------------------------------------
-	
-	{\hypersetup{linkcolor=black}\tableofcontents*} %table des matières en noir
-	\newpage
-	{\hypersetup{linkcolor=black}\listoftables*} %liste des tableaux en noir
-	\newpage
+
+	{\hypersetup{linkcolor=black}\tableofcontents*}\newpage %table des matières en noir
+	{\hypersetup{linkcolor=black}\listoftables*}\newpage %liste des tableaux en noir\newpage
 	{\hypersetup{linkcolor=black}\listoffigures*} %liste des figures en noir
 	{\hypersetup{linkcolor=black}\tcblistof[\chapter*]{frm}{Liste des formules}} %liste des équations en noir
 	{\hypersetup{linkcolor=black}\tcblistof[\chapter*]{dfn}{Liste des définitions}} %liste des définitions en noir
@@ -87,7 +85,7 @@
 	%chapitre d'introduction
 	%--------------------------------------
 
-	\input{chap_preface}
+	\include{chap_preface}
 		
 %--------------------------------------
 %corps de texte, annexes
@@ -101,27 +99,28 @@
 	%inclusion des chapitres
 	%--------------------------------------
 
-\input{chap_premier_chapitre}
-
-\input{chap_deuxieme_chapitre}
-
-\input{chap_troisieme_chapitre}
+\include{chap_principes_base}
+\include{chap_redaction_texte}
+\include{chap_referencement_bibliographie}
+\include{chap_ecriture_scientifique}
+\include{chap_tableau}
 
 	%--------------------------------------
 	%style des annexes
 	%--------------------------------------
 
+	\newpage
 	\Framefalse %défini la booléenne Frame comme false -> pas de marqueurs de chapitre
 	\appendix %appel des annexes
 	\appendixpage
 
 	%--------------------------------------
-	%inclusion des chapitres
+	%inclusion des annexes
 	%--------------------------------------
 
-	\input{ann_premiere_annexe}
-	
-	\input{ann_deuxieme_annexe}
+\include{ann_exemples_tableaux}
+
+
 
 %--------------------------------------
 %conclusion, bibliographie
@@ -133,18 +132,18 @@
 	%inclusion des chapitres
 	%--------------------------------------
 
-	\input{chap_conclusion}
-
 	%--------------------------------------
-	%bibliographie
+	%bibliographie, glossaire et index
 	%--------------------------------------
-
-	\printindex
-	\printindex[theme_X]
 	
-	\nocite{AuteurAnnee, Organisme:Numeronorme-Annee, Site:abreviation}
-	
+	\nocite{ISO:9001-2015}
 	\printbibliography %ajout des références bibliographiques
+	
+	\printindex
+	\printindex[exemple]
+	
+	\printnoidxglossary
+	\printnoidxglossary[type=\acronymtype , title={Liste des acronymes}, toctitle={Liste des acronymes}]
 		
 \end{document}
 

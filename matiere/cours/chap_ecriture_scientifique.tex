@@ -1,0 +1,508 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+\chapter{\'Ecriture scientifique}
+	\ChapFrame %appel du marqueur de chapitre
+	
+	\section{Introduction}
+
+À la base de \TeX{} et \LaTeX{} était l'intention de créer un outil destiné à faciliter la rédaction de publications scientifiques. C'est donc tout naturellement que \LaTeX{} intègre le meilleur outil pour rédiger des équations mathématiques complexes ou encore des formules de physiques. D'ailleurs, beaucoup ont déjà côtoyé le langage \LaTeX{} sans le savoir, car cet outil de rédaction est intégré dans le logiciel de traitement de texte Microsoft Word, tant il reste pertinent depuis une quarantaine d'année maintenant.\\
+
+\LaTeX{} présente un \emph{mode mathématique} caractérisé par une syntaxe légèrement différente du reste, mais plutôt aisée à prendre en main. En outre, toutes les joyeusetés de \LaTeX{} servent également l'écriture scientifique (référencement, mise en forme\ldots).
+
+	\section{Notation mathématique}
+	
+		\subsection{Environnement mathématique}
+
+Pour les documents à destination de l'\gls{aocdtf}, l'environnement de rédaction mathématique \texttt{displaymath} est appelé de deux manières :
+\begin{description}
+\item [\og en ligne \fg{}  dans le texte :] les caractères \mintinline{latex}{\( <notation mathématique> \)} intègrent des notations mathématiques directement dans le texte. 
+\item [dans un environnement spécifique:] l'environnement \texttt{align*} permet l'intégration de lot d'équations alignées sur un symbole défini.
+\end{description}
+
+Dans la pratique, on fait appel à l'environnement \texttt{align*} non numéroté plutôt que l'environnement \texttt{align} car, dans la très grande majorité des cas, ces environnements sont intégrés dans des environnements \texttt{formule} ou \texttt{exemple} . Toutefois, devant un cas de figure spécifique, on peut faire appel à l'environnement numéroté \texttt{align} , auquel on peut y ajouter un label pour l'intégrer dans des intraliens.\\
+
+L'écriture mathématique modifie légèrement la mise en forme du texte :
+\begin{itemize}
+\item suppression de tous les espaces qui doivent donc être appelés à l'aide des instructions suivantes :
+	\begin{multicols}{2}
+		\begin{description}
+		\item [espace normal :] \mintinline{latex}{\ } \,;
+		\item [espace fine :] \mintinline{latex}{\,} \,;
+		\item [espace moyenne :] \mintinline{latex}{\:} \,;
+		\item [espace grande :] \mintinline{latex}{\;} \,;
+		\item [espace fine négative :] \mintinline{latex}{\!} .
+		\end{description}
+	\end{multicols}
+\item les fontes sont automatiquement gérées et respectent les normes de notations scientifiques en vigueur.
+\end{itemize}
+
+\begin{exemple}{Notation mathématique}{}
+
+L'environnement \texttt{align*} permet l'insertion d'équations alignées sur un symbole défini -- généralement le \(=\) -- par le caractère \texttt{\&} le précédant. Chaque ligne de l'équation doit présenter un saut de ligne \mintinline{latex}{\\} :
+
+\begin{minipage}[t]{0.49\linewidth}
+Dans ce texte est inséré \og en ligne \fg{} une notation mathématique \(x=2^{2}\), ainsi qu'une équation alignée sur le symbole \(=\) :
+\begin{align*}
+x 	&= 2^{2} \times 5 \\
+	&= 4 \times 5 \\
+	&= 20
+\end{align*}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Dans ce texte est inséré \og en ligne \fg{} une notation mathématique \(x=2^{2}\), ainsi qu'une équation alignée sur le symbole \(=\) :
+\begin{align*}
+x	&= 2^{2} \cdot 5 \\
+	&= 4 \cdot 5 \\
+	&= 20
+\end{align}
+\end{minted}
+\end{minipage}
+
+\end{exemple}
+
+		\subsection{Syntaxe et instructions}
+		
+		La syntaxe utilisée pour écrire dans l'environnement \texttt{displaymath} est un peu différente, la liste suivante donne les grands principes de rédaction :
+		
+		\begin{description}
+			\item [instruction :]utilisation \emph{au maximum} d'instructions pour l'insertion des symboles\footnote{\LaTeX{} peut prendre en charge les caractères de symboles \og clé en main \fg{} qui peuvent être \texttt{copier/coller} depuis d'autres documents mais ceux-ci présentent des propriétés différentes des caractères mathématiques appelés avec l'instruction correspondante. Cela peut dérégler la mise en forme des écritures mathématiques.} \,;
+			\item [exposant :] utilisation de l'instruction \mintinline{latex}{^{<terme en exposant>}} \,;
+			\item [indice :] utilisation de l'instruction \mintinline{latex}{_{<terme en indice>}} :
+				\begin{description}
+				\item [variable ou grandeur physique :] indice en italique\,;
+				\item [abréviation :] indice en normal.
+				\end{description}
+			\item [opération :] utilisation d'instructions spécifiques et non du clavier pour les divisions et multiplications.
+		\end{description}
+		
+La liste suivante, non exhaustive, détaille les principales instructions des signes mathématiques utilisés dans l'environnement \texttt{displaymath}, qui couvriront la majorité des usages :
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \(a = b\) : \mintinline{latex}{a = b} \,;
+\item \(a \neq b\) : \mintinline{latex}{a \neq b} \,;
+\item \(a \triangleq b\) : \mintinline{latex}{a \triangleq b} \,;
+\item \(a \simeq b\) : \mintinline{latex}{a \simeq b} \,;
+\item \(a < b\) : \mintinline{latex}{a < b} \,;
+\item \(a > b\) : \mintinline{latex}{a > b} \,;
+\item \(a \leq b\) : \mintinline{latex}{a \leq b} \,;
+\item \(a \leq b\) : \mintinline{latex}{a \geq b} \,;
+\item \(a \ll b\) : \mintinline{latex}{a \ll b} \,;
+\item \(a \gg b\) : \mintinline{latex}{a \gg b} \,;
+\item \( \infty \) : \mintinline{latex}{ \infty } \,;
+\item \(a \pm b\) : \mintinline{latex}{a \pm b} \,;
+\item \(x \in b\) : \mintinline{latex}{x \in b} \,;
+\item \(x \notin b\) : \mintinline{latex}{x \notin b} \,;
+\item \(a + b\) : \mintinline{latex}{a + b} \,;
+\item \(a - b\) : \mintinline{latex}{a - b} \,;
+\item \(a \times b\) : \mintinline{latex}{a \times b} (arithmétique) \,;
+\item \(a \cdot b\) : \mintinline{latex}{a \cdot b} (algèbre littéral) \,;
+\item \(3a\) : \mintinline{latex}{3 a} (algèbre avec chiffre) \,;
+\item \(a/b\) : \mintinline{latex}{a/b} \,;
+\item \(\frac{a}{b}\) : \mintinline{latex}{ \frac{a}{b}} \,;
+\item \(\dfrac{a}{b}\) : \mintinline{latex}{ \dfrac{a}{b}} \,;
+\item \( {\displaystyle\sum_{i=1}^{n} a_{i}} \) : \mintinline{latex}{{\displaystyle\sum_{i=1}^{n} a_{i}}} \,;
+\item \( {\displaystyle\prod_{i=1}^{n} a_{i}} \) : \mintinline{latex}{{\displaystyle\prod_{i=1}^{n} a_{i}}} \,;
+\item \(n!\) : \mintinline{latex}{n!} \,;
+\item \(a^{n}\) : \mintinline{latex}{a^{n}} \,;
+\item \(\sqrt{a}\) : \mintinline{latex}{\sqrt{a}} \,;
+\item \(\sqrt[n]{a}\) : \mintinline{latex}{\sqrt[n]{a}} \,;
+\item \(a^{1/n}\) : \mintinline{latex}{a^{1/n}} \,;
+\item \(\vert a \vert\) : \mintinline{latex}{\vert a \vert} \,;
+\item \(\overrightarrow{AB}\) : \mintinline{latex}{\overrightarrow{AB}} .
+\end{itemize}
+\end{multicols}
+
+La liste suivante, non exhaustive, détaille les principales instructions des symboles mathématiques utilisés dans l'environnement \texttt{displaymath}, qui couvriront la majorité des usages :
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \(f\) : \mintinline{latex}{f} \,;
+\item \(f(x)\) : \mintinline{latex}{f(x)} \,;
+\item \(\left[ f(x) \right] ^{a} _{b}\) : \mintinline{latex}{\left[ f(x) \right] ^{a} _{b}} \,;
+\item \(f(x)\ | ^{a} _{b}\) : \mintinline{latex}{f(x)\ | ^{a} _{b}} \,;
+\item \(\lim\limits_{x \rightarrow a} f(x)\) : \mintinline{latex}{\lim\limits_{x \rightarrow a} f(x)} \,;
+\item \(f\prime\) : \mintinline{latex}{f\prime} \,;
+\item \(f^{(k)}(x)\) : \mintinline{latex}{f^{(k)}(x)} \,;
+\item \(\Delta f\) : \mintinline{latex}{\Delta f} \,;
+\item \(\frac{df}{dx}\) : \mintinline{latex}{\frac{df}{dx}} \,;
+\item \(\frac{\partial f}{\partial x}\) : \mintinline{latex}{\frac{\partial f}{\partial x}} \,;
+\item \(\frac{\delta f}{\delta x}\) : \mintinline{latex}{\frac{\delta f}{\delta x}} \,;
+\item \(\int_{a}^b f(x)dx\) : \mintinline{latex}{\int_{a}^b f(x)dx} \,;
+\item \(\bar{f}\) : \mintinline{latex}{\bar{f}} \,;
+\item \(\mathbb{N}\) : \mintinline{latex}{\mathbb{N}} \,;
+\item \(\mathbb{Z}\) : \mintinline{latex}{\mathbb{Z}} \,;
+\item \(\mathbb{Q}\) : \mintinline{latex}{\mathbb{Q}} \,;
+\item \(\mathbb{R}\) : \mintinline{latex}{\mathbb{R}} \,;
+\item \(\mathbb{C}\) : \mintinline{latex}{\mathbb{C}} \,;
+\item \(\mathbb{P}\) : \mintinline{latex}{\mathbb{P}} \,;
+\item \(\cos x\) : \mintinline{latex}{\cos x} \,;
+\item \(\sin x\) : \mintinline{latex}{\sin x} \,;
+\item \(\tan x\) : \mintinline{latex}{\tan x} \,;
+\item \(\cot x\) : \mintinline{latex}{\cot x} \,;
+\item \(\arccos x\) : \mintinline{latex}{\arccos x} \,;
+\item \(\arcsin x\) : \mintinline{latex}{\arcsin x} \,;
+\item \(\arctan x\) : \mintinline{latex}{\arctan x} \,;
+\item \(\exp x\) : \mintinline{latex}{\exp x} \,;
+\item \(\ln x\) : \mintinline{latex}{\ln x} \,;
+\item \(\lg x\) : \mintinline{latex}{\lg x} \,;
+\item \(\mathrm{i}\), \(\mathrm{j}\) : \mintinline{latex}{\mathrm{i}, \mathrm{j}} \,;
+\item \(\arg\) : \mintinline{latex}{\arg} .
+\end{itemize}
+\end{multicols}
+
+La notation mathématique fait également souvent appel à l'alphabet grec, dont les instructions sont listées ci-dessous :
+
+\begin{longtableau}[t]{\textwidth}{r@{ : }X r@{ : }X r@{ : }X r@{ : }X}{8}{Alphabet grec}
+{\multicolumn{4}{c}{\thead{Caractère romain}} 	& \multicolumn{4}{c}{\thead{Caractère italique}} \\}
+A						&	\mintinline{latex}{A}							&	\(\alphaup\)					&	\mintinline{latex}{\alphaup}		&	\textit{A}						& \mintinline{latex}{\textit{A}}							& \(\alpha\)		& \mintinline{latex}{\alpha} \\
+B						& 	\mintinline{latex}{B}							& 	\(\betaup\)					&	\mintinline{latex}{\betaup}			&	\textit{B}						& \mintinline{latex}{\textit{B}}							&	\(\beta\)		& \mintinline{latex}{\beta} \\
+\(\Gamma\)		& \mintinline{latex}{\Gamma}	& 	\(\gammaup\)				&	\mintinline{latex}{\gammaup}	&	\(\mathit{\Gamma}\)		&	\mintinline{latex}{\mathit{\Gamma}}		& \(\gamma\)	& \mintinline{latex}{\gamma} \\
+\(\Delta\)		&	\mintinline{latex}{\Delta}		& \(\deltaup\)	& \mintinline{latex}{\deltaup}											& \(\mathit{\Delta}\)				&	\mintinline{latex}{\mathit{\Delta}}		&  \(\delta\)		& \mintinline{latex}{\delta} \\
+E	& \mintinline{latex}{E}					& \(\epsilonup\) & \mintinline{latex}{\epsilonup}			& \textit{E}	& \mintinline{latex}{\textit{E}}						& \(\epsilon\)	& \mintinline{latex}{\epsilon} \\
+\multicolumn{2}{c}{}					& \(\varepsilonup\) & \mintinline{latex}{\varepsilonup}			& \multicolumn{2}{c}{}						& \(\varepsilon\)	& \mintinline{latex}{\varepsilon} \\
+Z	& \mintinline{latex}{Z}					& \(\zetaup\)	& \mintinline{latex}{\zetaup}			& \textit{Z}	& 	\mintinline{latex}{\textit{Z}}					& \(\zeta\)	& \mintinline{latex}{\zeta} \\
+H	& \mintinline{latex}{H}					& \(\etaup\)		& \mintinline{latex}{\etaup}				& \textit{H}	& 	\mintinline{latex}{\textit{H}}						& \(\eta\)  & \mintinline{latex}{\eta}	\\
+\(\Theta\) & \mintinline{latex}{\Theta}		& \(\thetaup\)		& \mintinline{latex}{\thetaup}				& \(\mathit{\Theta}\)		& 	\mintinline{latex}{\mathit{\Theta}}			& \(\theta\)	& \mintinline{latex}{\mathit{\theta}} \\
+I	& \mintinline{latex}{I}					& \(\iotaup\)	& \mintinline{latex}{\iotaup}	& \textit{I}		& \mintinline{latex}{\textit{I}}		& \(\iota\) 	& \mintinline{latex}{\iota} \\
+K	& \mintinline{latex}{K}					& \(\kappaup\)	& \mintinline{latex}{\kappaup}			& \textit{K}	& \mintinline{latex}{\textit{K}}						& \(\kappa\) & \mintinline{latex}{\kappa} \\
+\multicolumn{2}{c}{}					& \(\varkappaup\) & \mintinline{latex}{\varkappaup}			& \multicolumn{2}{c}{}						& \(\varkappa\)	& \mintinline{latex}{\varkappa} \\
+\(\Lambda\)		& \mintinline{latex}{\Lambda}		&  \(\lambdaup\)		& \mintinline{latex}{\lambdaup}		& \(\mathit{\Lambda}\)	& \mintinline{latex}{\mathit{\Lambda}}			& \(\lambda\) & \mintinline{latex}{\lambda} \\
+M	 & \mintinline{latex}{M}					& \(\muup\)		& 		\mintinline{latex}{\muup}				& \textit{M}	& \mintinline{latex}{\textit{M}}					&		\(\mu\) & \mintinline{latex}{\mu}	\\
+N		& \mintinline{latex}{N}					& \(\nuup\)		& \mintinline{latex}{\nuup}			& \textit{N}	& \mintinline{latex}{\textit{N}}							& \(\nu\)	& \mintinline{latex}{\nu}\\
+\(\Xi\)	& \mintinline{latex}{\Xi}			& \(\xiup\)	&		\mintinline{latex}{\xiup}							& \(\mathit{\Xi}\)		& \mintinline{latex}{\mathit{\Xi}}			& \(\xi\) & \mintinline{latex}{\xi} \\
+O	 & \mintinline{latex}{O}					& o	& \mintinline{latex}{o}													& \textit{O}	& \mintinline{latex}{\textit{O}}						& \textit{o}	& \mintinline{latex}{\textit{o}} \\
+\(\Pi\)	& \mintinline{latex}{\Pi}			& \(\piup\)	& \mintinline{latex}{\piup}								& \(\mathit{\Pi}\)	& \mintinline{latex}{\mathit{\Pi}}				& \(\pi\) & \mintinline{latex}{\pi} \\
+\multicolumn{2}{c}{}					& \(\varpiup\) & \mintinline{latex}{\varpiup}			& \multicolumn{2}{c}{}						& \(\varpi\)	& \mintinline{latex}{\varpi} \\
+P	& \mintinline{latex}{P}					& \(\rhoup\)		& \mintinline{latex}{\rhoup}			& \textit{P}	& \mintinline{latex}{\textit{P}}						& \(\rho\)		& \mintinline{latex}{\rho} \\
+\multicolumn{2}{c}{}					& \(\varrhoup\) & \mintinline{latex}{\varrhoup}			& \multicolumn{2}{c}{}						& \(\varrho\)	& \mintinline{latex}{\varrho} \\
+\(\Sigma\)		& 	\mintinline{latex}{\Sigma}	& \(\sigmaup\)	& \mintinline{latex}{\sigmaup}				& \(\mathit{\Sigma}\)	& \mintinline{latex}{\mathit{\Sigma}}			& \(\sigma\) & \mintinline{latex}{\sigma} \\
+T		& \mintinline{latex}{T}				& \(\tauup\)		& \mintinline{latex}{\tauup}									& \textit{T}	& \mintinline{latex}{\textit{T}}						& \(\tau\)	& \mintinline{latex}{\tau} \\
+Y		& \mintinline{latex}{Y}				& \(\upsilonup\)		& \mintinline{latex}{\upsilonup}								& \textit{Y}		& \mintinline{latex}{\textit{Y}}							& \(\upsilon\)		& \mintinline{latex}{\upsilon} \\
+\(\Phi\)	 & \mintinline{latex}{\Phi}		& \(\phiup\)		& \mintinline{latex}{\phiup}						& \(\mathit{\Phi}\)	 & \mintinline{latex}{\mathit{\Phi}}				& \(\phi\)	& \mintinline{latex}{\phi} \\
+X		& \mintinline{latex}{X}				& \(\chiup\)			& \mintinline{latex}{\chiup}									& \textit{X}	& \mintinline{latex}{\textit{X}}						& \(\chi\)	& \mintinline{latex}{\chi} \\
+\(\Psi\)	&		\mintinline{latex}{\Psi}			& \(\psiup\)		& \mintinline{latex}{\psiup}				& \(\mathit{\Psi}\)	& \mintinline{latex}{\mathit{\Psi}}				& \(\psi\)	& \mintinline{latex}{\psi} \\
+\(\Omega\)	& \mintinline{latex}{\Omega}	& \(\omegaup\)	& \mintinline{latex}{\omegaup}		& \(\mathit{\Omega}\)	& \mintinline{latex}{\mathit{\Omega}}		& \(\Omega\)	& \mintinline{latex}{\Omega} \\
+\end{longtableau}
+
+	\section{Grandeurs et unités de mesure}
+
+\LaTeX{} offre également la possibilité de mettre en forme des grandeurs physiques et unités de mesures à l'aide d'instructions spécifiques qu'elles soient intégrées au texte ou dans un environnement mathématique.\\
+
+Le package AOCDTF contient également des macro-commandes automatisant la description de formules avec un rendu clair et limpide.
+
+	 \subsection{Généralités}
+
+			 \subsubsection{Différenciation}
+
+Avant de détailler les codes pour écrire des grandeurs physique et unités de mesures, il convient de bien identifier la terminologie les concernant.  
+
+\begin{definition}{Unité de mesure}{}
+\'Etalon de mesure nécessaire pour la mesure d'une grandeur physique dont le fondement est l'exacte reproductibilité expérimentale de l'étalon.
+\end{definition}
+
+\begin{definition}{Grandeur physique}{}
+Toute propriété des sciences de la nature qui peut être mesurée ou calculée et dont les différentes valeurs s'expriment à l'aide d'une nombre réel ou complexe. Une grandeur physique peut s'exprimer sans unité de mesure, ce sont des \emph{grandeurs sans dimension}. L'inverse n'est pas vraie, toute unité de mesure est associée une grandeur physique.
+\end{definition}
+
+\begin{definition}{Dimension}{}
+Expression de la dépendance d'une grandeur par rapport aux grandeurs de base d'un système de grandeurs sous la forme d'un produit de puissance de facteurs correspondant aux grandeurs de base, en omettant tout facteur numérique.
+\end{definition}
+
+			 \subsubsection{Principes de rédaction}
+			 
+Pour obtenir des notations de grandeurs physiques et unités de mesures respectant au mieux les normes en vigueur et pour uniformiser l'ensemble des documents produits à destination de l'\gls{aocdtf}, il convient de respecter quelques principes de rédaction :
+
+\begin{description}
+	\item[symboles des grandeurs] les symboles usuels des grandeurs physique prennent généralement la forme d'une seule lettre (alphabet grec ou latin), toujours en italique, et peuvent être précisés par des indices.
+	\item [indice] un indice permet de différencier des grandeurs présentant le même symbole usuel ou, pour une même grandeur, différentes applications de celle-ci.
+		\begin{itemize}
+			\item symbole d'une grandeur physique ou d'une variable mathématique\,;
+			\item mots ou nombres fixes.
+		\end{itemize}
+	\item[symboles des unités] Les symboles des unités prennent généralement la forme d'une seule lettre (alphabet grec ou latin), toujours en caractère droit, ce qui permet de les différencier des symboles des grandeurs.\\
+Une unité composée d'une multiplication de deux unités ou plus peut être indiquée de deux manières :
+		\begin{gather*}
+			\newton\cdot\metre \\ 
+			\newton\metre
+		\end{gather*}
+Il convient de faire attention lorsque le symbole d'une unité est le même que celui d'un préfixe.
+\end{description}			 
+
+\subsubsection{Terminologie}
+
+Afin d'être précis dans la terminologie scientifique, voici quelques précisions sur des termes qui se ressemblent et qui peuvent être source d'imprécisions :
+
+\begin{description}
+\item[Coefficient] dans une équation type \(A=k \cdot B$, $k\) est le coefficient/facteur et \(A\) est une grandeur proportionnelle à \(B\). Usage du terme \emph{coefficient} (ou \emph{module}) lorsque les grandeurs \(A\) et \(B\) présentent des \emph{dimensions} différentes.
+\item[Facteur] dans une équation type \(A=k \cdot B\), \(k\) est le coefficient/facteur et \(A\) est une grandeur proportionnelle à \(B\). Usage du terme \emph{facteur} lorsque les grandeurs \(A\) et \(B\) sont de même \emph{dimension}.
+\item[Paramètre] combinaison de grandeurs qui apparaissent sous une telle forme dans les équations, pouvant être considérée comme constituant de nouvelles grandeurs.
+\item[Nombre] combinaison de grandeurs sans dimension.
+\item[Rapport] quotient sans dimension de deux grandeurs.
+\item[Constante] grandeur qui présente la même valeur en toutes circonstances.
+\item[Massique] adjectif apposé à une grandeur caractérisant le quotient de cette grandeur par la masse.
+\item[Volumique] adjectif apposé à une grandeur caractérisant le quotient de cette grandeur par le volume.
+\item[Surfacique] adjectif apposé à une grandeur caractérisant le quotient de cette grandeur par l'aire.
+\item[Densité] adjectif apposé à une grandeur exprimant un flux ou un courant, qui caractérise le quotient de cette grandeur par l'aire.
+\item[Linéique] adjectif apposé à une grandeur caractérisant le quotient de cette grandeur par la longueur.
+\item[Molaire] adjectif apposé à une grandeur caractérisant le quotient de cette grandeur par la quantité de matière.
+\item[Concentration] adjectif apposé à une grandeur, spécifiquement dans le cas d'un mélange, caractérisant le quotient de cette grandeur par le volume total.
+\end{description}
+
+
+
+
+	 \section{Environnement scientifique}
+
+		\subsection{Unités du Système International\label{subsec:unites_systeme_international}}
+
+Le Système International d'unités est un système cohérent d'unités dans l'\gls{isq}. Il est abrégé \gls{si} dans toutes les langues et est formé de :
+\begin{itemize}
+\item sept unités de base\,;
+\item des unités dérivées de ces unités de base.
+\end{itemize}
+
+\begin{longtableau}[t]{\linewidth}{X r X r@{ : }X}{5}{Grandeurs de base et unités correspondantes \label{tab:grandeurs_unites_SI_base}}
+{\multicolumn{2}{c}{\thead{Grandeur de base de l'ISQ}} & \multicolumn{3}{c}{\thead{Unité SI de base}} \\
+\cmidrule(lr){1-2} \cmidrule(lr){3-5} 
+\thead[l]{Nom} & \thead[r]{Symbole usuel} & \thead[l]{Nom} & \multicolumn{2}{l}{\thead[l]{Symbole}} \\}
+Longueur 										& \(L\) 				& mètre 				& \meter					& \mintinline{latex}{\meter} 		\\
+Masse												& \(M\), \(m\) 	& kilogramme 	& \kilogram				& \mintinline{latex}{\kilogram} 	\\
+Temps												& \(T\)				& seconde			& \second 				& \mintinline{latex}{\second}		\\		
+Courant électrique 						& \(I\)				& ampère			& \ampere 				& \mintinline{latex}{\ampere}		\\
+Température thermodynamique	& \(\Theta\)		& kelvin				& \kelvin 					& \mintinline{latex}{\kelvin}		\\		
+Quantité de matière						& \(N\)				& mole				& \mole 					& \mintinline{latex}{\mole}			\\	
+Intensité lumineuse						& \(J\)				& candela			& \candela 				& \mintinline{latex}{\candela}		\\
+\end{longtableau}
+
+Il convient de respecter les symboles issus de la norme ISO80000\supercite{ISO:80000-2013}, car il peuvent varier selon les sources.\\ Les symboles des grandeurs est \emph{toujours} inclus dans un environnement \texttt{displaymath} tandis que les symboles des unités correspondantes sont \emph{toujours} appelés avec l'instruction correspondante qui délivrera l'abréviation exacte.\\
+
+De ces sept unités de base sont donc dérivées une série de grandeurs, listées dans les tableaux ci-dessous :
+
+\begin{longtableau}[t]{\linewidth}{X r X r@{ : }X}{5}{Grandeurs dérivées des grandeurs de base de l'\gls{isq}\label{tab:grandeurs_derivees_grandeurs_base_isq}}
+{\multicolumn{2}{c}{\thead{Grandeur dérivée de l'\gls{isq}}} & \multicolumn{3}{c}{\thead{Unité \gls{si} dérivée}} \\
+\cmidrule(lr){1-2} \cmidrule(lr){3-5}
+\thead[l]{Nom} & \thead[r]{Symbole usuel} & \thead[l]{Nom} & \multicolumn{2}{l}{\thead[l]{Symbole}} \\}
+Angle plan											& \(\alpha\) 						& radian 			& \radian 					& \mintinline{latex}{\radian} \\
+Angle solide										& \(\Omega\)						& stéradian	 	&	\steradian		 		& 	\mintinline{latex}{\steradian} \\
+Fréquence 											& \(f\)									& hertz			&	\hertz 						&	\mintinline{latex}{\hertz} \\
+Force													& \(F\)									& newton		&	\newton					& 	\mintinline{latex}{\newton} \\
+Pression, contrainte							& \(P\)									& pascal			&	\pascal						& 	\mintinline{latex}{\pascal} \\
+\'Energie, travail									& \(W\)									& joule				& 	\joule						& 	\mintinline{latex}{\joule} \\
+Puissance											& \(P\)									& watt				& 	\watt						&	\mintinline{latex}{\watt} \\
+Charge électrique								& \(Q\)									& coulomb		& 	\coulomb					&	\mintinline{latex}{\coulomb	} \\
+Différence de potentiel électrique	& \(U\),\(V\)							& volt				& 	\volt							&	\mintinline{latex}{\volt	} \\
+Capacité électrique							& \(C\)									& farad			& 	\farad						& \mintinline{latex}{\farad} \\
+Résistance électrique						& \(R\)									& ohm				& 	\ohm						& \mintinline{latex}{\ohm} \\
+Conductance électrique					& \(G\)									& siemens		&	\siemens					& \mintinline{latex}{\siemens} \\
+Flux d'induction magnétique			& \(\Phi\)								& weber			&	\weber						& \mintinline{latex}{\weber} \\
+Induction (champ) magnétique		& \(\overrightarrow{B}\)	& tesla				& \tesla						& \mintinline{latex}{\tesla} \\
+Inductance											& \(L\)									& henry			& \henry						& \mintinline{latex}{\henry} \\
+Température Celsius							& \(T\)									& celsius			& \celsius					& \mintinline{latex}{\celsius} \\
+Flux lumineux										& \(J\)									& lumen			& \lumen						& \mintinline{latex}{\lumen} \\
+\'Eclairement lumineux						& \(E\), \(E_v\)						& lux				& \lux							& \mintinline{latex}{\lux} \\
+\end{longtableau}
+
+Il existe également une série de grandeurs qui sont des multiples de grandeurs de base de l'\gls{isq}, dont les notations sont également normalisées :
+
+\begin{longtableau}[t]{\textwidth}{X r X r@{\({\enspace{}}={\enspace{}}\)}i}{5}{Grandeurs multiples des grandeurs de base de l'\gls{isq}}
+{\multicolumn{2}{c}{\thead{Grandeur}} & \multicolumn{3}{c}{\thead{Unité}} \\
+\cmidrule(lr){1-2} \cmidrule(lr){3-5} 
+\thead[l]{Nom} & \thead[r]{Symbole usuel} & \thead[l]{Nom} & \multicolumn{2}{c}{\thead{Unité}} \\}
+Temps											& \(t\)							 		& minute 		& \minute\ (\mintinline{latex}{\minute})					& \SI{60}{\second} \\
+													& 											& heure			& \hour\ (\mintinline{latex}{\hour})							& \SI{60}{\minute} \\
+													&											&	jour				& \si{\day}\ (\mintinline{latex}{\si{\day}})			& \SI{24}{\hour} \\
+\addlinespace
+Angle plan									& \(\alpha\)							& degré			& \degree\ (\mintinline{latex}{\degree})					& \sfrac{180}{\pi}\times\radian \\
+													&											& minute			& \arcminute\ (\mintinline{latex}{\arcminute})		& \sfrac{1}{60}\times\degree \\
+													&											& seconde		& \arcsecond\ (\mintinline{latex}{\arcsecond})		& \sfrac{1}{60}\times\arcminute \\
+\addlinespace
+Volume										& \(V\)									& litre				& \litre , \liter\ (\mintinline{latex}{\litre , \liter})		& \SI{1}{\cubic\deci\metre} \\
+\addlinespace
+Masse											& \(M\), \(m\)						& tonne			& \tonne\ (\mintinline{latex}{\tonne})						& \SI{1000}{\kilo\gram} \\
+\end{longtableau}
+
+Et enfin, il existe également des grandeurs en usage avec les grandeurs de base de l'\gls{isq} qui sont obtenues expérimentalement :
+
+\begin{longtableau}[t]{\textwidth}{X r X r@{\({\enspace{}}={\enspace{}}\)}i}{5}{Grandeurs en usage avec les grandeurs de base de l'\gls{isq} dont la valeur est obtenue expérimentalement\label{tab:grandeurs_experimentales}}
+{\multicolumn{2}{c}{\thead{Grandeur}} 		& \multicolumn{3}{c}{\thead{Unité}} \\
+\cmidrule(lr){1-2} \cmidrule(lr){3-5} 
+\thead[l]{Nom} & \thead[r]{Symbole\\usuel} 	& \thead[l]{Nom} 	& \multicolumn{2}{c}{\thead[c]{Symbole}} \\}
+\'Energie 		& \(W\) 			& électronvolt 					& \multicolumn{2}{p{8cm}}{\'Energie cinétique acquise par un électron en traversant une différence de potentiel de \SI{1}{\volt} dans le vide.} \\%
+					& 					& 										& \electronvolt\ (\mintinline{latex}{\electronvolt}) 					& \SI{1,602176634e-19}{\electronvolt} \\
+\addlinespace
+Masse			& \(M\), \(m\)		& dalton							& \multicolumn{2}{p{8cm}}{\(\sfrac{1}{12}\) de la masse d'un atome du nucléide \ce{^{12}C} au repos et à l'état fondamental.} \\%
+					& 					& 										& \dalton\ (\mintinline{latex}{\dalton})						& \SI{1,660538782e-27}{\kilo\gram} \\
+\addlinespace
+Longueur		& \(L\)			& unité astronomique			& \multicolumn{2}{p{8cm}}{Valeur conventionnelle approximativement égale à la valeur moyenne de la distance entre le Soleil et la Terre.} \\%
+					& 					& 										& \astronomicalunit\ (\mintinline{latex}{\astronomicalunit})			& \SI{1,49597870691e11}{\metre} \\
+\end{longtableau}
+
+Toutes les unités de bases et dérivées du \gls{si} sont donc appelées avec des instructions correspondantes. Ces unités peuvent être également précédées de préfixes dont les symboles sont eux aussi définis par une instruction :
+
+\begin{longtableau}[t]{\textwidth}{C X r@{ : }X C X r@{ : }X}{8}{Préfixes des unités du \gls{si}\label{tab:prefixes_unites_si}}
+{\multirow[c]{2}{*}{\thead{Facteur}} 	& \multicolumn{3}{c}{\thead{Préfixe}} 	& \multirow[c]{2}{*}{\thead{Facteur}} 	& \multicolumn{3}{c}{\thead{Préfixe}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){6-8} 
+		& \thead[l]{Nom} 		& \multicolumn{2}{c}{\thead{Symbole}}	& 									& \thead[l]{Nom} 		& \multicolumn{2}{c}{\thead{Symbole}} \\}
+\(10^{24}\)											& yotta 						& \yotta	& 	\mintinline{latex}{\yotta}		& \(10^{-1}\)				& déci 							& \deci			& \mintinline{latex}{\deci}  \\
+\(10^{21}\)											& zetta 						& \zetta	&	\mintinline{latex}{\zetta}  	& \(10^{-2}\)				& centi 						& \centi		& \mintinline{latex}{\centi}  \\ 
+\(10^{18}\)											& exa 							& \exa  	&	\mintinline{latex}{\exa}		&									&									& \multicolumn{2}{c}{}		\\ 
+\(10^{15}\)											& péta 						& \peta  	& \mintinline{latex}{\peta}		& \(10^{-3}\)				& milli 							& \milli 		& \mintinline{latex}{\milli} \\ 
+																&									&	\multicolumn{2}{c}{}		& \(10^{-6}\)				& micro 						& \micro		& \mintinline{latex}{\micro}  \\ 
+\(10^{12}\)											& téra 							& \tera		& \mintinline{latex}{\tera}  		& \(10^{-9}\)				& nano 						& \nano 		& \mintinline{latex}{\nano} \\
+\(10^{9}\)												& giga 						& \giga	& \mintinline{latex}{\giga}	  	& \(10^{-12}\)			& pico 							& \pico			& \mintinline{latex}{\pico}  \\
+\(10^{6}\)												& méga 						& \mega	& \mintinline{latex}{\mega}  	& 									&									&	\multicolumn{2}{c}{} \\
+\(10^{3}\)												& kilo 							& \kilo		& \mintinline{latex}{\kilo} 		& \(10^{-15}\)			& femto 						& \femto 		& \mintinline{latex}{\femto}\\
+																&									&	\multicolumn{2}{c}{}		&	\(10^{-18}\)			& atto 							& \atto			& \mintinline{latex}{\atto}  \\
+\(10^{2}\)												& hecto 						& \hecto	& \mintinline{latex}{\hecto}		& \(10^{-21}\)			& zepto 						& \zepto		& \mintinline{latex}{\zepto} \\
+\(10^{1}\)												& déca	 						& \deca	& \mintinline{latex}{\deca} 		& \(10^{-24}\)			& yocto	 					& \yocto		& \mintinline{latex}{\yocto} \\
+\end{longtableau}
+
+D'autres symboles de grandeurs et leurs unités voient leurs symboles normalisés, ceux-ci sont listés en \superref{ann:ecriture_scientifique}. Ces deux chapitres font donc office de références pour \emph{tous} les symboles utilisés, malgré des exemples dans les sources pouvant être différents. 
+
+		\subsection{Rédaction des unités du \gls{si}}
+
+Les unités du \gls{si} sont donc \emph{systématiquement} définies par leur instruction correspondante, issues du package \Href{http://mirrors.ibiblio.org/CTAN/macros/latex/contrib/siunitx/siunitx.pdf}{SIunitx}. 
+
+\begin{exemple}{Notation scientifique}{}
+Pour rédiger des notations scientifiques -- incluse ou non dans un environnement \texttt{displaymath} -- on fait appel aux diverses instructions définissant précisément la mise en forme de symboles, de listes ou encore de nombre. L'instruction \mintinline{latex}{\SI{<terme>}{<préfixe et unité>}} sera la plus utilisée tout au long de la rédaction :\\
+  
+\begin{minipage}[t]{0.49\linewidth}
+Dans ce texte est abordé la vente d'un appartement d'une surface de \SI{45}{\square\meter}, ainsi que la vitesse la lumière, qui est de \SI{3e5}{\kilo\meter\per\second}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Dans ce texte est abordé la vente d'un appartement d'une surface de \SI{45}{\square\meter}, ainsi que la vitesse la lumière, qui est de \SI{3e5}{\kilo\meter\per\second}. 
+\end{minted}
+\end{minipage}\\
+
+Les variables de l'instruction \mintinline{latex}{\SI{<terme>}{<préfixe et unité>}} sont donc les instructions pour les différentes unités et préfixes sont à retrouver dans la \superref{subsec:unites_systeme_international}, ainsi qu'en \superref{ann:ecriture_scientifique}.\\
+Dans le premier argument, si l'on souhaite produire une notation scientifique des nombres, il faut rédiger \mintinline{latex}{\SI{<significande>e<exposant>}{<préfixe et unité>}}.\\
+Dans le deuxième argument, l'écriture des unités est assez littérale, avec l'instruction \mintinline{latex}{\per} pour mettre une unité au dénominateur et les instructions \mintinline{latex}{\square} et \mintinline{latex}{\cubic} pour mettre des unités respectivement au carré et au cube.\\
+
+On peut n'afficher que l'unité d'une grandeur avec l'instruction \mintinline{latex}{\si{<préfixe et unité>}} ou qu'un nombre avec l'instruction \mintinline{latex}{\num{<terme>}}, pratique pour la notation scientifique.\\
+Il existe également la possibilité de produire des listes de nombres sans unité avec l'instruction \mintinline{latex}{\numlist{<terme1;terme2;terme3>}} ou avec unité avec l'instruction \mintinline{latex}{\SIlist{<terme1;terme2;terme3>}{<préfixe et unité>}}, avec un séparateur de terme défini avec le caractère \texttt{;} . Ou encore des plages de nombres avec les instructions \mintinline{latex}{\numrange{<terme1>}{<terme2>}} et \mintinline{latex}{\SIrange{<terme1>}{<terme2>}{<préfixe et unité>}} .\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Dans ce texte est abordé les premiers paliers des sections de câbles utilisé dans les installations électriques domestiques, mesurant respectivement \SIlist{1,5;2,5;4;6}{\square\milli\meter}. Ces sections permettent de faire transiter un ampérage de \SIrange{0}{32}{\ampere}, toujours selon les normes en vigueur.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Dans ce texte est abordé les premiers paliers des sections de câbles utilisé dans les installations électriques domestiques, mesurant respectivement \SIlist{1,5;2,5;4;6}{\square\milli\meter}. Ces sections permettent de faire transiter un ampérage de \SIrange{0}{32}{\ampere}, toujours selon les normes en vigueur.
+\end{minted}
+\end{minipage}\\
+
+\end{exemple}
+	 
+	 \subsection{Formules}
+
+Pour rédiger des formules scientifiques, il convient de les inclure dans l'environnement \texttt{formule} abordées dans l'\superref{ex:environnement_formule} .\\
+Les formules scientifiques bénéficient de deux nouveaux environnements permettant de structurer en tableau le détails des variables, selon que cela soit numérique avec \texttt{numvariables} ou textuel avec \texttt{textvariables}. Cela permet de conserver une unité graphique parmi tous les documents de l'\gls{aocdtf}.
+
+\begin{exemple}{Formule avec détails}{}
+L'environnement \texttt{textvariables} produit un tableau à cinq colonnes permettant de détailler chaque variable selon le contenu type suivant :\\
+\mintinline{latex}{<symbole de la grandeur> & <grandeur> & <unité de la grandeur> & <symbole de l'unité (instruction)> & <description et rôle de la grandeur> 	\\}\\
+
+Par exemple, la formule de la probabilité d'électrocution est détaillée de la manière suivante :
+
+\begin{minted}{latex}
+\begin{formule}{Probabilité d'électrocution}{probabilite_electrocution}
+\begin{align*}
+		I &= \frac{116}{\sqrt{t}}
+\end{align*}
+\begin{textvariables}
+I	& courant électrique	& milliampère	& \milli\ampere	& Courant traversant le corps \\
+t	& durée & seconde & \second	& Durée du choc électrique d'une durée \(8\milli\second < t \leq 5\second\) \\
+116	& constante	&	& /	& Constante empirique déterminée statistiquement\\
+\end{textvariables}
+\end{formule}
+\end{minted}
+
+Cela produira :
+
+\begin{formule}{Probabilité d'électrocution}{probabilite_electrocution}
+\begin{align*}
+		I &= \frac{116}{\sqrt{t}}
+\end{align*}
+\begin{textvariables}
+I						& courant électrique							& milliampère			& \milli\ampere					& 	Courant traversant le corps 	\\
+t						& durée												& seconde				& \second							& 	Durée du choc électrique d'une durée \(8\milli\second < t \leq 5\second\) \\
+116					& constante										& 								& 	/									& 	Constante empirique déterminée statistiquement\\
+\end{textvariables}
+\end{formule}
+
+L'environnement \texttt{numvariables} produit un tableau à six colonnes permettant de détailler chaque variable selon le contenu type suivant :\\
+\mintinline{latex}{<symbole de la grandeur> & <grandeur> & <unité de la grandeur> & <symbole de l'unité (instruction)> & <symbole de l'unité (instruction)> & <description numérique> \\}\\
+
+Par exemple, la formule de la valeur expérimentale de l'\electronvolt{} est détaillée de la manière suivante :
+
+\begin{minted}{latex}
+\begin{formule}{Valeur expérimentale de l'\electronvolt}{valeur_experimentale_electronvolt}
+	\begin{align*} 
+	U 						&= \frac{W}{Q} \\
+	\electronvolt 	&= \sqrt{\frac{2h\alpha}{\mu\clight}}\frac{W}{Q} \\
+							&=\SI{1,602176634e-19}{\joule}
+	\end{align*}
+
+\begin{numvariables}
+U & différence de potentiel & volt & \volt & \volt & \si{\kilogram\square\meter\per\cubic\second\per\ampere} \\
+W & énergie & joule & \joule & \joule & \si{kg.m^{2}/s^{2}} \\
+Q & charge électrique & coulomb & \coulomb & \coulomb & \si{\ampere\second} \\
+\electronvolt & électron-volt & joule & \joule & \electronvolt & \SI{1,602176634e-19}{\joule} \\
+h & constante de Planck & joule seconde & \si{\joule\second} & h	 & \SI{6,62607015e-34}{\joule\second} \\
+\alpha & constante de structure fine & sans dimension &	 & \alpha & \num{7,2973525564e-3} \\
+\mu & perméabilité magnétique du vide & henry par mètre & \si{\henry\per\meter} & \mu & \SI{4\pi e-7}{\henry\per\meter} \\
+\clight & vitesse de la lumière dans le vide & mètre par seconde & \si{\meter\per\second} & \clight	 & \SI{2,99792458e8}{\meter\per\second}	
+\end{numvariables}
+\end{formule}
+\end{minted}
+
+Cela produira\footnote{Les différentes colonnes sont mieux agencées quand l'environnement \texttt{formule} n'est pas inséré dans un environnement \texttt{exemple}.} : 
+
+\begin{formule}{Valeur expérimentale de l'\electronvolt}{valeur_experimentale_electronvolt}
+	\begin{align*} 
+	U 						&= \frac{W}{Q} \\
+	\electronvolt 	&= \sqrt{\frac{2h\alpha}{\mu\clight}}\frac{W}{Q} \\
+							&=\SI{1,602176634e-19}{\joule}
+	\end{align*}
+
+\begin{numvariables}
+U						& différence de potentiel						& volt							& \volt									& \volt  				& \si{\kilogram\square\meter\per\cubic\second\per\ampere} \\
+W						& énergie												& joule							& \joule								& \joule				& \si{kg.m^{2}/s^{2}} \\
+Q						& charge électrique								& coulomb					& \coulomb							& \coulomb			& \si{\ampere\second} \\
+\electronvolt 		& électron-volt 									& joule 						& \si\joule 							& \electronvolt	& \SI{1,602176634e-19}{\joule} \\
+h 						& constante de Planck 							& joule seconde 		& \si{\joule\second	}		& h						& \SI{6,62607015e-34}{\joule\second} \\
+\alpha				& constante de structure fine 				& sans dimension 		&											& \alpha				& \num{7,2973525564e-3} \\
+\mu					& perméabilité magnétique du vide	& henry par mètre		& \si{\henry\per\meter}	& \mu					& \SI{4\pi e-7}{\henry\per\meter} \\
+\clight				& vitesse de la lumière dans le vide	& mètre par seconde & \si{\meter\per\second}	& \clight				& \SI{2,99792458e8}{\meter\per\second}	
+\end{numvariables}
+\end{formule}
+
+\end{exemple}
+
+
+\end{document}

@@ -1,0 +1,547 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+\chapter{Référencement et bibliographie}
+	\ChapFrame %appel du marqueur de chapitre
+	
+	\section{Introduction}
+	
+	Avant de rédiger des documents d'une longueur conséquente, il convient impérativement de prendre en main les notions de référencement qui régissent les documents rédigés avec \LaTeX{}. Effectivement, plus on référence les éléments importants du document durant la rédaction, plus il sera aisé de les compiler en liste, en glossaire, en index\ldots\\ Ces référencements permettront également de naviguer plus aisément dans les documents, par l'implantation d'\emph{intraliens} et d'\emph{hyperliens} qui prendront tous leurs sens lors d'une lecture sur un outil informatique type tablette.\\ 
+	
+	Au rayon des grosses valeurs ajoutées de \LaTeX{} vient également se greffer ses outils permettant de rédiger des bibliographies normalisées à la présentation irréprochable. La prise en main de ces outils diffère quelque peu de l'utilisation classique de \LaTeX{}, mais elle reste indispensable -- avant d'entamer toute rédaction -- car il est absolument nécessaire de référencer et citer toutes les sources utilisées dans la cadre de la rédaction de documents à visée pédagogique.
+
+	\section{Renvois}
+	
+	\LaTeX{} présente des outils de référencement interne et externe au document pouvant faciliter grandement la navigation dans les documents par renvois. Cela permet également de communiquer avec une base de données ou avec Internet. Par exemple, dans le cadre de la rédaction de documents à visée pédagogique, cela permet de renvoyer le lecteur vers une base de données privées contenant des ouvrages de références ainsi que les sources ayant servi à rédiger le document, pour plus de précisions.
+	
+	\subsection{Intraliens}
+	
+	Les intraliens permettent de faciliter la navigation dans le documents. Ceux-ci font appel à un \emph{label} et à des instructions d'insertion de label produisant des \emph{intraliens} de couleur verte lorsque le document est paramétré pour le format écran et noir lorsque le document est paramétré pour le format papier.
+	
+	\subsubsection{Labellisation}
+
+	Pour référencer un élément en vue de l'appeler avec un intralien plus loin dans le document, il conviendra de le \emph{labelliser}, c'est-à-dire de lui attribuer un \emph{label} -- où \emph{étiquette} -- spécifique à l'aide de l'instruction \mintinline{latex}{\label{<label de l'élément>}} . Afin que celui-ci soit unique et n'entre pas en conflit avec un autre label, il y a donc quelques règles de rédaction à respecter :
+	
+	\begin{itemize}
+	    \item le label prend la forme générale suivante \texttt{objet\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} avec des objets définis selon la liste suivante \,;
+	    \item les caractères spéciaux français (accent, cédille\ldots), les espaces et les signes de ponctuations sont à bannir\,;
+		\item les labels pour les exemples, définitions et formules sont inclus dans l'instruction les appelant, cela est abordé dans la \superref{sec:environnements_references}.\\
+	\end{itemize}
+	 
+Voici la liste des objets auxquels les rédacteurs vont faire face, il convient d'impérativement respecter cette nomenclature (similaire aux noms des fichiers des sous-programmations détaillés dans la \superref{subsec:sous-programmation}) :	 
+	\begin{description}
+		\item[chapitre :] \texttt{chap\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[annexe :] \texttt{ann\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[section :] \texttt{sec\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+		\item[sous-section :] \texttt{subsec\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+		\item[sous-sous-section :] \texttt{subsubsec\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+       	\item[figure :] \texttt{fig\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[tableau :] \texttt{tab\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[exemple :] \texttt{ex\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[définition :] \texttt{def\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[formule :] \texttt{form\string:mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} .
+	\end{description}
+
+	\subsubsection{Insertion intraliens}
+
+	Il existe plusieurs instructions permettant d'insérer des intraliens dans un texte, selon le format que le rédacteur souhaite lui donner.
+		
+	\begin{exemple}{Intralien}{intralien}
+	Il existe une série d'instructions pour mettre en forme l'intralien selon la situation.\\
+	Ce premier exemple de code met en évidence simplement l'interaction entre un label produit par l'instruction \mintinline{latex}{\label{<label de l'élément>}} et l'instruction \mintinline{latex}{\ref{<label de l'élément>}} produisant l'intralien :\\
+	
+	\begin{minipage}[t]{0.49\linewidth}
+	Ce texte comporte une figure \ref{fig:image_exemple_intralien_1} labellisée avec une référence.
+	\begin{figure}[H]
+	\includegraphics[width=\linewidth]{fig_image.png} 
+	\caption{Image pour le premier exemple d'intralien\label{fig:image_exemple_intralien_1}}
+	\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.49\linewidth}
+	\begin{minted}{latex}
+Ce texte comporte une figure \ref{fig:image_exemple_intralien_1} labellisée avec une référence.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{fig_image.png} 
+\caption{Image pour le premier exemple d'intralien\label{fig:image_exemple_intralien_1}}
+\end{figure}
+	\end{minted}
+	\end{minipage}
+	
+	On remarquera que l'instruction \mintinline{latex}{\ref{<label de l'élément>}} ne transforme que le seul numéro de la figure en intralien. Pour améliorer cela, il existe l'instruction \mintinline{latex}{\autoref{<label de l'élément>}} qui va nommer automatiquement l'objet du lien et étendre la zone disponible pour cliquer, cela sera très pratique dans le cadre d'un usage interactif :\\
+	
+		\begin{minipage}[t]{0.49\linewidth}
+	Ce texte comporte une \autoref{fig:image_exemple_intralien_2} labellisée avec une référence.
+	\begin{figure}[H]
+	\includegraphics[width=\linewidth]{fig_image.png} 
+	\caption{Image pour le deuxième exemple d'intralien\label{fig:image_exemple_intralien_2}}
+	\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.49\linewidth}
+	\begin{minted}{latex}
+Ce texte comporte une \autoref{fig:image_exemple_intralien_2} labellisée avec une référence.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{fig_image.png} 
+\caption{Image pour le deuxième exemple d'intralien\label{fig:image_exemple_intralien_2}}
+\end{figure}
+	\end{minted}
+	\end{minipage}
+	
+Pour les documents à usage papier, les intraliens ne produiront aucun effet interactif. Néanmoins, les renvois peuvent être spécifiés à l'aide de l'instruction \mintinline{latex}{\autopageref{<label de l'élément>}} , qui va renseigner la page sur laquelle se situe l'élément labellisé :\\
+
+		\begin{minipage}[t]{0.49\linewidth}
+	Ce texte comporte une figure \autopageref{fig:image_exemple_intralien_3} labellisée avec une référence.
+	\begin{figure}[H]
+	\includegraphics[width=\linewidth]{fig_image.png} 
+	\caption{Image pour le troisième exemple d'intralien\label{fig:image_exemple_intralien_3}}
+	\end{figure}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.49\linewidth}
+	\begin{minted}{latex}
+Ce texte comporte une figure \autopageref{fig:image_exemple_intralien_3} labellisée avec une référence.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{fig_image.png} 
+\caption{Image pour le troisième exemple d'intralien\label{fig:image_exemple_intralien_3}}
+\end{figure}
+	\end{minted}
+	\end{minipage}
+
+	
+Et enfin, la macro-commande \mintinline{latex}{\superref{<label de l'élément>}} permettra, selon les paramètres \texttt{media} ou \texttt{paper} renseigné dans \texttt{master.tex}, d'appeler soit l'instruction \mintinline{latex}{\autoref{<label de l'élément>}} pour les documents à usage interactifs, soit la combinaison des instructions  \mintinline{latex}{\autoref{<label de l'élément>}} et  \mintinline{latex}{\autopageref{<label de l'élément>}} pour les documents à usage papier.\\
+Il conviendra de privilégier cette solution pour un maximum de flexibilité sur l'ensemble des documents rédigés :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+	Ce texte comporte une \superref{fig:image_exemple_intralien_4} labellisée avec une référence à la mise en forme conditionnée au type de document.
+	\begin{figure}[H]
+	\includegraphics[width=\linewidth]{fig_image.png} 
+	\caption{Image pour le quatrième exemple d'intralien\label{fig:image_exemple_intralien_4}}
+	\end{figure}
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+	\begin{minted}{latex}
+Ce texte comporte une \superref{fig:image_exemple_intralien_4} labellisée avec une référence à la mise en forme conditionnée au type de document.
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{fig_image.png} 
+\caption{Image pour le quatrième exemple d'intralien\label{fig:image_exemple_intralien_4}}
+\end{figure}
+	\end{minted}
+\end{minipage}
+
+	\end{exemple}
+	
+	\subsection{Hyperliens}
+
+Les \emph{hyperliens} sont des liens permettant de renvoyer le lecteur vers une adresse située en dehors du document, que ça soit sur un serveur privé, une base de données ou encore vers un lien internet. Ces liens sont de couleur bleue lorsque le document est paramétré pour le format écran et de couleur noire lorsque le document est paramétré pour le format papier.
+
+\begin{exemple}{Hyperlien}{hyperlien}
+Les hyperliens sont appelés avec deux instructions. La première instruction \mintinline{latex}{\url{<adresse du lien>}} affiche simplement l'adresse du lien référencé. La deuxième instruction \mintinline{latex}{\href{<adresse du lien>}{<texte cliquable>}} renvoie également à l'adresse du lien référencée mais en remplacement cette adresse par un texte cliquable. Encore une fois, ces instructions sont conditionnées par l'usage du document -- interactif ou papier -- et une macro-commande \mintinline{latex}{\Href{<adresse du lien>}{<texte cliquable descriptif du lien>}} a été crée pour respecter cette condition :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte un hyperlien qui renvoie vers le \Href{https://github.com/aocdtf-mta/AOCDTF-template}{portail Github} de ce template.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte un hyperlien qui renvoie vers le \Href{https://github.com/aocdtf-mta/AOCDTF-template}{portail Github} de ce template.
+\end{minted}
+\end{minipage}
+
+Autre possibilité, la création de liens vers des fichiers locaux ou stockés sur un serveur. Pour cela, on fait également appel à la macro-commande \mintinline{latex}{\Href{run:<chemin d'accès relatif au fichier/fichier.extension>}{<texte cliquable descriptif du lien>}}, en ajoutant donc \texttt{run:} devant le chemin d'accès relatif menant au fichier vers lequel on souhaite renvoyer le lecteur.\\
+Tout comme avec la commande \mintinline{latex}{\input{file}}, il faut donc identifier le chemin d'accès vers le fichier voulu. Il s'agit d'un chemin d'accès \emph{relatif} à l'emplacement du fichier de code dans lequel il est inclus, et non \emph{absolu}.\\
+Pour cela, on va jouer avec le fichier \texttt{INDICATEUR\_{}ARBORESCENCE.tex} situé dans le même dossier que le code \texttt{master.tex}.\\
+Après l'avoir préalablement déplacé dans le dossier contenant le fichier vers lequel on veut effectuer un renvoi, il faut ensuite l'inclure dans le code. Cela est réalisé à l'aide de l'instruction \mintinline{latex}{\input{file}} \emph{appelée depuis le menu} \mintinline{latex}{Latex > \input{file}}. Procéder de la sorte permet au rédacteur de sélectionner le fichier \texttt{INDICATEUR\_{}ARBORESCENCE.tex} depuis un explorateur de fichier. Cela fera apparaitre le chemin d'accès relatif pour le fichiers de code \texttt{INDICATEUR\_{}ARBORESCENCE.tex} qu'il suffira de \texttt{copier/coller} dans l'instruction \mintinline{latex}{\Href{run:<chemin d'accès copié relatif au fichier/fichier.extension>}{<texte cliquable descriptif du lien>}} pour inclure le lien vers le fichier voulu. Il ne faut pas oublier de préciser l'extension du fichier sous peine de rendre le lien inopérant.\\
+
+Cette fonction ne fonctionne que sur certains lecteurs PDF, dont la référence \Href{https://get.adobe.com/fr/reader/}{Adobe Acrobat Reader}. Le lien vers le fichier peut également ne pas aboutir selon le format, toutefois cela fonctionne pour renvoyer vers d'autres documents au format \texttt{.pdf}.\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte un hyperlien qui renvoie vers l'\Href{run:../../bibliographies/INDICATEUR_ARBORESCENCE.tex}{indicateur d'arborescence} du dossier contenant les bibliographies de ce template.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte un hyperlien qui renvoie vers l'\Href{run:../../bibliographies/INDICATEUR_ARBORESCENCE.tex}{indicateur d'arborescence} du dossier contenant les bibliographies de ce template.
+\end{minted}
+\end{minipage}
+
+Il semblerai que pour des raisons de sécurité, \Href{https://get.adobe.com/fr/reader/}{Adobe Acrobat Reader} ne supporte les liens vers les dossiers en tant que tel.
+
+\end{exemple}
+
+	\section{Index et glossaire}
+	
+La création d'index et de glossaires sont également des démarches à appréhender \emph{avant} d'entamer la rédaction de documents.\\ 
+
+Pour les index, cela permet de référencer par ordre alphabétique dans une liste d'intraliens tous les mots-clés avec leurs pages respectives pour lesquels cela est jugé nécessaire. On peut également produire des index suivant des thématiques spécifiques.\\
+
+Pour les glossaires, cela permet de référencer en liste d'intraliens tous les mots-clés et leur définitions respectives pour lesquels cela est jugé nécessaire. Cet outil permet aussi de faciliter la rédaction d'acronymes et de définitions avec la rédaction d'\emph{entrées de glossaire} dans des fichiers de code \texttt{.tex} séparés, qui se comportent comme des macro-commandes pouvant être utilisées durant la rédaction du corps de texte. \\ 
+Tout comme pour les index, on peut également produire des glossaires suivant des thématiques spécifiques.\\
+
+Le package AOCDTF prévoit déjà des environnements thématiques référencés en plusieurs listes après la table des matières, cela est abordé dans la \superref{sec:environnements_references}. À l'usage, l'index et le glossaire peuvent leur faire office de doublon et il ne seront donc pas forcément pertinent dans les documents rédigés pour l'\gls{aocdtf}.\\
+Toutefois, il me semble important d'aborder ces aspects-là de la rédaction car cela peut être une exigence sur l'un ou l'autre document, qu'il vaut mieux assurer dès le début de la rédaction. Effectivement, il s'agit d'indexer et de remplacer tous les acronymes et mots-clés définis à l'aide d'instructions spécifiques tout au long du document, et réaliser ces tâches après la rédaction sur une petite centaine de pages peut nécessiter un temps conséquent et être source d'oubli.
+
+\begin{exemple}{Index}{index}
+Pour produire un index standard, il est nécessaire de renseigner l'instruction \mintinline{latex}{\makeindex} en préambule dans le code \texttt{master.tex}, ainsi que l'instruction \mintinline{latex}{\printindex} dans le corps de document du code \texttt{master.tex} , à l'endroit du code où l'on souhaitera voir apparaitre l'index, a priori en fin de document. Dans le texte, les mots-clé sont indexés avec l'instruction \mintinline{latex}{\index{<mot-clé à indexer>}} :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte un mot-clé\index{mot-clé} indexé qui sera référencé dans une liste.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte un mot-clé\index{<mot-clé>} indexé qui sera référencé dans une liste.
+\end{minted}
+\end{minipage}
+
+Les entrées dans l'index peuvent se faire sur plusieurs niveaux, si certains mots-clé ne sont que des précisions de mots-clé plus globaux avec l'instruction \mintinline{latex}{\index{<mot-clé>!<sous_mot-clé>}}. On peut également au renvoi de terme précis vers un terme plus généraliste avec l'instruction \mintinline{latex}{\index{<sous_mot-clé>|see{<mot-clé>}}} :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte des mots-clés indexés qui seront référencés dans une liste\index{liste}. Ce répertoire\index{liste!répertoire} liste par ordre alphabétique tous les mots-clés\index{mot-clé} indexés avec leurs pages respectives, cela permet au lecteur d'aisément retrouver ces termes\index{terme|see{mot-clé}} jugés significatifs dans le document.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte des mots-clés indexés qui seront référencés dans une liste\index{liste}. Ce répertoire\index{liste!répertoire} liste par ordre alphabétique tous les mots-clés\index{mot-clé} indexés avec leurs pages respectives, cela permet au lecteur d'aisément retrouver ces termes\index{terme|see{mot-clé}} jugés significatifs dans le document.
+\end{minted}
+\end{minipage}
+
+On peut également produire des index selon des thématiques spécifiques qui regrouperont donc par ordre alphabétique une série de mots-clés se référant à ce thème. L'instruction pour initier la création d'un index thématique est la suivante :\\
+\mintinline{latex}{\makeindex[program=makeindex, columns=<3>,intoc=<true>, options={-s index_style.ist}, name=<nom_index>,title=<Titre de l'index thématique>]}\\
+
+Avec le paramètre \texttt{name=<nom\_index>} définissant l'appellation du thème qui sera à utiliser dans les instructions d'indexation \mintinline{latex}{\index[<nom du thème>]{<mot-clé se référant au thème>}}, et le paramètre \texttt{title=<Titre de l'index thématique>} qui produira le titre de l'index une fois appelé dans le code \texttt{master.tex} .\\
+Et dans le texte, l'indexation des mots-clés se référant à ce thème s'effectue donc avec l'instruction \mintinline{latex}{\index[<nom du thème>]{<mot-clé se référant au thème>}}. L'exemple suivant explicite les index thématique selon un thème à deviner :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte des mots-clés indexés\index[exemple]{indexé} qui seront référencés\index[exemple]{référencé} dans une liste. Ce répertoire situé\index[exemple]{situé} généralement en fin de document liste par ordre alphabétique tous les mots-clés indexés avec leurs pages respectives, cela permet au lecteur d'aisément retrouver ces termes jugés\index[exemple]{jugé} significatifs dans le document.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte des mots-clés indexés\index[exemple]{indexé} qui seront référencés\index[exemple]{référencé} dans une liste. Ce répertoire situé\index[exemple]{situé} généralement en fin de document liste par ordre alphabétique tous les mots-clés indexés avec leurs pages respectives, cela permet au lecteur d'aisément retrouver ces termes jugés\index[exemple]{jugé} significatifs dans le document.
+\end{minted}
+\end{minipage}
+
+Les index sont à retrouver en fin du code \texttt{master.tex} , avec les instructions \mintinline{latex}{\printindex} et \mintinline{latex}{\printindex[exemple]} , qu'il conviendra de mettre en commentaire selon le contexte de rédaction.
+
+\end{exemple}
+
+\begin{exemple}{Glossaire}{}
+Pour produire un glossaire standard, la démarche est similaire que pour produire un index, il s'agit d'indiquer les instructions \mintinline{latex}{\makenoidxglossaries} en préambule et \mintinline{latex}{\printnoidxglossary} dans le corps de document du code \texttt{master.tex} , à l'endroit du code ou l'on souhaitera voir apparaitre le glossaire, à priori en fin de document.\\
+
+Il conviendra de renseigner également des entrées du glossaire non plus dans le corps du texte mais dans deux codes séparés, \texttt{glossary\_entry.tex} et \texttt{acronym\_entry.tex}, un peu dans la même démarche que pour les entrées de clés bibliographiques. Effectivement, dans l'hypthèse ou le document rédigé est conséquent, le nombre d'entrées le sera aussi et il s'agit de ne pas encombrer le code \texttt{master.tex} avec celles-ci.\\
+ Ces entrées peuvent prendre deux formats, avec les instructions :
+ \begin{description}
+ \item[acronyme :]  \mintinline{latex}{\newacronym{<label_acronyme>}{<Acronyme>}{<description de l'acronyme>}} \,;
+ \item[entrée \og classique \fg{} :] \mintinline{latex}{\newglossaryentry{<label_entree_glossaire>}{type=<nom_glossaire>, name={<caractères à afficher dans le texte>}, description={<définition dans le glossaire>},sort={<nom de l'entrée dans le glossaire>}}} .
+ \end{description}
+
+Les entrées du glossaire définies dans les fichiers correspondant sont appelées dans le corps avec l'instruction \mintinline{latex}{\gls{<label>}} , avec le \texttt{label} valable autant pour les acronymes que pour les entrées \og classiques \fg{} :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Ce texte comporte un acronyme tel que l'\gls{aocdtf} ou encore un \gls{ex} comportant sa définition dans le glossaire.
+\end{minipage}
+	\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Ce texte comporte un acronyme tel que l'\gls{aocdtf} ou encore un \gls{ex} comportant sa définition dans le glossaire.
+\end{minted}
+\end{minipage}
+
+Il existe plusieurs options -- un exemple est à retrouver dans le code \texttt{master.tex} -- permettant de produire des glossaires thématiques (notation, acronyme\ldots) mais elles ne seront pas abordées ici car il est peu probable que les documents à destination de l'\gls{aocdtf} nécessite un glossaire (à moins de rédiger un livre de référence). Le package AOCDTF fait le choix de produire des listes de différents éléments par thématiques plutôt que des index et glossaires, sujet de la section suivante.\\
+Toutefois, référencer les acronymes permet de conserver une main-mise sur des éléments du texte qui peuvent voir leur mise en forme varier d'un rédacteur à l'autre, cela peut se montrer pertinent de les répertorier si le rédacteur constate qu'il apparait un nombre conséquent d'acronymes dans son document.
+
+\end{exemple}
+
+	\section{Environnements référencés\label{sec:environnements_references}}
+	
+Pour accompagner la visée pédagogique des documents destiné à l'\gls{aocdtf}, il fut créer trois environnements spécifiques -- pour le moment -- destinés à mettre en évidence les formules, les définitions et les exemples dans le texte. Cela permet également de conserver la main-mise sur la mise en forme de tous ces environnement d'une simple mise-à-jour.\\
+Ceux-ci sont compilés dans trois listes, auxquelles s'ajoutent également les listes des figures et des tableaux, présentes dans le \emph{frontmatter} après la table des matières. Toutes celles-ci sont composées d'intraliens renvoyant vers leurs emplacements respectifs dans le document, pour faciliter la navigation dans celui-ci en usage interactif.
+
+\begin{exemple}{Environnement exemple}{environnement_exemple}
+Cet environnement est mis évidence en gris et bleu dans le corps de texte. Il est appelé avec l'instruction \mintinline{latex}{\begin{exemple}{<titre de l'exemple>}{<label (sans l'objet)>}}.\\
+Il est donc plus aisément référencés mais il n'est pas nécessaire de lui indiquer son objet, qui est \texttt{ex:}, car cela est déjà paramétré dans le package AOCDTF. Il n'est donc pas nécessaire de renseigner l'instruction \mintinline{latex}{\label{<ex:mot-clé_mot-clé_plus_précis>}}.\\
+Par contre, son label pour produire un intralien selon l'instruction \mintinline{latex}{\superref{<ex:mot-clé_mot-clé_plus_précis>}} devra quant à lui indiquer cet objet \texttt{ex:}, comme pour tous les autres objets labellisés :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{exemple}{Exemple d'environnement exemple}{exemple_environnement_exemple}
+Cet environnement comporte un exemple (calcul, mise en situation\ldots) se situant dans l'\superref{ex:exemple_environnement_exemple}.
+\end{exemple}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{exemple}{Exemple d'environnement exemple}{exemple_environnement_exemple}
+Cet environnement comporte un exemple (calcul, mise en situation\ldots) se situant dans l'\superref{ex:exemple_environnement_exemple}.
+\end{exemple}
+\end{minted}
+\end{minipage}
+
+Cet environnement peut également ne pas être numéroté ni listé avec l'instruction \mintinline{latex}{\begin{exemple*}{<titre de l'exemple>}{<label (sans l'objet)>}} :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{exemple*}{Exemple d'environnement exemple non référencé}{}
+Cet environnement comporte un exemple (calcul, mise en situation\ldots) qui n'est pas numéroté ni listé.
+\end{exemple*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{exemple*}{Exemple d'environnement exemple non référencé}{}
+Cet environnement comporte un exemple (calcul, mise en situation\ldots) qui n'est pas numéroté ni listé.
+\end{exemple*}
+\end{minted}
+\end{minipage}
+
+\end{exemple}
+
+\begin{exemple}{Environnement définition}{}
+Cet environnement est mis évidence en gris et rose dans le corps de texte. Il est appelé avec l'instruction \mintinline{latex}{\begin{formule}{<titre de la définition>}{<label (sans l'objet)>}}.\\
+Il est donc plus aisément référencé mais il n'est pas nécessaire de lui indiquer son objet, qui est \texttt{def:}, car cela est déjà paramétré dans le package AOCDTF. Il n'est donc pas nécessaire de renseigner l'instruction \mintinline{latex}{\label{<def:mot-clé_mot-clé_plus_précis>}}.\\
+Par contre, son label pour produire un intralien selon l'instruction \mintinline{latex}{\superref{<def:mot-clé_mot-clé_plus_précis>}} devra quant à lui indiquer cet objet \texttt{def:}, comme pour tous les autres objets labellisés :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{definition}{Exemple d'environnement definition}{exemple_environnement_definition}
+Cet environnement comporte une définition.
+\end{definition}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{definition}{Exemple d'environnement definition}{exemple_environnement_definition}
+Cet environnement comporte une définition.
+\end{definition}
+\end{minted}
+\end{minipage}
+
+Cet environnement peut également ne pas être numéroté ni listé avec l'instruction \mintinline{latex}{\begin{definition*}{<titre de la définition>}{<label (sans l'objet)>}} :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{definition*}{Exemple d'environnement definition non référencé}{}
+Cet environnement comporte une définition qui n'est pas numérotée ni listée.
+\end{definition*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{definition*}{Exemple d'environnement definition non référencé}{}
+Cet environnement comporte une définition qui n'est pas numérotée ni listée.
+\end{definition*}
+\end{minted}
+\end{minipage}
+
+\end{exemple}
+
+
+\begin{exemple}{Environnement formule}{environnement_formule}
+Cet environnement est mis évidence en gris et vert dans le corps de texte. Il est appelé avec l'instruction \mintinline{latex}{\begin{formule}{<titre de la formule>}{<label (sans l'objet)>}}.\\
+Il est donc plus aisément référencé mais il n'est pas nécessaire de lui indiquer son objet, qui est \texttt{form:}, car cela est déjà paramétré dans le package AOCDTF. Il n'est donc pas nécessaire de renseigner l'instruction \mintinline{latex}{\label{<form:mot-clé_mot-clé_plus_précis>}}.\\
+Par contre, son label pour produire un intralien selon l'instruction \mintinline{latex}{\superref{<form:mot-clé_mot-clé_plus_précis>}} devra quant à lui indiquer cet objet \texttt{form:}, comme pour tous les autres objets labellisés :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{formule}{Exemple d'environnement formule}{exemple_environnement_formule}
+Cet environnement comporte une formule.
+\end{formule}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{formule}{Exemple d'environnement formule}{exemple_environnement_formule}
+Cet environnement comporte une formule.
+\end{formule}
+\end{minted}
+\end{minipage}
+
+Cet environnement peut également ne pas être numéroté ni listé avec l'instruction \mintinline{latex}{\begin{formule*}{<titre de la formule>}{<label (sans l'objet)>}} :\\
+
+\begin{minipage}{0.59\linewidth}
+\begin{formule*}{Exemple d'environnement formule non référencé}{}
+Cet environnement comporte une formule qui n'est pas numérotée ni listée.
+\end{formule*}
+\end{minipage}
+\hfill
+\begin{minipage}{0.39\linewidth}
+\begin{minted}{latex}
+\begin{formule*}{Exemple d'environnement formule non référencé}{}
+Cet environnement comporte une formule qui n'est pas numérotée ni listée.
+\end{formule*}
+\end{minted}
+\end{minipage}
+
+\end{exemple}
+
+	\section{Bibliographie\label{sec:bibliographie}}
+
+Monter une bibliographie est primordial dans le cadre de la diffusion de documents à visée pédagogique. Effectivement, il est indispensable de citer correctement ses sources et c'est là une des grandes forces de \LaTeX{}. Son moteur bibliographique présente un principe de fonctionnement un peu spécifique par rapport au reste de la programmation \TeX{}, qui nécessite une prise en main avant la rédaction de documents. Ce \Href{http://bertrandmasson.free.fr/?telechargement/Li4vLi4vZGF0YS9kb2N1bWVudHMvbGF0ZXgvYmlibGF0ZXhtaWNodS5wZGYqZWQyMTRh}{référentiel} peut être d'une grande aide pour faire face au plus grand nombre de cas de figure.\\
+	
+Ce principe se rapproche de celui utilisé pour les glossaires, c'est-à-dire que l'on va \emph{externaliser} les entrées bibliographiques -- les \emph{sources} utilisées -- dans des fichier de codes spécifiques. Ceux-ci ne sont plus sous format \texttt{.tex} mais seront sous format \texttt{.bib}, prévu pour les contenus bibliographiques. Une fois ces codes remplis d'entrées bibliographiques, on va appeler les \emph{clés d'identifications} de ces entrées que l'on utilisera pour une citation spécifique dans le corps de texte ou en fin de document.
+
+		\subsection{Code bibliographique}
+
+Il y a donc un fichier de code \texttt{matiere.bib} par \emph{matière}, c'est la classification thématique voulue pour éviter une multiplication de ces fichiers de code. Ils sont \emph{communs} à toutes les matières et sont donc situés au plus bas niveau dans l'arborescence de fichiers des différents dépôts.\\
+
+			\subsubsection{Inclusion de codes bibliographiques }
+
+Ces fichiers \texttt{matiere.bib} sont appelés dans le code de la même manière que l'inclusion de fichiers \texttt{code.tex}, mais avec l'instruction \mintinline{latex}{\addbibresource{<matiere.bib>}} située dans le préambule du code \texttt{master.tex}.\\
+Cette démarche est déjà exécutée dans le code \texttt{master.tex} du template, et si l'arborescence initiale des fichiers est respectée pour la production de documents, elle ne devrait plus à être exécutée. Toutefois, dans l'optique de couvrir un maximum de cas de figures dans ce recueil, la méthode est ici détaillée.\\
+
+Tout comme avec la commande \mintinline{latex}{\input{file}}, il faut identifier le chemin d'accès aux fichiers \texttt{matiere.bib}. Il s'agit d'un chemin d'accès \emph{relatif} à l'emplacement du fichier de code dans lequel il est inclus, et non \emph{absolu}.\\
+Pour cela, on va utiliser un fichier \texttt{.tex} nommé \texttt{INDICATEUR\_{}ARBORESCENCE.tex} qui est situé dans le même dossier que les codes bibliographiques.\\
+Il faut l'inclure dans le code \texttt{master.tex}, à l'aide de l'instruction \mintinline{latex}{\input{file}} \emph{appelée depuis le menu} \mintinline{latex}{Latex > \input{file}}. Procéder de la sorte permet au rédacteur de sélectionner le fichier \texttt{INDICATEUR\_{}ARBORESCENCE.tex} depuis un explorateur de fichier. Cela fera apparaitre le chemin d'accès pour les fichiers de code \texttt{code.tex} qu'il suffira de \texttt{copier/coller} dans l'instruction \mintinline{latex}{\addbibresource{<chemin d'accès copié/matiere.bib>}} pour inclure les fichiers de codes bibliographiques.\\
+
+			\subsubsection{Structure de codes bibliographiques }
+
+Les codes \texttt{matiere.bib} présentent une structure de code très simple comparée aux fichiers de code \texttt{.tex}, car ils ne comportent que les entrées bibliographiques de \emph{toutes} les sources utilisées pour la rédaction de \emph{tous} les documents produits sur un dépôt (typiquement tous les documents à destination d'une formation). Ces entrées sont identifiées par des \emph{clés}, qui sont similaire aux labels des références et qui doivent suivre une nomenclature bien précise.\\
+
+Les codes au format \texttt{.bib} n'utilisent pas exactement la même nomenclature que les codes \texttt{.tex}, et il convient de s'inspirer du code \Href{run:../../bibliographies/exemple.bib}{\texttt{exemple.bib}} pour la rédaction de nouveaux codes bibliographiques ainsi que l'entrée de nouvelles références.\\ Le code au format \texttt{.bib} contient donc des \emph{entrées} bibliographiques qui sont en quelques sortes les \og cartes d'identités \fg{} des sources utilisées pour la rédaction de documents. Ces entrées présentent trois caractéristiques majeures :
+\begin{itemize}
+\item \mintinline{latex}{@<format>} : elles présentent plusieurs formats selon le type de source utilisée (site internet, thèse, livre dans une collection\ldots)\,;
+\item \mintinline{latex}{@<format>{<clé d'appel>}} : elles sont identifiées par une clé d'appel définie selon des critères précis\,;
+\item \mintinline{latex}{@<format>{<clé d'appel>}{<méta-données de l'entrée>}} : elles contiennent toutes les informations -- les \emph{méta-données} -- relatives à la source (titre, auteur, année de publication\ldots).
+\end{itemize}
+
+\begin{exemple}{Entrée bibliographique}{}
+Le code suivant produit les trois entrées bibliographiques les plus fréquemment utilisées -- un livre dans une collection, un site internet et un document pédagogique -- pour citer des sources :
+
+\begin{minted}{latex}
+@incollection{AuteurAnnee,
+author = {Auteur},
+title = {Title de l'ouvrage},
+booktitle = {Collection},
+year = {Année},
+editor = {Editeur},
+publisher = {{Maison d'édition}},
+note = {\Href{run:../dossier/ouvrage.pdf}{Nom de fichier de l'ouvrage}},
+}
+
+@online{Site:abreviation,
+author = {{Auteur}},
+title = {Titre de la page},
+url = {Lien de la page},
+date = {Date de consultation de la page (format 1900-12-01)},
+organization = {Organisation},
+date = {Date de rédaction de la page (format 1900-12-01)},
+}
+
+@report{Organisme:abreviationAnnee,
+author = {Auteur},
+title = {Titre du cours},
+institution = {Institut},
+year = {1900},
+url = {Lien de la page},
+note = {\Href{run:../dossier/cours.pdf}{Nom de fichier du cours}},
+}
+\end{minted}
+
+Ces entrées seront classées par l'ordre alphabétique de leur clés d'appel. Il convient d'absolument respecter la structure ainsi que les caractères utilisés pour coder ces entrées, un oubli de \texttt{,} produira une erreur.\\
+
+On remarquera également que l'on peut insérer un hyperliens vers le fichier de la source si celui-ci existe et est stocké dans le dépôt. Dans la pratique, on préférera l'usage d'une base de donnée des sources utilisées stockées dans un cloud dont on peut extraire des liens que l'on renseignera au champ \mintinline{latex}{url = {Lien de la page},}. Cela permet aussi d'éviter les erreurs de chemin d'accès, qui peuvent être en conflit si l'arborescence des dossiers d'un dépôt n'est pas respectée à la lettre et qu'une clé d'appel avec un hyperlien vers un fichier local est appelé dans deux documents distincts. 
+\end{exemple}
+
+Le \emph{format} de la source est défini par l'instruction appelée par le caractère \texttt{@}. Il en existe une quantité considérable pour caractériser au mieux un maximum de sources diverses et variées.\\
+À chaque format d'entrée est associé une nomenclature de la clé d'appel qu'il conviendra de respecter scrupuleusement, pour conserver une cohérence sur l'ensemble des fichiers de code bibliographiques, mais également pour éviter les doublons et faciliter leur appel dans le corps de texte.\\
+
+La liste suivante donne quelques formats ainsi que les clés d'appel correspondantes, elle ne se veut pour autant pas exhaustive mais couvrira une grande partie des usages :
+
+\begin{description}
+\item [livre :] \mintinline{latex}{@book{AuteurAnnee}}\,;
+\item [brochure :] \mintinline{latex}{@booklet{Organisme:titreenattache}}\,;
+\item [livre dans une collection :] \mintinline{latex}{@incollection{AuteurAnnee}}\,;
+\item [conférence/colloque :] \mintinline{latex}{@InProceedings{AuteurAnnee}}\,;
+\item [norme :] \mintinline{latex}{@Manual{Organisme:Numeronorme-Annee}}\,;
+\item [autre :] \mintinline{latex}{@misc{AuteurAnnee}}\,;
+\item [site :] \mintinline{latex}{@online{Site:abreviation}}\,;
+\item [cours :] \mintinline{latex}{@report{Organisme:abreviationAnnee}}.\\
+\end{description}  
+
+Les clés d'appel doivent respecter au mieux la nomenclature proposée dans la liste ci-dessus. Toutefois, si les données de la source ne le permettent pas totalement, on peut appliquer une certaine souplesse, surtout concernant \texttt{abreviation}, pouvant être décliné en \texttt{titreenattache} si besoin est.\\
+L'essentiel, c'est que :
+\begin{itemize}
+\item la clé d'appel permette une identification rapide de la source dans les codes \texttt{.bib} et \texttt{.tex} \,;
+\item il n'y aie pas de doublons de clés d'appel\,;
+\item la clé d'appel ne comporte pas d'accent ni de caractères spéciaux.
+\end{itemize}
+Dans le cas à priori rarissime d'un doublon inévitable, il suffira de numéroter les clés d'appel comme suit \mintinline{latex}{@<format>{<clé d'appel/A>}} et \mintinline{latex}{@<format>{<clé d'appel/B>}}.\\
+
+Si l'un des rédacteur fait face à un nouveau cas de figure nécessitant un nouveau format d'entrée, il faut l'ajouter -- après consultation -- dans le code \Href{run:../../bibliographies/exemple.bib}{\texttt{exemple.bib}} ainsi que dans la liste ci-dessus, après lui avoir défini une clé d'appel structurée.\\
+
+Les méta-données qui suivent la clé d'appel d'une entrée sont détaillées non exhaustivement dans le code \Href{run:../../bibliographies/exemple.bib}{\texttt{exemple.bib}}. Ceux qui souhaiteraient plus de cas de figures et d'explication peuvent consulter ce \Href{http://bertrandmasson.free.fr/?telechargement/Li4vLi4vZGF0YS9kb2N1bWVudHMvbGF0ZXgvYmlibGF0ZXhtaWNodS5wZGYqZWQyMTRh}{référentiel} très complet et didactique.
+
+		\subsection{Citation des sources}
+		
+Le but derrière la programmation d'un fichier de code \texttt{matiere.bib} est bien de citer les sources utilisées dans le document initial, que ça soit dans le corps du texte ou encore en liste en fin de document.
+
+\begin{exemple}{Citation bibliographique}{}
+Pour citer une source, il existe plusieurs instructions selon le format de la citation, dont le bloc sera la clé d'appel de la source souhaitée, définie au préalable dans un fichier de code \texttt{matiere.bib}. On privilégiera les formats de citations utilisés dans les exemples suivants, dont le premier est défini par l'instruction \mintinline{latex}{\supercite{<clé d'appel>}}, qui renvoie le lecteur vers la bibliographie avec le numéro de la source en indice :\\
+
+\begin{minipage}{0.45\linewidth}
+L'instruction \mintinline{latex}{\supercite{<clé d'appel>}} va citer la source d'un cours\supercite{AOCDTF:RPT2021} en produisant un lien en indice vers la bibliographie.
+\end{minipage}
+\hfill
+\begin{minipage}{0.50\linewidth}
+\begin{minted}{latex}
+L'instruction \mintinline{latex}{\supercite{<clé d'appel>}} va citer la source d'un cours\supercite{AOCDTF:RPT2021} en produisant un lien en indice vers la bibliographie.
+\end{minted}
+\end{minipage}
+
+La seconde instruction \mintinline{latex}{\footfullcite{<clé d'appel>}} permet d'insérer une citation en indice qui renvoie à la source en bas de page :\\
+
+\begin{minipage}{0.45\linewidth}
+L'instruction \mintinline{latex}{\footfullcite{<clé d'appel>}} va citer la source d'un site internet\footfullcite{Github:AOCDTFtemplatewiki} en produisant un lien en indice vers la source en bas de page.
+\end{minipage}
+\hfill
+\begin{minipage}{0.50\linewidth}
+\begin{minted}{latex}
+L'instruction \mintinline{latex}{\footfullcite{<clé d'appel>}} va citer la source d'un site internet\footfullcite{Github:AOCDTFtemplatewiki} en produisant un lien en indice vers la source en bas de page.
+\end{minted}
+\end{minipage}
+
+La troisième instruction \mintinline{latex}{\pprbcite{<clé d'appel>}} permet d'insérer le titre d'une source et son auteur, permettant d'indiquer la source d'une citation par exemple :\\
+
+\begin{minipage}{0.45\linewidth}
+Il est cité dans \pprbcite{Douchy2021} : \say{une citation de moins de quarante mots qui s'intègre dans la phrase}, alors que le texte initial reprend après.
+\end{minipage}
+\hfill
+\begin{minipage}{0.50\linewidth}
+\begin{minted}{latex}
+Il est cité dans \pprbcite{Douchy2021} : \say{une citation de moins de quarante mots qui s'intègre dans la phrase}, alors que le texte initial reprend après.
+\end{minted}
+\end{minipage}
+
+La dernière manière privilégiée de citer ses sources est de directement les appeler dans la bibliographie en fin de document avec l'instruction \mintinline{latex}{\nocite{<clé d'appel A, clé d'appel B, clé d'appel X>}}. Cette instruction contient les clés d'appel non citées dans le corps du document mais dont les sources sont tout de même utilisées tout au long de la rédaction.\\
+Elle est à renseigner dans le code \texttt{master.tex}, suivie de l'instruction \mintinline{latex}{\printbibliography} pour produire la bibliographie à l'endroit du code ou cette instruction est appelée, généralement après la conclusion et avant l'index.\\
+
+Pour plus de précisions, d'autres formats de citations sont détaillés dans le \Href{http://bertrandmasson.free.fr/?telechargement/Li4vLi4vZGF0YS9kb2N1bWVudHMvbGF0ZXgvYmlibGF0ZXhtaWNodS5wZGYqZWQyMTRh}{référentiel} suivant.
+
+\end{exemple}
+
+		\subsection{Compilation}
+
+Une fois le fichier de code \texttt{cours.bib} remplis d'entrées et les clés d'appel correspondantes dans les fichiers de code \texttt{.tex} correctement renseignées, il est nécessaire de compiler avec le moteur \emph{Compilation rapide}, dont le paramétrage est renseigné à cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Configuration-de-l'outil-bibliographique-Biber}{page} du wiki.\\
+
+Avant cela, il faut configurer le Texmaker pour qu'il fonctionne avec le moteur bibliographique \emph{Biber} dans les paramètres de Texmaker \emph{appelés depuis le menu} \texttt{Texmaker > Préférences > Commandes > Bib(la)tex > biber \%}.
+
+
+
+
+\end{document}

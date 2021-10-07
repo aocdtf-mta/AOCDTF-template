@@ -1,0 +1,384 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+	\chapter{Rédaction de texte}
+	\ChapFrame %appel du marqueur de chapitre
+	
+	\section{Structuration du texte}
+	
+	\subsection{Paragraphes et saut de ligne\label{subsec:paragraphes_saut_ligne}}
+	
+Lorsqu'on rédige des éléments textuels avec l'outil \LaTeX{}, il faut prendre en compte quelques subtilités d'agencement du texte :
+
+\begin{itemize}
+\item \LaTeX{} se charge de structurer le texte et passera à la ligne selon les normes typographiques françaises (division des mots en fin de ligne, espacement\ldots)\,;
+\item pour sauter à la ligne dans le même paragraphe, il faut appeler l'instruction \mintinline{latex}{\\} (avec \emph{un} ou sans saut de ligne dans le code) \,;
+\item pour aborder un nouveau paragraphe, il faut appeler l'instruction \mintinline{latex}{\\} suivi de \emph{deux} sauts de ligne dans le code\,;
+\item sauter une ligne dans le code sans renseigner l'instruction \mintinline{latex}{\\} ne produira pas de saut de ligne à la compilation\,;
+\item la structuration du texte suit la réglementation française : 
+\begin{itemize}
+\item un saut de ligne dans le code n'induit pas \emph{d'indentation} (petit espacement avant le premier d'un bloc de phrase dans le même paragraphe)\,;
+\item un changement de paragraphe produit un \emph{interligne} suivi d'un \emph{alinéa} (indentation suite à un changement de paragraphe).\\
+\end{itemize}
+\end{itemize}
+On remarque donc que l'instruction \mintinline{latex}{\\} , qu'elle ne soit pas suivie ou qu'elle soit suivie d'un seul saut de ligne dans le code ne changera pas le résultat. Toutefois, pour la lisibilité du code, il est conseillé de faire suivre cette instruction d'un saut de ligne.
+
+	\subsection{Ponctuation, symboles spéciaux et espaces\label{subsec:ponctuation_symboles_speciaux_espaces}}
+	
+	Lorsqu'on programme du texte avec \LaTeX{}, il existe une série de caractères réservés qui ne peuvent pas figurer dans le document final car ils ont une incidence dans la compilation du code. Il s'agit des caractères suivants :
+	\begin{verbatim}
+	{ } % # $ ^ ~ & _ \
+	\end{verbatim}		
+S'il faut écrire ces caractères dans le texte final, il conviendra de rajouter \texttt{\textbackslash} devant chacun de ces caractères et l'instruction \mintinline{latex}{\textbackslash} produira la contre-oblique.\\
+
+	\LaTeX{} gère les espaces entre les mots selon la règlementation française, il convient dès lors d'uniformiser la rédaction avec ses subtilités concernant les espaces, les signes de ponctuations utilisés\ldots Toutes celles-ci sont compilées dans cet \Href{http://www.ipgp.fr/~moguilny/LaTeX/typo.pdf}{aide-mémoire}.\\
+	
+	Au registre des subtilités récurrentes :
+	\begin{itemize}
+	\item différenciation les traits d'union \mintinline{latex}{-} (mot composé) des tirets demi-cadratin \mintinline{latex}{--} (incises et intervalles) et des tirets cadratin \mintinline{latex}{---} (dialogue et listes)\,;
+	\item accentuation effectuée même sur les lettres majuscules à l'aide des instructions \mintinline{latex}{\’E} , \mintinline{latex}{\`E} ou encore \mintinline{latex}{\`A} (ou juste È et À selon les claviers)\,;
+	\item utilisation des guillemets français  \mintinline{latex}{\og <mot entre guillemets> \fg{}} \,;
+	\item utiliser les instructions pour les symboles spéciaux et abréviations que \mintinline{latex}{\oe{}} , \mintinline{latex}{\ier{}}\ldots{} La liste est longue et peut être retrouvée sur cette \Href{https://fr.wikibooks.org/wiki/LaTeX/Éléments_de_base}{page} ainsi que les macro-commandes correspondantes à la \superref{subsubsec:abreviations_macro-commandes} \,;
+	\item utilisation des points de suspensions comme ponctuation de fin de phrase -- jamais après une virgule -- avec l'instruction \mintinline{latex}{\ldots} \,;
+	\item utilisation du symbole de l'euro \EUR{} avec l'instruction \mintinline{latex}{\EUR{}} .
+	\end{itemize}
+	
+	Les espaces sont finement gérés par \LaTeX{} et il n'est à priori pas nécessaire de les appeler durant la programmation. Néanmoins, voici la liste des différents types d'espaces :
+	\begin{description}
+		\item[espace justifiant :] espace obtenue avec la barre d'espace. Répéter cet espace ne produira qu'un seul espace justifié dans le document final et il peut ne pas apparaître après une instruction type \og ouverte \fg{} (non clôturée par \mintinline{latex}{{}} ).
+		\item[espace insécable :] justifie obligatoirement un saut de ligne avec l'instruction \mintinline{latex}{~} \,;
+		\item[petit espace :] utilisée surtout en fin de ligne dans les listes et descriptions avec l'instruction \mintinline{latex}{\,} \,;
+		\item[espace fine :] peut régler des problèmes de débordements avec l'instruction \mintinline{latex}{\/} .
+	\end{description}
+	
+	\subsection{Disposition du texte}
+	
+La disposition du texte avec \LaTeX{} est gérée automatiquement. Par défaut, le texte occupe toute la largeur de l'espace de rédaction dont la mesure est appelée avec les variables \mintinline{latex}{\linewidth} ou \mintinline{latex}{\textwidth} . Celles-ci renvoient à la même valeur dans le cas d'un texte à une colonne. Dans le cas d'un texte à plusieurs colonnes, \mintinline{latex}{\linewidth} renvoie la valeur de la largeur d'une seule colonne tandis que \mintinline{latex}{\textwidth} renvoie toujours à la largeur de l'espace de rédaction de la page.\\
+
+Le texte, ainsi que les figures et autres éléments, se disposent selon les règles de typographie en vigueur selon une disposition \og justifiée \fg{} (le saut de ligne est effectué au même emplacement). La disposition peut être modifiée dans quatre environnements différents :
+\begin{description}
+\item[justifié :] \mintinline{latex}{\begin{justify} <texte justifié sans indentation> \end{justify}} \,;
+\item[aligné à gauche :] \mintinline{latex}{\begin{raggedright} <texte aligné à gauche> \end{raggedright}} \,;
+\item[aligné à droite :] \mintinline{latex}{\begin{raggedleft} <texte aligné à droite> \end{raggedleft}} \,;
+\item[centré :] \mintinline{latex}{\begin{center} <texte centré> \end{center}} .
+\end{description}
+
+Le texte peut se répartir également sur plusieurs colonnes avec l'environnement \texttt{multicols} , qui répartira son contenu en nombre de colonnes spécifié avec une répartition homogène du texte.
+
+\begin{exemple}{Texte en trois colonnes}{texte_trois_colonnes}
+Les instructions suivantes disposeront le texte en trois colonnes selon le paramètrage choisi entre accolade. Pour forcer un passage à la colonne suivante, il faudra indiquer l'instruction \mintinline{latex}{\columnbreak\\} sans oublier le retour à la ligne \mintinline{latex}{\\} :
+\begin{minted}{latex}
+\begin{multicols}{3}
+\lipsum[45]
+\columnbreak\\
+\lipsum[75]
+\end{multicols}
+\end{minted}
+
+Cela produira :
+
+\begin{multicols}{3}
+\lipsum[45]
+\columnbreak\\
+\lipsum[75]
+\end{multicols}
+\end{exemple}
+
+Pour préciser certains éléments du texte sans le surcharger, on peut également rédiger des notes en bas de page.
+
+\begin{exemple}{Note en pied de page}{}
+\begin{minipage}[t]{0.49\linewidth}
+Des notes en bas de page peuvent également être insérées depuis un intralien en indice\footnote{Cela produit une note en pied de page.} dans le corps de texte avec l'instruction \mintinline{latex}{\footnote{<note en pied de page>}}.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Des notes en bas de page peuvent également être insérées depuis un intralien en indice\footnote{Cela produit une note en pied de page.} dans le corps de texte avec l'instruction \mintinline{latex}{\footnote{<note en pied de page>}}.
+\end{minted}
+\end{minipage}
+\end{exemple}
+
+
+\subsection{Listes}
+
+\LaTeX{} permet de créer facilement des listes qui présenteront toujours la même mise en page, encore une fois paramétrable à tous les documents d'un coup. 
+
+\begin{exemple}{Liste et énumération}{liste_enumeration}
+Une liste se rédige dans un environnement \texttt{itemize} , qui est explicité selon les instructions suivantes :\\
+
+\begin{minipage}[t]{0.4\linewidth}
+\begin{itemize}
+\item un premier élément de la liste\,;
+\item un deuxième élément de la liste\,;
+\item un troisième élément de la liste.
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\begin{minted}{latex}
+\begin{itemize}
+\item un premier élément de la liste\,;
+\item un deuxième élément de la liste\,;
+\item un troisième élément de la liste.
+\end{itemize}
+\end{minted}
+\end{minipage}\\
+
+Les listes rédigées pour les documents destinés à l'\gls{aocdtf} doivent respecter les normes de typographies françaises. Cela concerne deux consignes, d'une part l'instruction \mintinline{latex}{\,;} en fin de ligne pour les éléments de la liste, sauf pour le dernier élément de la liste et les phrases clôturée par un \texttt{.} .Et d'autre part, l'absence de majuscule pour le premier mot de chaque élément de \emph{tous} les types de liste.\\
+
+Les éléments peuvent également être énumérés avec l'environnement \texttt{enumerate}, ainsi que comporter plusieurs niveaux de listes imbriqués :\\
+
+\begin{minipage}[t]{0.4\linewidth}
+Début du paragraphe incluant une liste
+\begin{enumerate}
+\item un premier élément de la liste\,;
+\item un deuxième élément de la liste\,;
+	\begin{itemize}
+	\item un premier élément du deuxième niveau de la liste\,;
+	\item un deuxième élément du deuxième niveau de la liste.
+	\end{itemize}
+\item un troisième élément de la liste.
+\end{enumerate}
+Suite du texte sans alinéa car la liste est incluse dans le paragraphe.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\begin{minted}{latex}
+Début du paragraphe incluant une liste
+\begin{enumerate}
+\item un premier élément de la liste\,;
+\item un deuxième élément de la liste\,;
+	\begin{itemize}
+	\item un premier élément du deuxième niveau de la liste\,;
+	\item un deuxième élément du deuxième niveau de la liste\,;
+	\end{itemize}
+\item un troisième élément de la liste.
+\end{enumerate}
+Suite du texte sans alinéa car la liste est incluse dans le paragraphe.
+\end{minted}
+\end{minipage}\\
+
+La liste peut également contenir des descriptions d'éléments avec l'environnement \texttt{description} :\\
+
+\begin{minipage}[t]{0.4\linewidth}
+\begin{description}
+\item [premier élément] description du premier élément\,;
+\item [deuxième élément] description du deuxième élément\,;
+\item [troisième élément] description du troisième élément.\\
+\end{description}
+
+Nouveau paragraphe (avec alinéa) suite à l'insertion d'un saut de ligne \mintinline{latex}{\\} \emph{à la fin} du dernier \emph{item} et d'un saut de ligne du code après l'environnement de liste.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.55\linewidth}
+\begin{minted}{latex}
+\begin{description}
+\item [premier élément] description du premier élément\,;
+\item [deuxième élément] description du deuxième élément\,;
+\item [troisième élément] description du troisième élément.\\
+\end{description}
+
+Nouveau paragraphe (avec alinéa) suite à l'insertion d'un saut de ligne \mintinline{latex}{\\} \emph{à la fin} du dernier \emph{item} et d'un saut de ligne du code après l'environnement de liste. 
+\end{minted}
+\end{minipage}\\
+
+Selon le contexte, le terme en gras peut être suivi d'un double point \texttt{:}, qui fera \emph{toujours} partie intégrante du terme entre crochet \mintinline{latex}{[]} .\\
+
+Comme explicité dans l'exemple de description, selon que l'on souhaite entamer un nouveau paragraphe ou non après la liste, il faut clôturer le dernier élément avec la commande \mintinline{latex}{\\} et effectuer un saut de ligne du code après l'environnement de liste. Le comportement de la liste est de fait identique au à l'agencement du texte détaillée en \superref{subsec:paragraphes_saut_ligne} à cette notion près donc que l'instruction du saut de ligne \mintinline{latex}{\\} est incluse dans les environnements de liste et non insérée après ceux-ci comme on pourrait spontanément le faire. Il conviendra d'adapter cette spécificité pour conserver une cohérence dans la rédaction.\\
+
+D'autres formats de listes plus compactes ont été crées pour être intégrées aux tableaux, ils seront abordés dans \superref{chap:tableaux}.
+
+\end{exemple}
+
+\section{Mise en forme}
+
+	Le style du texte sous \LaTeX{} est prédéfini selon sa fonction (texte, titre de section\ldots) mais il existe des instructions pour définir la taille de la fonte, sa forme et sa graisse. La plupart de ces instructions se retrouvent en raccourci à gauche de l'\gls{ide} de Texmaker.\\
+	La terminologie précise indique que la \emph{police} de caractère désigne le dessin général des lettres tandis que la combinaison taille/forme/graisse d'une police sera désignée en tant que \emph{fonte}. L'ensemble de toutes les fontes possibles forme la police.\\ 
+	Les instructions suivantes permettent de paramétrer les \emph{fontes} et sont combinables les unes avec les autres.
+	
+	\subsection{Choix de la police}
+
+	Le choix de la police peut être modifié les instructions suivantes :
+
+		\begin{itemize}
+	\item \textnormal{police du document} : \mintinline{latex}{\textnormal{<caractères dans la police du document>}} \,;
+	\item \textrm{romain} : \mintinline{latex}{\textrm{<caractères en police romaine>}} \,;
+	\item \textsf{sans sérif/linéale} : \mintinline{latex}{\textsf{<caractères sans sérif>}} \,;
+	\item \texttt{machine à écrire} : \mintinline{latex}{\texttt{<caractères de machine à écrire>}} .\\
+		\end{itemize}	
+
+	En limitant le choix de police, on s'assure ainsi de conserver une unité graphique au sein de tous les documents produits pour l'\gls{aocdtf}. Le changement de jeu de polices de caractères peut être effectué d'une seule mise à jour si besoin est.
+	
+	\subsection{Taille de la police}
+	
+	La taille de la police peut être modifiée avec un jeu d'instructions détaillées dans la liste ci-dessous, de la plus petite à la plus grande :
+	
+		\begin{itemize}
+	\item \begin{tiny} texte \end{tiny} : \mintinline{latex}{\begin{tiny} texte \end{tiny}} \,;
+	\item \begin{scriptsize} texte \end{scriptsize} : \mintinline{latex}{\begin{scriptsize} texte \end{scriptsize}} \,;
+	\item \begin{footnotesize} texte \end{footnotesize} : \mintinline{latex}{\begin{footnotesize} texte \end{footnotesize}} \,;
+	\item \begin{small} texte \end{small} : \mintinline{latex}{\begin{small} texte \end{small}} \,;
+	\item texte : \mintinline{latex}{\begin{normal} texte \end{normal}} \,;
+	\item \begin{large} texte \end{large} : \mintinline{latex}{\begin{large} texte \end{large}} \,;
+	\item \begin{Large} texte \end{Large} : \mintinline{latex}{\begin{Large} texte \end{Large}} \,;
+	\item \begin{LARGE} texte \end{LARGE} : \mintinline{latex}{\begin{LARGE} texte \end{LARGE}} \,;
+	\item \begin{huge} texte \end{huge} : \mintinline{latex}{\begin{huge} texte \end{huge}} \,;
+	\item \begin{Huge} texte \end{Huge} : \mintinline{latex}{\begin{Huge} texte \end{Huge}} \,;
+	\item \begin{HUGE} texte \end{HUGE} : \mintinline{latex}{\begin{HUGE} texte \end{HUGE}} .\\
+		\end{itemize}	
+		
+En attribuant des tailles \emph{relatives}, \LaTeX{} garde la main-mise sur un choix défini de tailles et conserve ainsi l'unité graphique au sein de tous les documents produits pour l'\gls{aocdtf}.  Ces tailles peuvent être modifiées d'une seule mise à jour si besoin est.
+
+	\subsection{Forme de la police}
+	
+	La forme de la police peut être modifiée selon les instructions suivantes :
+		
+		\begin{itemize}
+	\item droit : \mintinline{latex}{\textup{<caractères droits>}} \,;
+	\item \textit{italique} : \mintinline{latex}{\textit{<caractères en italique>}} \,;
+	\item \textsl{oblique} : : \mintinline{latex}{\textsl{<caractères obliques>}} \,;
+	\item \textsc{petite capitale} : \mintinline{latex}{\textsc{<caractères en petites capitales>}} \,;
+	\item \bsc{nom propre} :  \mintinline{latex}{\textmd{<caractères pour noms propres>}} \,;
+	\item \emph{emphase} : \mintinline{latex}{\emph{<caractères en emphase>}} \,;
+	\item \underline{souligné} : \mintinline{latex}{\underline{<caractères soulignés>}} \,;
+	\item \textsuperscript{en exposant} : \mintinline{latex}{\textsuperscript{<caractères en exposant>}} \,;
+	\item \textsubscript{en indice} : \mintinline{latex}{\textsubscript{<caractères en indice>}} .\\
+		\end{itemize}	
+		
+Le texte en emphase aura généralement le même effet que le texte italique, l'instruction \mintinline{latex}{\emph{}} mettra la police des caractères contenus dans l'instruction dans la forme opposée du texte les englobant. Ainsi, un texte en italique comprenant une portion de texte dans l'instruction \mintinline{latex}{\emph{}} verra cette portion en forme droite. Si l'on change ce texte pour du droit, la forme de la portion de texte s'inversera pour de l'italique. On préférera donc cette instruction relative à l'instruction absolue \mintinline{latex}{\textit{<caractères en italique>}} pour mettre en évidence un mot dans un texte.\\
+
+	\subsection{Graisse de la police}
+	
+	La graisse de la police peut être modifiée selon les instructions suivantes :
+	
+			\begin{itemize}
+	\item \textbf{gras} : \mintinline{latex}{\textbf{<caractères gras>}} 
+	\item \textmd{moyennement gras} : \mintinline{latex}{\textmd{<caractères moyennement gras>}} .
+		\end{itemize}	
+		
+	\subsection{Utilisation conventionnelle}
+
+Les fontes permettent de différencier des éléments spécifiques dans le texte tel que des noms propres, des dates\ldots Cet \Href{http://www.ipgp.fr/~moguilny/LaTeX/typo.pdf}{aide-mémoire} -- déjà référencé ci-dessus -- indique clairement les différentes fontes à utiliser selon l'usage en français, la liste est longue et ne sera pas détaillée dans le présent texte.\\
+	
+	\subsubsection{Abréviations et macro-commandes\label{subsubsec:abreviations_macro-commandes}}
+
+Pour uniformiser certaines notations normalisées, le package AOCDTF contient quelques nouvelles macro-commandes listées ci-dessous :
+\begin{multicols}{2}
+\begin{itemize}
+\item \annee{2000} : \mintinline{latex}{\annee{2000}} \,;
+\item \annee{-50} : \mintinline{latex}{\annee{-50}} \,;
+\item \apjc : \mintinline{latex}{\apjc} \,;
+\item \avjc : \mintinline{latex}{\avjc} \,;
+\item \docteur{} : \mintinline{latex}{\docteur{}} \,;
+\item \docteurs{} : \mintinline{latex}{\docteurs{}} \,;
+\item \EUR{} : \mintinline{latex}{\EUR{}} \,;
+\item \ex{} : \mintinline{latex}{\ex{}} \,;
+\item \madame{} : \mintinline{latex}{\madame{}} \,;
+\item \mademoiselle{} : \mintinline{latex}{\mademoiselle{}} \,;
+\item \mademoiselles{} : \mintinline{latex}{\mademoiselles{}} \,;
+\item \maitre{} : \mintinline{latex}{\maitre{}} \,;
+\item \maitres{} : \mintinline{latex}{\maitres{}} \,;
+\item \mesdames{} : \mintinline{latex}{\mesdames{}} \,;
+\item \messieurs{} : \mintinline{latex}{\messieurs{}} \,;
+\item \millenaire{1} : \mintinline{latex}{\millenaire{1}} \,;
+\item \millenaires{1}{2} : \mintinline{latex}{\millenaires{1}{2}} \,;
+\item \monsieur{} : \mintinline{latex}{\monsieur{}} \,;
+\item \numero{} : \mintinline{latex}{\numero{}} \,;
+\item \numeros{} : \mintinline{latex}{\numeros{}} \,;
+\item \parexemple{} : \mintinline{latex}{\parexemple{}} \,;
+\item \professeur{} : \mintinline{latex}{\professeur{}} \,;
+\item \professeurs{} : \mintinline{latex}{\professeurs{}} \,;
+\item \saint{} : \mintinline{latex}{\saint{}} \,;
+\item \saints{} : \mintinline{latex}{\saints{}} \,;
+\item \sainte{} : \mintinline{latex}{\sainte{}} \,;
+\item \saintes{} : \mintinline{latex}{\saintes{}} \,;
+\item \siecle{1} : \mintinline{latex}{\siecle{1}} \,;
+\item \siecles{1}{2} : \mintinline{latex}{\siecles{1}{2}} .\\
+\end{itemize}
+\end{multicols}
+
+D'autres abréviations seront encadrées par des macro-commandes au fil des productions, cela permet de conserver une cohérence de rédaction sur l'ensemble des documents d'une part et d'autre part de pouvoir modifier d'une seule mise à jour toutes les abréviations encadrées par des macro-commandes.\\
+Il est donc impératif de privilégier ces nouvelles instructions plutôt que de rédiger \og en brut \fg{} ces abréviations. Pour les spécificités française,  je renvoie encore une fois à cet \Href{http://www.ipgp.fr/~moguilny/LaTeX/typo.pdf}{aide-mémoire}.\\
+
+D'autres instructions pour normaliser des abréviations sont déjà implémentées dans le code \texttt{.tex} et ont été abordées en \superref{subsec:ponctuation_symboles_speciaux_espaces} mais comme il s'agit d'une source de fautes typographiques importante, j'en fais l'inventaire ici :
+
+\begin{multicols}{2}
+\begin{itemize}
+\item \oe{} : \mintinline{latex}{\oe{}} \,;
+\item \OE{} : \mintinline{latex}{\OE{}} \,;
+\item \ae{} : \mintinline{latex}{\ae{}} \,;
+\item \AE{} : \mintinline{latex}{\AE{}} \,;
+\item 1\ier{} : \mintinline{latex}{1\ier{}} \,;
+\item \no{} : \mintinline{latex}{\no{}} \,;
+\item \No{} : \mintinline{latex}{\No{}} \,;
+\item 2\ieme{}: \mintinline{latex}{2\ieme{}} \,;
+\item 1\iers{} : \mintinline{latex}{1\iers{}} \,;
+\item 1\iere{} : \mintinline{latex}{1\iere{}} \,;
+\item 1\ieres{} : \mintinline{latex}{1\ieres{}} \,;
+\item \primo{} : \mintinline{latex}{\primo{}} \,;
+\item \secundo{} : \mintinline{latex}{\secundo{}} \,;
+\item \tertio{} : \mintinline{latex}{\tertio{}} \,;
+\item \quarto{} : \mintinline{latex}{\quarto{}} .
+\end{itemize}
+\end{multicols}
+
+	\subsubsection{Citation}
+
+Comme pour certaines abréviations, les citations font l'objet d'un usage conventionné et leur mise en forme sont déterminées dans le package AOCDTF afin -- encore et toujours -- d'uniformiser toutes les citations contenues dans les documents rédigés avec ce package.
+
+\begin{exemple}{Citation}{citation}
+Selon les normes en vigueur, une citation de moins de quarante mots s'intègre dans la phrase. Elle se rédige dans l'instruction \mintinline{latex}{\say{<citation>}}, selon l'exemple suivant :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Un illustre individu a dit un jour : \say{une citation de moins de quarante mots qui s'intègre dans la phrase}, alors que le texte initial reprend après.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Un illustre individu a dit un jour : \say{une citation de moins de quarante mots qui s'intègre dans la phrase}, alors que le texte initial reprend après.
+\end{minted}
+\end{minipage}\\
+
+Pour les citation de plus de quarante mots, elle se sépare du corps de texte pour former un bloc. Elle se rédige dans l'instruction \texttt{displayquote} , selon l'exemple suivant :\\
+
+\begin{minipage}[t]{0.49\linewidth}
+Un illustre individu a dit un jour : 
+\begin{displayquote}
+\lipsum[75]
+\end{displayquote}
+
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Un illustre individu a dit un jour : 
+\begin{displayquote}
+Pellentesque interdum sapien sed nulla. Proin tincidunt. Ali- quam volutpat est vel massa. Sed dolor lacus, imperdiet non, ornare non, commodo eu, neque. Integer pretium semper justo. Proin risus. Nullam id quam. Nam neque. Duis vitae wisi ullamcorper diam congue ultricies. Quisque ligula. Mauris vehicula.
+\end{displayquote}
+\end{minted}
+\end{minipage}\\
+
+Il conviendra également de citer les sources de la citation à sa fin, ainsi que de la référencer dans la bibliographie du document. Cela sera abordé dans la \superref{sec:bibliographie}. 
+
+\end{exemple}
+
+\end{document}

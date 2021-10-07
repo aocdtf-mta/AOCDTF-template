@@ -1,30 +1,34 @@
-%--------------------------------------
-%CANEVAS
-%--------------------------------------
-
-%utiliser les environnement \begin{comment} \end{comment} pour mettre en commentaire le préambule une fois la programmation appelée dans le document maître (!ne pas oublier de mettre en commentaire \end{document}!)
-
-\begin{comment}
-
 \documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
 
 \usepackage{AOCDTF}
 
-\input{marqueur_chapitre_couleur} %à personnaliser selon le nombre de chapitre dans le cours
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
 
 %--------------------------------------
 %corps du document
 %--------------------------------------
 
 \begin{document} %corps du document
-	\openleft %début de chapitre à gauche
-
-\end{comment}
 
 	\chapter{Préface}
-	\lipsum[1-7]
 
-zizi\index{zizi}
+Ce \emph{template} contient un recueil neutre des programmations \emph{types} dont les programmeurs devront fortement s'inspirer pour aboutir à des documents unifiés graphiquement et à la présentation irréprochable.\\
 
-%\end{document}
+Celui-ci se veut exhaustif quant aux nombreux cas de figures auxquels les programmeurs feront face, comme l'insertion de figures avec toutes options que cela comporte, ou encore le dessin sous \LaTeX{}... La liste est longue et je renvoie vers la table des matière pour avoir une vue d'ensemble face aux différentes programmations types. La liste des exemples donne également une navigation rapide parmi les différents exemples de codes.\\ 
+Il s'agit la d'un outil permettant de faciliter grandement la programmation de nouveaux documents, à conserver en toile de fond lors de la prise en main de \LaTeX{}\ldots\\
 
+L'outil \LaTeX{} étant bien conçu (et bien amélioré par le package AOCDTF), toutes les références listées ainsi que toutes les divisions ou encore l'entièreté de la table des matière sont référencées -- bien que ça ne soit mis en évidence par des couleurs pour éviter un arc-en-ciel illisible -- et il suffit de cliquer sur ces éléments pour être renvoyé directement sur leur localisation dans le document. Il s'agit la d'une des nombreuses valeurs ajoutées de \LaTeX{}.
+
+
+
+\end{document}

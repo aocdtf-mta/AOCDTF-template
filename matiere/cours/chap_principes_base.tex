@@ -1,0 +1,257 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{acronym_entry}
+\input{glossary_entry}
+
+\typemedia{screen} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+	\chapter{Principes de base de la rédaction à l'aide de \LaTeX{}}
+	\ChapFrame %appel du marqueur de chapitre	
+
+	\section{Valeurs ajoutées de \LaTeX{}}\label{sec:valeurs_ajoutees_latex}
+		
+	\LaTeX{} se charge de structurer les textes rédigés et des éléments dits \emph{flottants} (image, dessins...), qu'on désignera comme étant le \emph{fond} du document. Tous les processus permettant de modifier le style du texte (gras, italique, police...), sa disposition (doubles colonnes, alignement à droite...) ou encore les informations récurrentes sont exécutés sous forme d'instructions incluses dans le langage de programmation \TeX{}.\\
+	
+	La première valeur ajoutée de \LaTeX{} est sa capacité à gérer la \emph{forme} du document selon les normes en vigueur et sa classe, et de pouvoir le laisser gérer cet aspect-là, souvent chronophage, durant la rédaction.\\
+	
+	Une autre valeur ajoutée de \LaTeX{} est d'automatiser certains processus de rédaction par la création de nouvelles instructions (ou l'utilisation d'instructions existantes). Le package AOCDTF comporte ainsi une multitude de \emph{macro-commandes} aux buts aussi variés qu'utiles, je vous conseille d'aller consulter le \Href{https://github.com/aocdtf-mta/AOCDTF-package/blob/main/AOCDTF.sty}{code} du package AOCDTF pour les décrypter. Toutes les nouvelles macro-commandes (ainsi que les instructions existantes nécessaires à la bonne rédaction des documents) seront détaillées dans ce recueil.\\
+	Sachant que chaque caractéristique de tout ce qui constitue le \emph{fond} du document est \emph{à priori} encadrée par une instruction précise, chacune d'entre elles peut être modifiée sur tous les documents rédigés en une seule mise à jour. Il s'agit dès lors d'encadrer un maximum de caractéristiques du document qui peuvent l'être par des instructions. Et le faire avant la production de cours, afin d'éviter de devoir rajouter de nouvelles instructions après coup, mais aussi dans un but d'uniformisation des documents produits.\\
+	
+	Cela peut être illustré par deux exemples (un \emph{exemple} étant déjà caractérisé par un lot d'instructions, cela est détaillé dans l'\superref{ex:environnement_exemple}) :
+	
+\begin{exemple}{Notation des siècles}{}
+Cela sera abordé dans la \superref{subsubsec:abreviations_macro-commandes}, mais afin d'automatiser la rédaction de cas particuliers de la langue française comme la notation des siècles (et afin que chacun n'en fasse pas qu'à sa manière), le package AOCDTF contient une nouvelle macro-commande définie comme telle :
+\begin{minted}{latex}
+\newcommand*{\siecle}[1]{
+\ifnum#1=1
+\bsc{\romannumeral #1}\textsuperscript{er}~siècle
+\else
+\bsc{\romannumeral #1}\textsuperscript{e}~siècle
+\fi}
+\end{minted}
+
+\begin{minipage}[t]{0.49\linewidth}
+Lorsqu'on appelle l'instruction \mintinline{latex}{\siecle{1}}, cela produira \siecle{1}. Si l'on appelle l'instruction \mintinline{latex}{\siecle{2}}, cela produira \siecle{2}. Je vous laisse décrypter la définition de cette instruction ci-dessus pour essayer de comprendre son fonctionnement.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.49\linewidth}
+\begin{minted}{latex}
+Lorsqu'on appelle l'instruction \mintinline{latex}{\siecle{1}}, cela produira \siecle{1}. Si l'on appelle l'instruction \mintinline{latex}{\siecle{2}}, cela produira \siecle{2}. Je vous laisse décrypter la définition de cette instruction ci-dessus pour essayer de comprendre son fonctionnement.
+\end{minted}
+\end{minipage}
+\end{exemple}
+	
+\begin{exemple}{Style du chapitre}{style_chapitre}
+La personnalisation du style de chapitre a demandé une quinzaine de jour. Son bloc de code se situe en fin du \Href{https://github.com/aocdtf-mta/AOCDTF-package/blob/main/AOCDTF.sty}{package AOCDTF}, sous le titre \texttt{\%Mise en page du document} et le sous-titre \texttt{\%Chapitre}, les plus téméraires peuvent donc essayer de le décrypter.\\
+Résultat, l'instruction redéfinie \mintinline{latex}{\chapter{Visualition du style d'un chapitre}} donnera donc :
+\chapter*{Visualition du style d'un chapitre}
+Le style du titre de chapitre pourra être modifié ultérieurement d'un simple mise à jour pour \emph{tous} les documents rédigés avec le package AOCDTF car tout ce qui caractérise ce style est défini dans ce package, qui constitue donc le tronc commun de tous ces documents. 
+
+\end{exemple}
+
+Dans les principes de base, une dernière valeur ajoutée de \LaTeX{} -- il y en aura d'autres sur une multitude de sujets -- se concrétise dans la \emph{relativité} et l'\emph{exactitude} des unités de mesure et de la disposition des éléments sur la page. Les unités sont multiples : 
+\begin{description}
+\item[millimètre :] \texttt{mm} \,;
+\item[centimètre :] \texttt{cm} \,;
+\item[point anglo-saxon] \texttt{pt} \,;
+\item[point Didot] \texttt{dd} \,;
+\item[hauteur de la lettre x :] \texttt{ex} \,;
+\item[cadratin (largeur de la lettre M) :] \texttt{em}.
+\end{description}
+
+Les unités de mesures énumérées ci-dessus sont soit absolues, soit relatives. Cela permet aux éléments définis par ces mesures d'être dimensionnés très précisément et de se restructurer en cas de changement de police ou de taille d'écriture pour conserver une même échelle.\\ 
+L'\emph{exactitude} de ces mesures permet au rédacteur de disposer d'une grande précision dans l'agencement des pages ou encore lors du codage d'un schéma en instructions \LaTeX{} (cela sera abordé dans le \superref{}).\\
+L'autre atout est de pouvoir indiquer des valeurs \emph{relatives} aux espaces de rédaction paramétrées en préambules ou en rédaction. Cela est explicité dans l'\superref{ex:minipage}.\\
+Il convient toutefois de prêter attention à l'écriture des nombres, qui se fait au format américain. Le séparateur décimal sera donc \texttt{.} et non \texttt{,} , sous peine d'erreur de compilation.\\
+	
+	\section{Paramètre du code \texttt{master.tex}}
+
+	Tous les paramètres nécessaires pour bien démarrer la rédaction d'un document sont détaillés à cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Décomposition-du-code-master.tex}{page} du wiki.\\
+		
+	\section{Division du document}
+	
+	Avant de rédiger du texte, il convient de structurer le document en plusieurs divisions. Chaque style de chaque titre de division est défini dans le package AOCDTF, et pourra donc être modifié -- après consultation -- d'une seule intervention de mise à jour du code. \\ 
+	Selon les instructions suivantes, elles seront automatiquement numérotées dans l'ordre ou elles sont appelées dans le code :
+	\begin{enumerate}
+	\item partie : \mintinline{latex}{\part{<titre de la partie>}} (à appeler dans le code \texttt{master.tex}) \,;
+	\item chapitre : \mintinline{latex}{\chapter{<titre du chapitre>}} (à rédiger à partir d'un \texttt{copier/coller} du code \texttt{MWE.tex})\,;
+	\item section : \mintinline{latex}{\section{<titre de la section>}}\,;
+	\item sous-section : \mintinline{latex}{\chapter{<titre de la sous-section>}}\,;
+	\item sous-sous-section : \mintinline{latex}{\chapter{<titre de la sous-sous-section>}}\,;
+	\item paragraphe : \mintinline{latex}{\paragraph{<titre du paragraphe>}}.\\
+	\end{enumerate}		
+
+Les mêmes instructions auxquelles sont rajoutées une astérisque produiront le même résultat à la différence que ces divisions-là ne seront pas numérotées ni référencées dans la table des matières, selon l'instruction-type suivante \mintinline{latex}{\division*{<titre de la division non référencée>}} .\\
+Il convient également d'indiquer si le chapitre que l'on rédige présente des signets et une pagination à la couleur variable selon le chapitre avec la macro-commande \mintinline{latex}{\ChapFrame} .
+
+
+	\section{Agencement du document}
+		
+		\subsection{Saut de page}
+		
+		\`A la compilation du code, il se peut que les flottants et autres éléments occupant l'espace contraignent le contenu textuel à se répartir de façon peu harmonieuse. Pour y remédier -- à la toute fin de la rédaction -- il existe deux instructions permettant de \og jouer \fg{} avec cette répartition en forçant les sauts de pages :
+		
+	\begin{itemize}
+	\item saut de page sans répartition du contenu sur la page précédente : \mintinline{latex}{\newpage}\,;
+	\item saut de page avec répartition du contenu sur la page précédente : \mintinline{latex}{\pagebreak}.
+	\end{itemize}
+
+		\subsection{En-tête, pied de page}
+
+Par souci de légèreté visuelle, les documents à destination de l'\gls{aocdtf} ne comportent pas d'en-tête et le pied de page comprend le logo sans texte de l'\gls{aocdtf} ainsi que le numéro de page. Celui-ci voit son format changer selon l'emplacement dans le document (frontmatter, mainmatter et backmatter) et si l'on souhaite indiquer le marqueur de chapitre, la pagination sera incluse dans une boite de la même couleur que celle du marqueur de chapitre (seulement dans le mainmatter).
+
+		\subsection{Minipage}
+
+Une page peut contenir des \og pages \fg{} additionnelles à l'intérieur de la page initiale nommées \og minipage \fg{}, qui sont des espaces qui se comporteront comme une \og page dans la page \fg{}. Les \og minipages \fg{} peuvent se montrer utiles pour aligner deux éléments sur un même axe horizontal, comme une figure avec une liste descriptive ou encore deux tableaux\ldots
+
+\begin{exemple}{Minipage}{minipage}
+Une minipage est appelée avec l'environnement \mintinline{latex}{\begin{minipage}[<position>]{<largueur>}}. Les instructions suivantes produiront donc deux \og minipages \fg{}, qui s'aligneront selon leurs paramètres d'alignement. Celle de gauche fera \SI{8}{\centi\meter} et va aligner le bas de son environnement -- variable \mintinline{latex}{[b]} -- avec le haut de l'environnement  -- variable \mintinline{latex}{[t]} -- de celle de droite, qui fera 30\% de la largeur de l'espace de rédaction. L'instruction \mintinline{latex}{\hfill} remplira l'espace horizontal disponible entre les deux \og minipages \fg{} :
+\begin{minted}{latex}
+\begin{minipage}[b]{8cm}
+\lipsum[66]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.30\linewidth}
+\lipsum[75]
+\end{minipage}
+\end{minted}
+Cela produira :\\
+
+\begin{minipage}[b]{8cm}
+\lipsum[66]
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.30\linewidth}
+\lipsum[75]
+\end{minipage}
+
+\end{exemple}
+
+L'alignement vertical de cet environnement sur la page est paramétré selon la variable définissant l'argument facultatif \mintinline{latex}{[<position>]} :
+\begin{description}
+\item[haut de la page (top) :] \texttt{t} \,;
+\item[milieu de la page (middle) :] \texttt{m} \,;
+\item[bas de la page (bottom) :] \texttt{b} \,;
+\item[à l'emplacement défini par le code (here) :] \texttt{h} .\\
+\end{description}
+
+Ces variables sont facultatives pour une minipage, qui s'intégrera par défaut dans le texte à l'emplacement ou l'environnement sera appelé dans le code correspondant.\\
+
+Il se paramètre également sur la largeur de la minipage selon la variable définissant l'argument obligatoire \mintinline{latex}{{<largueur>}} :
+\begin{description}
+\item[largeur relative à la largeur du texte :] \mintinline{latex}{<x\linewidth>}\,;
+\item[largeur relative à la largeur de rédaction :] \mintinline{latex}{<x\textwidth>}\,;
+\item[largeur absolue :] \texttt{<xcm>} (ou autre unité de mesure propre à \LaTeX{}).
+\end{description}
+
+			\subsection{Espace de rédaction}
+
+Dans le package AOCDTF sont paramétrés les différents espaces de rédaction. Les marges horizontales et verticales sont toutes de \SI{20}{\milli\meter} à l'exception de celle qui n'est pas du côté de la reliure, mesurant quant à elle \SI{25}{\milli\meter}. L'espace de rédaction mesure donc \SI{165}{\milli\meter}. Selon les instructions entrées dans le code \texttt{master.tex} sur le type de média, les marges verticales peuvent soit :
+\begin{itemize}
+\item être décalées entre les pages paires et impaires si le paramétrage est prévu pour un document format papier, afin de pouvoir imprimer et relier correctement le document rédigé.
+\item ne pas être décalées entre les pages paires et impaires si le paramétrage est prévu pour un document format écran.
+\end{itemize}
+
+			\subsection{Flottants\label{subsec:flottants}}
+
+Les tableaux et les figures peuvent être traités comme des élément \emph{flottants}, c'est-a-dire qu'il sont considérés hors du corps de texte et voient leurs emplacements non précisément défini par le rédacteur. Celui-ci va définir les paramètres d'emplacement généraux et c'est \LaTeX{} qui se chargera du placement automatique des éléments flottants à la compilation. Cela permet d'éluder les problèmes d'insertions d'éléments qui mettent en désordre l'intégralité d'un document.
+C'est également aux éléments flottants que l'on associe des légendes référencées et des listes les compilant dans le \emph{frontmatter}.\\
+
+Pour un tableau ou une figure que l'on souhaite définir en tant qu'élément \emph{flottant}, on fait appel aux environnements \mintinline{latex}{\begin{table}[<emplacement>]} et \mintinline{latex}{\begin{figure}[<emplacement>]}. L'argument \mintinline{latex}{[<emplacement>]} donne des indications concernant le placement sur page selon les variables suivantes :
+\begin{description}
+\item[haut de la page (top) :] \texttt{t} \,;
+\item[milieu de la page (middle) :] \texttt{m} \,;
+\item[bas de la page (bottom) :] \texttt{b}\,;
+\item[sur une page dédiée (page) :] \texttt{p}\,;
+\item[à l'emplacement défini par le code (here) :] \texttt{h}\,;
+\item[force l'emplacement défini par le code (HERE) :] \texttt{H}.
+\end{description}
+Horizontalement, les éléments flottants peuvent être alignés avec les instructions suivantes insérées en début des environnements \texttt{table} ou \texttt{figure} :
+\begin{description}
+\item[aligné à gauche :] \mintinline{latex}{\raggedright} \,;
+\item[centré :] \mintinline{latex}{\centering} \,;
+\item[aligné à droite :] \mintinline{latex}{\raggedleft} .\\
+\end{description}
+
+La légende de l'élément flottant est insérée dans ces environnements avec l'instruction \mintinline{latex}{\caption{<légende de l'élément flottant>}}, qui sera toujours située en dessous de l'élément flottant. La version étoilée \mintinline{latex}{\caption*{<légende de l'élément flottant non référencé>}} supprime la numérotation et le référencement de cet élément flottant.\\
+Cette légende sera référencée dans une liste après la table des matière si le rédacteur le souhaite en activant les instructions situées dans le code \texttt{master.tex} :
+\begin{description}
+\item [liste des tableaux :] \mintinline{latex}{{\hypersetup{linkcolor=black}\listoftables*}} \,;
+\item [liste des figures :] \mintinline{latex}{{\hypersetup{linkcolor=black}\listoffigures*}} .\\
+\end{description}
+
+Il s'agit donc d'éléments \emph{indépendants} qui ne sont donc pas prévus être insérés dans d'autres environnements (exemple, minipage\ldots) sous peine probable d'erreur de compilation. Cela dit, s'il est nécessaire d'insérer un tableau ou figure avec une légende dans un environnement ou une minipage, il existe deux solutions selon les erreurs de compilation :
+\begin{description}
+\item [sans environnement flottant :] utilisation l'instruction \mintinline{latex}{\captionof{<type d'élément flottant>}{<légende de l'élément flottant>}} \,;
+\item [avec environnement flottant :] mention la variable \texttt{H} dans l'argument \mintinline{latex}{[<emplacement>]} .
+\end{description}
+
+
+	\section{Compilation du document}
+
+La compilation du code \texttt{master.tex} ou des sous-programmations peuvent nécessiter plusieurs essais pour que les différents éléments se positionnent correctement sur leur emplacements spécifiés, ou encore pour que les référencements (table des matières, bibliographie\ldots) soient correctement exécutés.\\ 
+Pour la compilation finale, il est nécessaire d'effectuer une \texttt{Compilation rapide} plutôt que de compiler à l'aide du moteur \texttt{PDFLaTeX}. Sur le logiciel Texmaker, la démarche pour paramétrer cette \texttt{Compilation rapide} est détaillée sur cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Paramètres,-trucs-et-astuces-sur-Texmaker}{page} du wiki.\\
+
+	\subsection{Sous-programmation\label{subsec:sous-programmation}}
+
+Lorsqu'on rédige un document conséquent, comme abordé sur cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Structure-du-code-master.tex}{page} du wiki, on fait appel à une architecture de code de type \emph{master/slave}. Cette architecture s'articule autour de la \emph{subdivision} du code et l'insertion de \emph{sous-programmations} au format \texttt{.tex} dans des programmations parentes. Pour alléger le code \texttt{master.tex}, les chapitres sont donc des sous-programmations que l'on insère dans le code \texttt{master.tex} à l'aide de l'instruction \mintinline{latex}{\include{<chemin d'accès/objet_mot-clé_mot-clé_plus_précis>}} dans le but de aérer ce dernier.\\
+Les sous-programmations peuvent également être des tableaux ou des figures aux nombres de lignes de code trop importants pour être insérées directement dans le corps de texte. Elles sont injectées dans la programmation parente -- généralement un chapitre -- avec l'instruction \mintinline{latex}{\input{<chemin d'accès/objet_mot-clé_mot-clé_plus_précis>}} , toujours dans le but d'aérer les différents codes et de faciliter la navigation entre ceux-ci durant la programmation.\\
+
+Ces commandes impliquent d'identifier les chemin d'accès des sous-programmations, \emph{relatifs} aux programmations parentes. Pour faciliter leurs usages, il faut \emph{appeler ces instructions avec les outils Texmaker} depuis \mintinline{latex}{Latex > \input{file}}. Procéder de la sorte permet au rédacteur de sélectionner le fichier souhaité depuis un explorateur de fichier et cela fera apparaitre le chemin d'accès aux fichiers de code \texttt{code.tex}.\\
+Pour information, un chemin d'accès \emph{absolu} indique l'emplacement exact du fichier dans l'ordinateur. Il est possible d'utiliser ce format de chemin d'accès mais il créerai une erreur de compilation en cas de collaboration sur un même fichier de code. Le chemin d'accès \emph{relatif} au code parent, tant que l'on fait appel à des fichiers situés dans le dépôt, ne produira pas d'erreur de compilation car tous les collaborateurs sont censés utiliser la même arborescence concernant les fichiers du dépôt.\\
+
+Comme explicité à cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Architecture-du-template}{page} du wiki, ces sous-programmations doivent donc présenter des noms de fichiers de codes qui suivent une nomenclature bien précise, avec leur \emph{objet} à préciser selon la liste suivante :
+
+	\begin{description}
+		\item[chapitre :] \texttt{chap\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[annexe :] \texttt{ann\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[section (rare) :] \texttt{sec\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[tableau :] \texttt{tab\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[figure :] \texttt{fig\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} \,;
+        	\item[équation :] \texttt{eq\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)}\,;
+        	\item[graphique :] \texttt{graph\_mot-clé-général\_mot-clé-précis(\_mot-clé-plus-précis)} .\\
+	\end{description}
+	
+	Pour rédiger une sous-programmation, il suffit de suivre les instructions à cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Structure-et-usage-du-code-MWE.tex}{page} du wiki. Il convient donc d'initier une nouvelle sous-programmation en copiant le code \texttt{MWE.tex}, commande Texmaker que l'on retrouve dans \texttt{Fichier > Nouveau en copiant à partir d'un document existant}. L'optimisation du code contenu dans le package AOCDTF automatise complètement la compilation du code d'une sous-programmation, qu'elle soit compilée seule ou incluse dans une programmation parente.\\
+	En cas de rédaction d'un nouveau chapitre, il faut juste ne pas oublier d'indiquer l'instruction \mintinline{latex}{\ChapFrame} juste après l'instruction \mintinline{latex}{\chapter{Titre du chapitre}} si l'on souhaite voir apparaitre les marqueurs sur ce chapitre.
+
+	\subsection{Usage des documents}
+	
+Comme abordé dans cette \Href{https://github.com/aocdtf-mta/AOCDTF-template/wiki/Décomposition-du-code-master.tex}{page} du wiki, il est possible de conditionner la compilation du document selon l'usage qu'il en sera fait avec l'instruction \mintinline{latex}{\media{type_media}} appelée en préambule. Le type de média sera donc \texttt{screen} ou \texttt{paper}. Ce paramétrage réarrange le document selon qu'il sera diffusé sur papier ou lu à l'écran (ré-agencement des pages, liens en noir\ldots) mais pas que.\\
+ Durant toutes la rédaction du code, le rédacteur sera amené à inclure des éléments multimédias (vues 3D, vidéo\ldots), il conviendra donc de doubler chaque élément \emph{interactif} de sa version papier et inversement.\\
+ Cela est réalisé à l'aide de la macro-commande conditionnelle \mintinline{latex}{\media{\thetypemedia}{<code pour usage papier>}{<code pour un usage interactif>}}. Les codes rédigés dans cette instruction s'exécuteront donc selon les variables \texttt{screen} ou \texttt{paper} renseignées dans l'argument \mintinline{latex}{{<type du média>}} en début du code \texttt{master.tex}, il s'agit d'un \emph{ou} exclusif, les deux codes ne pourront jamais s'exécuter de concert.
+ 
+\begin{exemple}{Type de média}{}
+L'exemple suivant permettra, selon les paramètres \texttt{screen} ou \texttt{paper} renseignés à la compilation de ce document, d'exécuter l'un ou l'autre code :\\
+
+\begin{minipage}[t]{0.45\linewidth}
+\media{\thetypemedia}
+{Code destiné à un usage papier comme par exemple une capture d'écran tirée d'une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code \texttt{master.tex} .}
+{Code destiné à un usage interactif comme par exemple une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code \texttt{master.tex} .}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.5\linewidth}
+\begin{minted}{latex}
+\media{\thetypemedia}
+{Code destiné à un usage papier comme par exemple une capture d'écran tirée d'une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code  \texttt{master.tex} .}
+{Code destiné à un usage interactif comme par exemple une vidéo qui s'afficherait dans le document si l'instruction \mintinline{latex}{\media{screen}} était appelée dans le code \texttt{master.tex} .}
+\end{minted}
+\end{minipage}
+\end{exemple}
+
+\end{document}

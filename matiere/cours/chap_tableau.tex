@@ -1,0 +1,363 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+\input{glossary_entry}
+\input{acronym_entry}
+
+\typemedia{paper} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+
+\chapter{Tableaux\label{chap:tableaux}}
+	\ChapFrame %appel du marqueur de chapitre
+	
+	\section{Introduction}
+
+Avec \LaTeX{}, on peut produire des tableaux respectant une charte graphique favorisant la clarté des informations et contenant des fonctions d'automatisation et d'agencement permettant un rendu final irréprochable et \og adaptatif \fg{}.\\
+De prime abord, le principe de rédaction des tableaux en code peut paraitre fastidieux et c'est pourquoi des macro-commandes ont été définies pour faciliter leur programmation. Néanmoins, une fois les instructions prise en main, il sera compliqué d'envisager rédiger des tableaux autrement que de la sorte.
+
+	\section{Préceptes typographiques}
+
+Quand il s'agit de rédiger des tableaux, il existe des règles de \og bonne pratique \fg{} que l'on retrouve appliquées dans la totalité des ouvrages comportant des tableaux de qualité :
+\begin{itemize}
+\item il ne doit y avoir \emph{aucune} séparation verticale dans les tableaux, remplacée par des espaces.
+\item les blocs de texte d'une colonne ont une disposition \emph{justifiée}.
+\item les éléments textuels seuls sont centrés horizontalement et verticalement (ou alignés verticalement en haut s'ils sont à côté d'une colonne justifiée).
+\item les nombres et grandeurs sont horizontalement et verticalement centrés (ou verticalement alignés en haut s'ils sont à côté d'une colonne justifiée).
+\item les devises sont horizontalement alignées à droite et verticalement centrées (ou verticalement alignées en haut si elles sont à côté d'une colonne justifiée).
+\item les unités sont insérées entre parenthèses dans le titre de la colonne.
+\item les titres de colonnes sont en gras et centrés horizontalement et verticalement.
+\item les titres de colonnes sont \emph{toujours} au singulier.
+\end{itemize}
+
+\begin{exemple}{Tableau simple}{tableau_simple}
+Selon les critères listé ci-dessous, un tableau basique est produit avec l'environnement \mintinline{latex}{\begin{tabular}[<position>]{<nombre et type de colonnes>}} et doit donc s'apparenter au code suivant :\\
+
+\begin{minted}{latex}
+\begin{table}[H]
+\caption{Un premier tableau simple avec \texttt{tabular}}
+\begin{tabular}[t]{c p{5cm}}
+\toprule
+\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	\\
+\midrule
+1		&	Un premier paragraphe de \SI{5}{\centi\meter} de large 	\\
+2		&	Un deuxième paragraphe de \SI{5}{\centi\meter} de large	\\
+3		&	Un troisième paragraphe de \SI{5}{\centi\meter} de large	\\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{minted}
+
+Cela produira :\\
+
+\begin{table}[H]
+\begin{tabular}[t]{c p{5cm}}
+\toprule
+\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	\\
+\midrule
+1		&	Un premier paragraphe de \SI{5}{\centi\meter} de large 	\\
+2		&	Un deuxième paragraphe de \SI{5}{\centi\meter} de large	\\
+3		&	Un troisième paragraphe de \SI{5}{\centi\meter} de large	\\
+\bottomrule
+\end{tabular}
+\caption{Un premier tableau simple avec \texttt{tabular}}
+\end{table}
+
+\end{exemple}
+
+	\section{Variables pour les tableaux}
+
+Si l'on se réfère au au code de l'\superref{ex:tableau_simple}, on fait donc appel à l'environnement \mintinline{latex}{\begin{tabular}} pour produire un tableau sous sa forme la plus simple. Celui-ci présente une largeur  conditionnée principalement par son contenu, c'est-à-dire que si le contenu des cellules est trop large, le tableau va déborder de l'espace de rédaction.\\
+
+Si l'on décompose son code, on commence par considérer le tableau comme un élément \emph{flottant} en l'insérant dans l'environnement \mintinline{latex}{\begin{table}}. Dans cet environnement flottant est insérée la légende avec l'instruction \mintinline{latex}{\caption{<légende>}} .\\
+
+Ensuite est déclaré l'environnement \mintinline{latex}{\begin{tabular}} qui produira le tableau. Cet environnement ne propose que le nombre et type de colonnes comme argument obligatoire, selon l'instruction suivante \mintinline{latex}{\begin{tabular}[<alignement vertical>]{<nombre et type de colonnes>}}. De base, il existe sept types de colonnes :
+\begin{description}
+\item[\texttt{l} :] colonne dont le contenu est aligné à gauche avec le contenu définissant la largeur (left) \,;
+\item[\texttt{c} :] colonne dont le contenu est aligné au centre avec le contenu définissant la largeur (center) \,;
+\item[\texttt{r} :] colonne dont le contenu est aligné à droite avec le contenu définissant la largeur (right) \,;
+\item[\mintinline{latex}{p{<largueur>}} :] paragraphe en haut avec largeur spécifiée (paragraph) \,;
+\item[\mintinline{latex}{m{<largueur>}} :] paragraphe aligné au milieu avec largeur spécifiée (middle)\,;
+\item[\mintinline{latex}{b{<largueur>}} :] paragraphe aligné en bas avec largeur spécifiée (bottom) \,;
+\item[\texttt{X} :] colonne dont le contenu est aligné à gauche avec la largeur fonction de l'espace restant sur la page.\\
+\end{description}
+
+Les nouveaux types de colonnes sont définis par les macro-commandes suivantes :
+\begin{description}
+\item[\texttt{C} :] colonne dont le contenu est aligné au centre avec la largeur fonction de l'espace restant sur la page \,;
+\item[\texttt{R} :] colonne dont le contenu est aligné à droite avec la largeur fonction de l'espace restant sur la page \,;
+\item[\texttt{i} :] colonne dont le contenu est aligné à gauche en mode mathématique avec la largeur définie par le contenu \,;
+\item[\texttt{j} :] colonne dont le contenu est aligné au centre en mode mathématique avec la largeur définie par le contenu \,;
+\item[\texttt{k} :] colonne dont le contenu est aligné à droite en mode mathématique avec la largeur définie par le contenu \,;
+\item[\texttt{I} :] colonne dont le contenu est aligné à gauche en mode mathématique avec la largeur fonction de l'espace restant sur la page \,;
+\item[\texttt{J} :] colonne dont le contenu est aligné au centre en mode mathématique avec la largeur fonction de l'espace restant sur la page \,;
+\item[\texttt{K} :] colonne dont le contenu est aligné à droite en mode mathématique avec la largeur fonction de l'espace restant sur la page \,;
+\item[\texttt{O} :] colonne \emph{double} qui combine deux colonnes dont le contenu est en mode mathématique séparé par le sigle = , avec la largeur définie par le contenu \,;
+\item[\texttt{Q} :] colonne \emph{double} qui combine deux colonnes dont le contenu est en mode mathématique séparé par le sigle = , avec la largeur fonction de l'espace restant sur la page\,;
+\item[\mintinline{latex}{P{<largeur>}} :] colonne dont le contenu est centré horizontalement et en haut verticalement avec la largeur spécifiée dans la variable \,;
+\item[\mintinline{latex}{M{<largeur>}} :] colonne dont le contenu est centré horizontalement et verticalement avec la largeur spécifiée dans la variable \,;
+\item[\mintinline{latex}{B{<largeur>}} :] colonne dont le contenu est centré horizontalement et en bas verticalement avec la largeur spécifiée dans la variable \,;\\
+\end{description}
+
+La largeur à préciser est absolue, avec les unités détaillées dans la \superref{sec:valeurs_ajoutees_latex}.\\ Ces variables déterminent donc le \emph{format} du contenu des cellules (texte, liste, grandeur physique\ldots) ainsi que le \emph{nombre} de colonnes.\\
+Selon l'\superref{ex:tableau_simple}, le bloc \mintinline{latex}{{c p{5cm}}} défini donc un tableau à deux colonne, la première \texttt{c} étant centrée horizontalement et aligné verticalement en haut et la seconde \mintinline{latex}{p{5cm}} contenant des paragraphes de \SI{5}{\centi\meter} de large.\\
+
+L'argument facultatif \mintinline{latex}{[<alignement vertical>]} aligne verticalement le tableau par rapport à d'autres éléments du texte, selon les variables suivantes :
+\begin{description}
+\item[\texttt{t} :] haut de la page (top) \,;
+\item[\texttt{m} :] milieu de la page (middle) \,;
+\item[\texttt{b} :] bas de la page (bottom).
+\end{description}
+
+
+À l'intérieur de l'environnement \mintinline{latex}{\begin{tabular}} est donc inséré le contenu du tableau, encadré par les instructions suivantes :
+\begin{description}
+\item [\mintinline{latex}{\toprule} :] ligne épaisse pour encadrer le haut du tableau, sans besoin de retour à la ligne \mintinline{latex}{\\} \,;
+\item [\mintinline{latex}{\thead{<titre de la colonne>}} :] insertion du titres des colonnes, avec un passage à la colonne suivante appelé avec le caractère \texttt{\&} et un saut de ligne \mintinline{latex}{\\} en fin de ligne\,;
+\item [\mintinline{latex}{\midrule} :] ligne fine pour séparer la ligne des titres de colonne du restant du tableau, sans retour à la ligne \mintinline{latex}{\\} \,;
+\item [\texttt{<cellulle 1>	\&	 <cellule 2> } :] insertion du contenu des cellules, avec un passage à la colonne suivante appelé avec le caractère \texttt{\&} et un saut de ligne \mintinline{latex}{\\} en fin de ligne\,;
+\item [\mintinline{latex}{\bottomrule} :] ligne épaisse pour encadrer le bas du tableau, sans besoin de retour à la ligne \mintinline{latex}{\\} \,;
+\item [\mintinline{latex}{\cmidrule(lr){<numéro de la première colonne>-<numéro de la dernière colonne>}} :] insertion d'une ligne sous une ou plusieurs colonnes en particulier, avec l'option \mintinline{latex}{[\heavyrulewidth]} juste après \mintinline{latex}{\cmidrule} pour produire une ligne épaisse, sans besoin de retour à la ligne \mintinline{latex}{\\}\,;
+\item [\mintinline{latex}{\middashrule} :] insertion d'une ligne en pointillé, sans besoin de retour à la ligne \mintinline{latex}{\\}.
+\end{description}
+
+Lorsqu'on code un tableau, il est important dans la mesure du possible de structurer le code à l'aide de tabulations, pour mettre en évidence les colonnes et s'y retrouver durant la programmation.
+
+	\section{Subtilités de rédaction}
+	
+Il arrive souvent qu'il faille fusionner des cellules horizontalement, avec l'instruction \mintinline{latex}{\multicolumn{<nombre de colonne à fusionner}{<alignement horizontal du contenu>}{<contenu de la cellule>}}. Il convient de bien terminer la ligne du tableau en prenant compte du nombre de cellules fusionnées.\\
+Pour fusionner des cellules verticalement -- principalement dans les titres de colonnes -- il faut utiliser l'instruction \mintinline{latex}{\multirow[<alignement vertical du contenu>]{<nombre de ligne à fusionner>}{*}{<contenu de la cellule>}}. Il convient de bien prendre en compte le nombre de lignes fusionnées pour déclarer la cellules fusionnées en-dessous avec un simple espace.\\
+	
+	Pour inclure des images dans des cellules d'un tableau, il convient de les aligner verticalement en haut. Cela est réalisé à l'aide de la macro-commande \mintinline{latex}{\adjustbox{valign=t}{\includegraphics[width=<largeur>]{<chemin d'accès de l'image>}}}. Si l'on change la variable \texttt{t} par \texttt{b} ou \texttt{c}, cela modifiera la disposition de l'image dans la cellule (en bas ou centrée).\\
+	
+	Si l'on souhaite insérer une liste ou une description dans une cellule, on fait appel au nouveau format de liste \mintinline{latex}{\tabitemize} et de description \mintinline{latex}{\tabdescription} qui réduisent les espaces interlignes pour ne pas agrandir inutilement le tableau. Ces listes peuvent toutefois causer un conflit avec les colonnes de formats \texttt{X} (adaptables), auquel cas il conviendra de les adapter en colonne au format \texttt{p{<largeur de la colonne>}}.\\
+Il se peut également qu'un décalage apparaisse avant le début du tableau, auquel cas il faut insérer la macro-commande \mintinline{latex}{>{\compress}} juste avant la déclaration du type de colonne contenant la liste ou la description.\\
+
+On peut également insérer des titres de colonnes en oblique pour qu'ils prennent moins de places en largeur, avec l'instruction \mintinline{latex}{\mcrot{<nombre de colonnes à cheval>}{<alignement horizontal du texte>}{<angle>}{<contenu de la cellule>}}.\\
+
+On peut insérer automatiquement un caractère entre deux colonnes lors de la déclaration des types de colonnes avec l'instruction \mintinline{latex}{<type de colonne>@{<caractère à insérer>}<type de colonne>}. On peut également accoler ou encadrer une colonne à un ou deux caractères lors de la déclaration des types de colonnes avec l'instruction \mintinline{latex}{>{<caractère à insérer>}<type de colonne><{<caractère à insérer>}}.\\
+
+Enfin, pour insérer une note en bas de tableau, on utilise l'environnement \mintinline{latex}{\begin{ThreePartTable}}, qui englobe tout le tableau, incluant les références appelées avec l'instruction \mintinline{latex}{\tnote{<numéro de la référence>}}. L'environnement \mintinline{latex}{\begin{TableNotes}} inclus juste après le tableau contient la liste des notes en bas de tableau, précédé de l'instruction \mintinline{latex}{\item[<numéro de la référence>]}.\\
+
+Toutes ces notions sont intégrées dans des tableaux récapitulatifs situés en \superref{ann:exemples_tableaux}.
+
+	\section{Tableau avec largeur relative}
+	
+Dans la pratique, les tableaux produits avec l'environnement \mintinline{latex}{\begin{tabular}} sont relativement rares et présentent un format contenu. Les rédacteurs feront plus souvent face à des cas de figures où les tableaux ont une largeur occupant tout l'espace de rédaction.\\
+Pour plus de cohésion graphique, il convient donc de corréler automatiquement la largeur totale du tableau à la largeur des colonnes. Cela est rendu possible avec l'environnement \mintinline{latex}{\begin{tabularx}}, qui introduit un nouveau format de colonne \texttt{X} à la largeur adaptative selon l'espace restant. Ce type de tableau reste cependant relativement concis et ne peut pas être réparti harmonieusement sur plus d'une page.
+
+\begin{exemple}{Tableau à la largeur relative}{tableau_largeur_relative}
+
+Un tableau à la largeur relative est produit avec l'environnement \mintinline{latex}{\begin{tabularx}{<largeur du tableau>}[<position>]{<type de colonnes>}}. On remarquera le nouvel argument \mintinline{latex}{{<largeur du tableau>}} , ainsi qu'un nouveau format de colonne \texttt{X} :
+
+\begin{minted}{latex}
+\begin{table}[H]
+\caption{Un deuxième tableau avec \texttt{tabularx}}
+\begin{tabularx}{\linewidth}[t]{c X r}
+\toprule
+\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	&	\thead{Prix (\EUR{}}	\\
+\midrule
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 	& 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 	& 45	\\
+\bottomrule
+\end{tabularx}
+\end{table}
+\end{minted}
+
+Cela produira :\\
+
+\begin{table}[H]
+\begin{tabularx}{\linewidth}[t]{c X r}
+\toprule
+\thead{Titre colonne nombre} 	&	\thead{Titre colonne texte}	&	\thead{Devise (\EUR{})}	\\
+\midrule
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 	& 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 	& 45	\\
+\bottomrule
+\end{tabularx}
+\caption{Un deuxième tableau avec \texttt{tabularx}}
+\end{table}
+
+La colonne \texttt{X} voit donc sa largeur s'adapter en fonction de son contenu et de celui des autres cellules pour mesurer précisément la variable \mintinline{latex}{\linewidth} renseignée.
+\end{exemple}
+
+Afin de faciliter la rédaction de tableaux à la largeur relative, un environnement personnalisé a été implémenté dans le package AOCDTF. 
+
+\begin{exemple}{Environnement tableau}{environnement_tableau}
+
+Un tableau à la largeur relative sur une seule page est produit avec l'environnement \mintinline{latex}{\begin{tableau}[<alignement vertical>]{<largeur du tableau>}{<type de colonnes>}{<titres des colonnes}}. Cela ajoute automatiquement les lignes de séparation entre le corps du tableau et le titre mais n'inclut pas automatiquement d'environnement flottant. Cet environnement conviendra pour la majorité des cas :
+
+\begin{minted}{latex}
+\begin{table}[H]
+\caption{Un troisième tableau avec \texttt{tableau}}
+\begin{tableau}[t]{\linewidth}{c X r}
+{\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	&	\thead{Prix (\EUR{}}}
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 45	\\
+\end{tableau}
+\end{table}
+\end{minted}
+
+Cela produira :\\
+
+\begin{table}[H]
+\caption{Un troisième tableau avec \texttt{tableau}}
+\begin{tableau}[t]{\linewidth}{c X r}
+{\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	&	\thead{Prix (\EUR{})}}
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée  	& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 	& 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 45	\\
+\end{tableau}
+\end{table}
+
+\end{exemple}
+
+	\section{Tableau avec largeur relative sur plusieurs pages}
+
+Les rédacteurs font souvent face au cas de figure ou le tableau se répartit sur plusieurs pages. Dans ce cas, la rédaction devient quelques peut fastidieuse car il faut y insérer des renvois de pages en bas et haut des pages sur lesquelles le tableau s'étend. Cela est rendu possible avec l'environnement \mintinline{latex}{\begin{xltabular}} :
+
+\begin{exemple}{Tableau à la largeur relative sur plusieurs pages}{tableau_largeur_relative_plusieurs_pages}
+
+Un tableau à la largeur relative sur plusieurs pages est produit avec l'environnement \mintinline{latex}{\begin{xltabular}{<largeur du tableau>}[<position>]{<type de colonnes>}}. On remarquera que la légende est directement incluse dans le tableau, avant les titres des colonnes et suivi d'un retour à la ligne \mintinline{latex}{\\}, ainsi que l'insertion fastidieuse plusieurs en-têtes et de bas-de-page avec les instructions
+\begin{description}
+\item  \mintinline{latex}{\endfirsthead} : clôture l'en-tête du premier en-tête du tableau\,;
+\item  \mintinline{latex}{\endhead} : clôture l'en-tête des en-têtes suivant du tableau\,;
+\item  \mintinline{latex}{\endfoot} : clôture l'en-tête des bas-de-pages du tableau\,;
+\item  \mintinline{latex}{\endlastfoot} : clôture l'en-tête du dernier bas-de-page du tableau.\\
+\end{description}
+
+Pour forcer le saut de page dans les tableaux, on fait appel à l'instruction \mintinline{latex}{\noalign{\break}}. Durant la rédaction des ces en-têtes et bas-de-page, il faut y insérer les lignes de renvois de page :
+
+\begin{minted}{latex}
+\begin{xltabular}{\linewidth}[t]{c X r}
+\caption{Un quatrième tableau avec \texttt{xltabular}}\\
+\toprule
+\thead{Titre colonne nombre} 	&	\thead{Titre colonne texte}	&	\thead{Devise (\EUR{})}	\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\textit{Page précédente}} \\
+\midrule
+\thead{Titre colonne nombre} 	&	\thead{Titre colonne texte}	&	\thead{Devise (\EUR{})}	\\
+\midrule
+\endhead
+\midrule %filet de milieu de tableau
+\multicolumn{3}{r}{\small\textit{Page suivante}}
+\endfoot
+\bottomrule
+\endlastfoot %pied de page de toutes les pages du tableau
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 45	\\
+4		&	Un quatrième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 25	\\
+5		&	Un cinquième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 10	\\
+6		&	Un sixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 50	\\
+7		&	Un septième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 20	\\
+8		&	Un huitième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 35	\\
+9		&	Un neuvième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 5	\\
+10		&	Un dixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 55	\\
+11		&	Un onzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 40	\\
+12		&	Un douzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 0	\\
+13		&	Un treizième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 60	\\
+\end{xltabular}
+\end{minted}
+
+Cela produira (tableau situé en dehors de l'environnement exemple pour des raisons de compatibilité) :\\
+
+\end{exemple}
+
+\begin{xltabular}{\linewidth}[t]{c X r}
+\caption{Un quatrième tableau avec \texttt{xltabular}}\\
+\toprule
+\thead{Titre colonne nombre} 	&	\thead{Titre colonne texte}	&	\thead{Devise (\EUR{})}	\\
+\midrule
+\endfirsthead
+\multicolumn{3}{l}{\small\textit{Page précédente}} \\
+\midrule
+\thead{Titre colonne nombre} 	&	\thead{Titre colonne texte}	&	\thead{Devise (\EUR{})}	\\
+\midrule
+\endhead
+\midrule %filet de milieu de tableau
+\multicolumn{3}{r}{\small\textit{Page suivante}}
+\endfoot
+\bottomrule
+\endlastfoot %pied de page de toutes les pages du tableau
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 45	\\
+4		&	Un quatrième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 25	\\
+5		&	Un cinquième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 10	\\
+6		&	Un sixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 50	\\
+7		&	Un septième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 20	\\
+8		&	Un huitième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 35	\\
+9		&	Un neuvième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 5	\\
+10		&	Un dixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 55	\\
+11		&	Un onzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 40	\\
+12		&	Un douzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 0	\\
+13		&	Un treizième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 60	\\
+\end{xltabular}
+
+Afin de faciliter la rédaction de tableaux à la largeur relative sur plusieurs pages, un environnement personnalisé a été implémenté dans le package AOCDTF.  
+
+\begin{exemple}{Environnement longtableau}{environnement_longtableau}
+
+Un tableau à la largeur relative sur plusieurs pages est produit avec l'environnement \mintinline{latex}{\begin{longtableau}[<alignement vertical>]{<largeur du tableau>}{<type de colonnes>}{<nombre de colonnes>}[<légende (optionnelle)>]{<titres des colonnes}}. Cela ajoute automatiquement les lignes de séparation entre le corps du tableau et le titre, inclut automatiquement l'environnement flottant si la légende est renseignée ainsi que les renvois de pages aux colonnes précédentes. Pour forcer le saut de page dans les tableaux, on fait appel à l'instruction \mintinline{latex}{\noalign{\break}}.\\ 
+Cet environnement conviendra pour la majorité des cas :
+
+\begin{minted}{latex}
+\begin{longtableau}[t]{\linewidth}{c X r}{3}{Un cinquième tableau sur plusieurs pages avec \texttt{longtableau}}
+{\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	&	\thead{Prix (\EUR{}}}
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 45	\\
+4		&	Un quatrième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 25	\\
+5		&	Un cinquième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 10	\\
+6		&	Un sixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 50	\\
+7		&	Un septième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 20	\\
+8		&	Un huitième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 35	\\
+9		&	Un neuvième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 5	\\
+10	&	Un dixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 55	\\
+11	&	Un onzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 40	\\
+12	&	Un douzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 0	\\
+13	&	Un treizième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 60	\\
+\end{longtableau}
+\end{minted}
+
+Cela produira (tableau situé en dehors de l'environnement exemple pour des raisons de compatibilité) :\\
+
+\end{exemple}
+
+\begin{longtableau}[t]{\linewidth}{c X r}{3}{Un cinquième tableau sur plusieurs pages avec \texttt{longtableau}}
+{\thead{Titre colonne nombre (unité)} 	&	\thead{Titre colonne texte}	&	\thead{Prix (\EUR{})}}
+1		&	Un premier texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée 		& 15	\\
+2		&	Un deuxième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée & 30	\\
+3		&	Un troisième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 45	\\
+4		&	Un quatrième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 25	\\
+5		&	Un cinquième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 10	\\
+6		&	Un sixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 50	\\
+7		&	Un septième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 20	\\
+8		&	Un huitième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 35	\\
+9		&	Un neuvième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 5	\\
+10	&	Un dixième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 55	\\
+11	&	Un onzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 40	\\
+12	&	Un douzième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 0	\\
+13	&	Un treizième texte à l'agencement format \texttt{paragraph} et à la largeur automatiquement ajustée à l'espace restant sur la largeur spécifiée	& 60	\\
+\end{longtableau}
+
+
+
+\end{document}

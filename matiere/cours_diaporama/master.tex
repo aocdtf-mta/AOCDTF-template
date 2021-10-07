@@ -1,8 +1,4 @@
 %--------------------------------------
-%CANEVAS
-%--------------------------------------
-
-%--------------------------------------
 %appel de la classe de document et de ses options
 %--------------------------------------
 \PassOptionsToPackage{french}{translator}
@@ -30,7 +26,6 @@
 \auteurc{Nom}{Prénom}
 \auteurd{Nom}{Prénom}
 
-\usepackage{AOCDTF_diaporamatitre}
 
 %--------------------------------------
 %corps du document
@@ -40,6 +35,11 @@
 
 \maketitle
 
-\include{sec_premiere_section}
+\begin{frame}{Table des matières}
+	\tableofcontents[hideallsubsections]
+\end{frame}
+
+\section{Une première section}
+
 
 \end{document}

@@ -1,0 +1,98 @@
+\documentclass[a4paper, 11pt, twoside, fleqn]{memoir}
+
+\usepackage{AOCDTF}
+
+%\input{glossary_entry}
+%\input{acronym_entry}
+
+\typemedia{screen} %choix screen ou paper pour les vidéos et schémas animés
+
+\marqueurchapitre
+\decoupagechapitre{1} %juste pour éviter les erreurs lors de la compilation des sous-programmations (passera en commentaire)
+
+%lien d'édition des figures Tikz sur le site mathcha.io (rajouter le lien d'une modification effectuée sur la figure tikz avec le nom du modificateur car il n'y a qu'un lien par compte)
+
+%lien mathcha Nom Prénom : 
+
+\newlength\mylen
+\setlength\mylen{\dimexpr\arraystretch\ht\strutbox+\arraystretch\dp\strutbox\relax}
+	\makeatletter
+	\makechapterstyle{douchy}{
+  	\chapterstyle{komalike}
+  	  \setlength{\beforechapskip}{0pt}
+ 	\renewcommand\printchapternum{}
+  	\renewcommand\printchaptertitle[1]{
+  	  	\if@mainmatter
+			\ifnum\value{chapter}<1
+    			\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash} X@{}}
+  			\hrule depth 1pt
+  			\vspace{0.5cm}
+   			\Huge\sffamily\bfseries\discolorlinks{##1}
+			\vspace{0.5cm}
+			\hrule depth 1pt
+  			\end{tabularx}
+  			\else
+   			\begin{tabularx}{\linewidth}{@{}l @{\quad} c @{\quad} >{\raggedright\arraybackslash} X@{}}
+    			\raisebox{-0.93\height}{\bfseries\sffamily\small\MakeUppercase \@chapapp} & 
+    				\if\inappendix %instruction conditionelle pour savoir si on se situe dans les annexes ou pas (grosse prise de tête)
+				\multirow[t]{2}{*}{\raisebox{-0.99\height}{\resizebox{\mylen}{!}{{\mdseries\sffamily \thechapter}}}}
+				\else
+					\ifnum\value{chapter}>9
+    					\multirow{2}{*}{\raisebox{-\height}{\resizebox{48pt}{!}{{\mdseries\sffamily \thechapter}}}}
+    					\else
+					\multirow{2}{*}{\raisebox{-1\height}{\resizebox{24,3pt}{!}{{\mdseries\sffamily \thechapter}}}}
+					\fi
+				\fi & \hrule depth 1pt \\
+     		&  &  \Huge\sffamily\bfseries\discolorlinks{##1}
+  			\end{tabularx}
+    			\vspace{0.5cm}
+			\hrule depth 1pt
+			\fi
+  		\else
+    		\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash} X@{}}
+  		\hrule depth 1pt
+  		\vspace{0.5cm}
+   		\Huge\sffamily\bfseries\discolorlinks{##1}
+		\vspace{0.5cm}
+		\hrule depth 1pt
+  		\end{tabularx}
+  		\fi}}
+	
+	\makeatother
+		
+	\chapterstyle{douchy}
+
+%--------------------------------------
+%corps du document
+%--------------------------------------
+
+\begin{document} %corps du document
+\frontmatter
+\chapter{un chapitre au titre long pour tester soyons fous}
+\mainmatter
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\appendix
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+\chapter{\'Ecriture scientifique}
+\chapter{un chapitre au titre long pour tester soyons fous}
+
+
+\end{document}
